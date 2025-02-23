@@ -1,0 +1,47 @@
+.container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+    background-color: rgba(0, 0, 0, 0.2);
+    font-family: 'New Rocker', sans-serif;
+}
+
+.logo {
+    height: 70px;
+    padding-left: 1rem;
+}
+
+.items {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+}
+
+.auth,
+.guest {
+    display: flex;
+}
+
+.items li {
+    list-style: none;
+    margin-right: 1rem;
+}
+
+.items a {
+    color: #ec2e2e;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 600;
+    display: inline-block;
+    transition: transform 0.3s ease;   
+}
+
+.items a:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
