@@ -1,0 +1,14 @@
+.carousel {
+    max-width: 60vw;
+    margin: auto;
+    padding: 1em;
+}
+
+.slickDots li button::before{
+    color: #fff !important;
+    font-size: 0.5em;
+}
+
+.slickDots li.slick-active button::before {
+    color: #4caf50;
+  }
