@@ -1,0 +1,49 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 160px;
+    font-weight: 700;
+    color: #ec2e2e;
+    margin: 0;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+  }
+
+  .message {
+    font-size: 24px;
+    color: #fff;
+    margin-top: 20px;
+  }
+
+  .description {
+    font-size: 18px;
+    color: #ccc;
+    margin-top: 10px;
+    font-style: italic;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #ec2e2e;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #ff4d4d;
+  }
