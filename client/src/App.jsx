@@ -1,9 +1,16 @@
-import Header from "./components/register/header/Header.jsx"
+import { Route, Routes } from "react-router-dom"
+import Header from "./components/header/Header.jsx"
+import { PATHS } from "./constants.js"
+import Home from "./components/home/Home.jsx"
 
 function App() {
     return (
         <>
-           <Header />
+            <Header />
+
+            <Routes>
+                <Route path={PATHS.Home} element={<Home />} />
+            </Routes>
         </>
     )
 }
