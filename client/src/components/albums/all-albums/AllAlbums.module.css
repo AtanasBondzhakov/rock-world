@@ -1,0 +1,30 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    padding-top: 100px;
+    font-family: 'Trade winds', sans-serif;
+    padding-bottom: 12em;
+    background-image: url(./images/catalog.jpg);
+    background-size: cover;
+   background-position: center;
+   min-height: 100vh;
+}
+
+.wrapper > h2 {
+    font-size: 70px;
+    font-weight: 800;
+    color: #eb2d2d;
+    text-align: center;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.container {
+    max-width: 80vw;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+    padding: 2em;
+    border-radius: 15px;
+}
