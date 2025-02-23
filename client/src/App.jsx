@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import Header from "./components/header/Header.jsx"
 import { PATHS } from "./constants.js"
 import Home from "./components/home/Home.jsx"
+import Footer from "./components/footer/Footer.jsx"
 
 function App() {
     return (
@@ -11,6 +12,8 @@ function App() {
             <Routes>
                 <Route path={PATHS.Home} element={<Home />} />
             </Routes>
+
+            <Footer />
         </>
     )
 }

@@ -1,0 +1,56 @@
+.container {
+    background-color: #080808;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Outfit', sans-serif;
+    color: #9c9fa1;
+    gap: 1em;
+}
+
+.contactInfo {
+    display: flex;
+    justify-content: space-between;
+    margin: 3em 3em 0;
+    font-size: 1.5em;
+    padding-bottom: 2em;
+    border-bottom: 1px solid;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.infoContainer > * {
+    margin-top: 2em;
+}
+
+.quickLinks {
+    display: flex;
+    justify-content: center;
+}
+
+.socialMedia {
+    display: flex;
+    justify-content: center;
+}
+
+.copyright {
+    text-align: center;
+}
+
+.container li {
+    list-style: none;
+    margin: 10px 30px;
+}
+
+.container a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #9c9fa1;
+}
+
+.socialMedia a {
+    font-size: 30px;
+    padding: 0 30px;
+}
