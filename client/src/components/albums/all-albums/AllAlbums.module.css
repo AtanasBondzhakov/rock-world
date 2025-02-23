@@ -6,14 +6,14 @@
     padding-bottom: 12em;
     background-image: url(./images/catalog.jpg);
     background-size: cover;
-   background-position: center;
-   min-height: 100vh;
+    background-position: center;
+    min-height: 100vh;
 }
 
 .wrapper > h2 {
     font-size: 70px;
     font-weight: 800;
-    color: #eb2d2d;
+    color: #ec2e2e;
     text-align: center;
     margin-top: 50px;
     width: 100%;
