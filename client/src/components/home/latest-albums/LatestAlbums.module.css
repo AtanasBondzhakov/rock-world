@@ -1,0 +1,15 @@
+.container {
+    font-family: 'New Rocker', sans-serif;
+    background-color: #0f0f10;
+    display: flex;
+    flex-direction: column;
+    height: 31em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+}
+
+.heading {
+    padding: 1.25em;
+    color: #c2c2c2;
+}

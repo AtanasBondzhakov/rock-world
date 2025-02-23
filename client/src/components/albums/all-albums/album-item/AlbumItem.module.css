@@ -11,6 +11,8 @@
     font-family: 'Outfit', sans-serif;
     text-align: center;
     color: #4b4a4a;
+    max-width: 350px;
+    height: 400px;
 }
 
 .albumCard img {

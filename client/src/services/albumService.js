@@ -14,6 +14,17 @@ const getAll = (offset, pageSize) => {
     return albums;
 };
 
+const getLatest = () => {
+    const query = new URLSearchParams({
+        sortBy: '_createdOn desc',
+        offset: 0,
+        pageSize: 5
+    });
+
+    return requester.get(`/data/albums?${query}`);
+};
+
 export default {
-    getAll
+    getAll,
+    getLatest
 };
