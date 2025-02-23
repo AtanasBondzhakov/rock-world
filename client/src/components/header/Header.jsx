@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
-import { PATHS } from '../../../constants.js';
+import { PATHS } from '../../constants.js';
 
 export default function Header() {
     return (
