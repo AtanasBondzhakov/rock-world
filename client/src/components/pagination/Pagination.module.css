@@ -1,8 +1,39 @@
-.pagination {
+.container {
     display: flex;
     justify-content: center;
-    margin: 1.5em auto;
-    padding: 1em;
-    gap: 0.3em;
-    flex-wrap: wrap;
+    align-items: center;
+    font-family: 'Outfit', sans-serif;
+}
+
+.container * {
+    margin: 0 1em;
+}
+
+.container button {
+    padding: 0.5em 1em;
+    background-color: #ec2e2e;
+    color: #fff;
+    border-radius: 0.5em;
+    font-size: 1em;
+    border: 1px solid #949494;
+    cursor: pointer;
+}
+
+.container span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #fff;
+    background-color: rgba(148, 148, 148, 0.4);
+    font-size: 1.25em;
+    border-radius: 0.5em;
+    padding: 0.3em;
+}
+
+button:disabled {
+    background-color: #6d6d6d;
+    opacity: 0.5;
+    cursor: auto;
+    color: #fff;
 }
