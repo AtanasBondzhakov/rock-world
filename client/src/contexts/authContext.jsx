@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import usePersistedState from "../hooks/usePersistedState";
 import { PATHS } from "../constants.js";
-import authService from "../../services/authService.js";
+import authService from "../services/authService.js";
 
 const AuthContext = createContext();
 
@@ -26,7 +26,6 @@ export const AuthProvider = ({
         } catch (err) {
             //TODO error handling
             console.log(err);
-
         }
     };
 

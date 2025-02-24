@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 
 import { PATHS } from "./constants.js"
+import { AuthProvider } from "./contexts/authContext.jsx"
 
 import Header from "./components/header/Header.jsx"
 import Home from "./components/home/Home.jsx"
@@ -11,7 +12,7 @@ import Register from "./components/register/Register.jsx"
 
 function App() {
     return (
-        <>
+        <AuthProvider>
             <Header />
 
             <Routes>
@@ -22,7 +23,7 @@ function App() {
             </Routes>
 
             <Footer />
-        </>
+        </AuthProvider>
     )
 }
 
