@@ -3,9 +3,9 @@ import styles from './Register.module.css';
 
 export default function Register() {
     return (
-        <div className="auth-container">
+        <div className={styles.authContainer}>
             <h2 className={styles.authTitle}>Register</h2>
-            <form className={styles.form} onSubmit={onSubmit}>
+            <form className={styles.form}>
                 <div className={styles.inputGroup}>
                     <label htmlFor={AUTH_FORM_KEYS.Username}>Username</label>
                     <input
