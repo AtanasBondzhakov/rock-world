@@ -14,15 +14,14 @@
   }
 
 .authTitle {
-    font-size: 1.8rem;
-    /* margin-bottom: 1.5em; */
+    font-size: 1.8em;
     color: #c2c2c2;;
 }
 
 .form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.5em;
     width: 70%;
     margin-top: 1.5em;
 }
@@ -47,15 +46,15 @@
 .inputGroup label {
     font-size: 1em;
     color: #c2c2c2;
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
 }
 
 .inputGroup input {
     background: #333030;
     border: none;
-    border-radius: 10px;
-    padding: 0.8rem;
-    font-size: 1rem;
+    border-radius: 0.5em;
+    padding: 0.8em;
+    font-size: 1em;
     color: #ffffff;
     outline: none;
 }
@@ -63,11 +62,11 @@
  .button {
     background: #ec2e2e;
     border: none;
-    padding: 0.8rem;
+    padding: 0.8em;
     margin-top: 1em;
-    border-radius: 10px;
+    border-radius: 0.5em;
     color: #fff;
-    font-size: 1rem;
+    font-size: 1em;
     cursor: pointer;
     transition: transform 0.2s ease;
   }
@@ -76,7 +75,6 @@
     opacity: 0.5;
     color: #a0a0b2;
 }
-
 
 .button:hover {
     transform: scale(1.02);
@@ -97,3 +95,39 @@
 .loginLink a:hover {
     text-decoration: underline;
 }
+
+@media (max-width: 640px) {
+    .authContainer {
+    max-width: 20em;
+    padding: 0.5em 0;
+    }
+  
+    .authTitle {
+      font-size: 1.25em;
+    }
+  
+    .form {
+      width: 90%;
+      gap: 1em;
+    }
+
+    .validationError,
+    .error {
+        font-size: 0.8em;
+    }
+  
+    .inputGroup input {
+      padding: 0.8em;
+      font-size: 0.8em;
+    }
+  
+    .button {
+      padding: 0.6em;
+      font-size: 0.8em;
+    }
+  
+    .loginLink {
+      font-size: 0.8em;
+      text-align: center;
+    }
+  }
