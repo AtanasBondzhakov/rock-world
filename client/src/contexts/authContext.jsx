@@ -1,5 +1,5 @@
-import { createContext, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { createContext, useEffect, useState } from "react";
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import usePersistedState from "../hooks/usePersistedState";
 import { PATHS } from "../constants.js";
@@ -14,6 +14,11 @@ export const AuthProvider = ({
     const [registerError, setRegisterError] = useState('');
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        setRegisterError('');
+    }, [location.pathname]);
 
     const handleRegister = async (userData) => {
         try {
