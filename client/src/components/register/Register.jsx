@@ -4,6 +4,7 @@ import { AUTH_FORM_KEYS, PATHS } from "../../constants";
 import styles from './Register.module.css';
 import AuthContext from "../../contexts/authContext";
 import useForm from "../../hooks/useForm";
+import { registerSchema } from "../../schemas/registerSchema.js";
 
 const initialValues = {
     [AUTH_FORM_KEYS.Username]: '',
@@ -13,13 +14,16 @@ const initialValues = {
 };
 
 export default function Register() {
-    const { handleRegister } = useContext(AuthContext);
+    const { handleRegister, registerError } = useContext(AuthContext);
 
-    const { formValues, onChange, onSubmit } = useForm(initialValues, handleRegister);
+    const { formValues, errors, onChange, onSubmit } = useForm(initialValues, handleRegister, registerSchema);
 
     return (
         <div className={styles.authContainer}>
             <h2 className={styles.authTitle}>Register</h2>
+
+            {registerError && <div className={styles.error}>{registerError}</div>}
+
             <form className={styles.form} onSubmit={onSubmit}>
                 <div className={styles.inputGroup}>
                     <label htmlFor={AUTH_FORM_KEYS.Username}>Username</label>
@@ -28,22 +32,24 @@ export default function Register() {
                         id={AUTH_FORM_KEYS.Username}
                         name={AUTH_FORM_KEYS.Username}
                         placeholder='John'
-                        required
                         value={formValues[AUTH_FORM_KEYS.Username]}
                         onChange={onChange}
                     />
+
+                    {errors[AUTH_FORM_KEYS.Username] && <div className={styles.validationError}>{errors[AUTH_FORM_KEYS.Username]}</div>}
                 </div>
                 <div className={styles.inputGroup}>
                     <label htmlFor={AUTH_FORM_KEYS.Email}>Email</label>
                     <input
-                        type="email"
+                        type="text"
                         id={AUTH_FORM_KEYS.Email}
                         name={AUTH_FORM_KEYS.Email}
                         placeholder='john@mail.com'
-                        required
                         value={formValues[AUTH_FORM_KEYS.Email]}
                         onChange={onChange}
                     />
+
+                    {errors[AUTH_FORM_KEYS.Email] && <div className={styles.validationError}>{errors[AUTH_FORM_KEYS.Email]}</div>}
                 </div>
                 <div className={styles.inputGroup}>
                     <label htmlFor={AUTH_FORM_KEYS.Password}>Password</label>
@@ -52,10 +58,11 @@ export default function Register() {
                         id={AUTH_FORM_KEYS.Password}
                         name={AUTH_FORM_KEYS.Password}
                         placeholder='******'
-                        required
                         value={formValues[AUTH_FORM_KEYS.Password]}
                         onChange={onChange}
                     />
+
+                    {errors[AUTH_FORM_KEYS.Password] && <div className={styles.validationError}>{errors[AUTH_FORM_KEYS.Password]}</div>}
                 </div>
                 <div className={styles.inputGroup}>
                     <label htmlFor={AUTH_FORM_KEYS.RePassword}>Repeat Password</label>
@@ -64,10 +71,11 @@ export default function Register() {
                         id={AUTH_FORM_KEYS.RePassword}
                         name={AUTH_FORM_KEYS.RePassword}
                         placeholder='******'
-                        required
                         value={formValues[AUTH_FORM_KEYS.RePassword]}
                         onChange={onChange}
                     />
+
+                    {errors[AUTH_FORM_KEYS.RePassword] && <div className={styles.validationError}>{errors[AUTH_FORM_KEYS.RePassword]}</div>}
                 </div>
                 <button type="submit" className={styles.button}>Register</button>
             </form>
