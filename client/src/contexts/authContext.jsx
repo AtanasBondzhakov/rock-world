@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 import usePersistedState from "../hooks/usePersistedState";
@@ -11,6 +11,7 @@ export const AuthProvider = ({
     children
 }) => {
     const [auth, setAuth] = usePersistedState('auth', {});
+    const [registerError, setRegisterError] = useState('');
 
     const navigate = useNavigate();
 
@@ -24,8 +25,7 @@ export const AuthProvider = ({
 
             navigate(PATHS.Home);
         } catch (err) {
-            //TODO error handling
-            console.log(err);
+            setRegisterError(err.message);
         }
     };
 
@@ -34,7 +34,8 @@ export const AuthProvider = ({
         username: auth.username,
         email: auth.email,
         isAuthenticated: !!auth.email,
-        userId: auth._id
+        userId: auth._id,
+        registerError
     };
 
     return (
