@@ -1,0 +1,73 @@
+.authTitle {
+    font-size: 1.8rem;
+    margin-bottom: 1.5em;
+    color: #c2c2c2;;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 70%;
+  }
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    /* gap: 1rem; */
+    text-align: left;
+}
+
+.inputGroup label {
+    font-size: 1em;
+    color: #c2c2c2;
+    margin-bottom: .5em;
+}
+
+.inputGroup input {
+    background: #333030;
+    border: none;
+    border-radius: 10px;
+    padding: 0.8rem;
+    font-size: 1rem;
+    color: #ffffff;
+    outline: none;
+}
+
+ .button {
+    background: #ec2e2e;
+    border: none;
+    padding: 0.8rem;
+    margin-top: 1em;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+.inputGroup input::placeholder {
+    opacity: 0.5;
+    color: #a0a0b2;
+}
+
+
+.button:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 4px 10px rgba(100, 181, 246, 0.6);
+  }
+
+.loginLink {
+    margin-top: 1em;
+    font-size: 0.9em;
+    color: #c2c2c2;
+}
+
+.loginLink a {
+    color: #ec2e2e;
+    text-decoration: none;
+}
+
+.loginLink a:hover {
+    text-decoration: underline;
+}
