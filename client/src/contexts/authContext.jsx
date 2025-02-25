@@ -50,9 +50,16 @@ export const AuthProvider = ({
         }
     };
 
+    const handleLogout = () => {
+        setAuth({});
+        localStorage.removeItem('accessToken');
+        navigate(PATHS.Home);
+    };
+
     const authValues = {
         handleRegister,
         handleLogin,
+        handleLogout,
         username: auth.username,
         email: auth.email,
         isAuthenticated: !!auth.email,

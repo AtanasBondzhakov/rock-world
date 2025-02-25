@@ -23,11 +23,11 @@ export default function AllAlbums() {
                 setAlbumsList(result);
                 //TODO fix if last items are exactly as pageSize
                 setHasNextPage(result.length === pageSize);
+
+                setLoading(false);
             } catch (err) {
                 //TODO error handling
                 console.log(err.message);
-            } finally {
-                setLoading(false);
             }
         })();
     }, [currentPage]);

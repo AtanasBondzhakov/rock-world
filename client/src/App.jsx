@@ -10,6 +10,7 @@ import PageNotFound from "./components/page-not-found/PageNotFound.jsx"
 import AllAlbums from "./components/albums/all-albums/AllAlbums.jsx"
 import Register from "./components/register/Register.jsx"
 import Login from "./components/login/Login.jsx"
+import Logout from "./components/logout/Logout.jsx"
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path={PATHS.Albums} element={<AllAlbums />} />
                 <Route path={PATHS.Register} element={<Register />} />
                 <Route path={PATHS.Login} element={<Login />} />
+                <Route path={PATHS.Logout} element={<Logout />} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
 

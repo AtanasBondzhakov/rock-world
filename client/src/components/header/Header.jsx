@@ -20,7 +20,7 @@ export default function Header() {
                     ?
                     <div className={styles.auth}>
                         <li><Link to={PATHS.AddAlbum}>Add Album</Link></li>
-                        <li><Link to="#">Logout</Link></li>
+                        <li><Link to={PATHS.Logout}>Logout</Link></li>
                     </div>
                     :
                     <div className={styles.guest}>
