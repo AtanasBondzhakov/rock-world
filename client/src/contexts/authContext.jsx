@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
+import { notification } from "antd";
 
 import usePersistedState from "../hooks/usePersistedState";
 import { PATHS } from "../constants.js";
@@ -43,6 +44,12 @@ export const AuthProvider = ({
             setAuth(userDetails);
 
             localStorage.setItem('accessToken', userDetails.accessToken);
+
+            notification.success({
+                message: 'Login Successful',
+                duration: 3,
+                placement: 'bottomRight',
+            });
 
             navigate(PATHS.Home);
         } catch (err) {

@@ -15,7 +15,6 @@
 
 .authTitle {
     font-size: 1.8em;
-    margin-bottom: 1.5em;
     color: #c2c2c2;;
 }
 
@@ -24,11 +23,12 @@
     flex-direction: column;
     gap: 20px;
     width: 70%;
+    margin-top: 1.5em;
 }
 
 .error {
     font-size: 1em;
-    color: #ec2e2e;
+    color: #c00000;
 }
 
 .inputGroup {
@@ -40,7 +40,7 @@
 .inputGroup label {
     font-size: 1em;
     color: #c2c2c2;
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
 }
 
 .inputGroup input {
