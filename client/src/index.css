@@ -6,7 +6,7 @@ body {
   background-color: #0f0f10;
 }
 
-.button {
+/* .button {
   display: inline-block;
   background: #ec2e2e;
   border: none;
@@ -25,4 +25,4 @@ body {
 .button:hover {
   transform: scale(1.02);
   box-shadow: 0px 4px 10px rgba(112, 113, 114, 0.6);
-}
+} */

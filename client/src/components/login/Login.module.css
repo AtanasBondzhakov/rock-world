@@ -11,30 +11,24 @@
     border-radius: 0.5em;
     padding: 2em 0;
     background-color: #151515;
-  }
+}
 
 .authTitle {
-    font-size: 1.8em;
+    font-size: 1.8rem;
+    margin-bottom: 1.5em;
     color: #c2c2c2;;
 }
 
 .form {
     display: flex;
     flex-direction: column;
-    gap: 1.5em;
+    gap: 20px;
     width: 70%;
-    margin-top: 1.5em;
 }
 
 .error {
     font-size: 1em;
     color: #ec2e2e;
-}
-
-.validationError {
-    color: #ec2e2e;
-    font-size: 1em;
-    margin-top: 0.3em;
 }
 
 .inputGroup {
@@ -46,15 +40,15 @@
 .inputGroup label {
     font-size: 1em;
     color: #c2c2c2;
-    margin-bottom: 0.5em;
+    margin-bottom: .5em;
 }
 
 .inputGroup input {
     background: #333030;
     border: none;
-    border-radius: 0.5em;
-    padding: 0.8em;
-    font-size: 1em;
+    border-radius: 10px;
+    padding: 0.8rem;
+    font-size: 1rem;
     color: #ffffff;
     outline: none;
 }
@@ -62,11 +56,11 @@
  .button {
     background: #ec2e2e;
     border: none;
-    padding: 0.8em;
+    padding: 0.8rem;
     margin-top: 1em;
-    border-radius: 0.5em;
+    border-radius: 10px;
     color: #fff;
-    font-size: 1em;
+    font-size: 1rem;
     cursor: pointer;
     transition: transform 0.2s ease;
   }
@@ -81,18 +75,18 @@
     box-shadow: 0px 4px 10px rgba(112, 113, 114, 0.6);
   }
 
-.loginLink {
+.registerLink {
     margin-top: 1em;
     font-size: 0.9em;
     color: #c2c2c2;
 }
 
-.loginLink a {
+.registerLink a {
     color: #ec2e2e;
     text-decoration: none;
 }
 
-.loginLink a:hover {
+.registerLink a:hover {
     text-decoration: underline;
 }
 
@@ -111,7 +105,6 @@
       gap: 1em;
     }
 
-    .validationError,
     .error {
         font-size: 0.8em;
     }
@@ -126,7 +119,7 @@
       font-size: 0.8em;
     }
   
-    .loginLink {
+    .registerLink {
       font-size: 0.8em;
       text-align: center;
     }

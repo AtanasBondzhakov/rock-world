@@ -12,7 +12,7 @@ export default function useForm(initialValues, submitHandler, validationSchema) 
         e.preventDefault();
 
         try {
-            await validationSchema.validate(formValues, { abortEarly: false });
+            await validationSchema?.validate(formValues, { abortEarly: false });
             await submitHandler(formValues);
 
             setErrors({});
@@ -20,7 +20,7 @@ export default function useForm(initialValues, submitHandler, validationSchema) 
         } catch (err) {
             const validationErrors = {};
             
-            err.inner.forEach(error => {              
+            err?.inner?.forEach(error => {              
                 validationErrors[error.path] = error.message;
             });
 

@@ -9,6 +9,7 @@ import Footer from "./components/footer/Footer.jsx"
 import PageNotFound from "./components/page-not-found/PageNotFound.jsx"
 import AllAlbums from "./components/albums/all-albums/AllAlbums.jsx"
 import Register from "./components/register/Register.jsx"
+import Login from "./components/login/Login.jsx"
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                 <Route path={PATHS.Home} element={<Home />} />
                 <Route path={PATHS.Albums} element={<AllAlbums />} />
                 <Route path={PATHS.Register} element={<Register />} />
+                <Route path={PATHS.Login} element={<Login />} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
 

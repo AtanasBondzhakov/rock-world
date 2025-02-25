@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 import { AUTH_FORM_KEYS, PATHS } from "../../constants";
 import styles from './Register.module.css';
@@ -80,7 +81,7 @@ export default function Register() {
                 <button type="submit" className={styles.button}>Register</button>
             </form>
             <p className={styles.loginLink}>
-                Already have an account? <a href={PATHS.Login}>Sign in</a>
+                Already have an account? <Link to={PATHS.Login}>Sign in</Link>
             </p>
         </div>
     );
