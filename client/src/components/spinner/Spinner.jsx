@@ -1,10 +1,27 @@
-import styles from './Spinner.module.css';
+import React from 'react';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Flex, Spin } from 'antd';
 
-export default function Spinner() {
-    return (
-        <div className={styles.container}>
-            <div className={styles.loader}>
-            </div>
-        </div>
-    );
-};
+const Spinner = () => (
+    <Flex
+        align="center"
+        gap="middle"
+        style={{
+            height: "100vh",
+            justifyContent: "center"
+        }}
+    >
+        <Spin
+            indicator={
+                <LoadingOutlined
+                    style={{
+                        fontSize: 120,
+                        color: '#ec2e2e'
+                    }}
+                    spin
+                />
+            }
+        />
+    </Flex>
+);
+export default Spinner;
