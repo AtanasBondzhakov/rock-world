@@ -12,12 +12,14 @@ export const AuthProvider = ({
 }) => {
     const [auth, setAuth] = usePersistedState('auth', {});
     const [registerError, setRegisterError] = useState('');
+    const [loginError, setLoginError] = useState('');
 
     const navigate = useNavigate();
     const location = useLocation();
 
     useEffect(() => {
         setRegisterError('');
+        setLoginError('');
     }, [location.pathname]);
 
     const handleRegister = async (userData) => {
@@ -34,13 +36,29 @@ export const AuthProvider = ({
         }
     };
 
+    const handleLogin = async (userData) => {
+        try {
+            const { password, ...userDetails } = await authService.login(userData.email, userData.password);
+
+            setAuth(userDetails);
+
+            localStorage.setItem('accessToken', userDetails.accessToken);
+
+            navigate(PATHS.Home);
+        } catch (err) {
+            setLoginError(err.message);
+        }
+    };
+
     const authValues = {
         handleRegister,
+        handleLogin,
         username: auth.username,
         email: auth.email,
         isAuthenticated: !!auth.email,
         userId: auth._id,
-        registerError
+        registerError,
+        loginError
     };
 
     return (
