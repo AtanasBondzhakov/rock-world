@@ -10,7 +10,7 @@ import Pagination from '../../pagination/Pagination.jsx';
 export default function AllAlbums() {
     const [albumsList, setAlbumsList] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [pageSize] = useState(3);
+    const [pageSize] = useState(8);
     const [currentPage, setCurrentPage] = useState(1);
     const [hasNextPage, setHasNextPage] = useState(true);
 
@@ -24,6 +24,11 @@ export default function AllAlbums() {
                 //TODO fix if last items are exactly as pageSize
                 setHasNextPage(result.length === pageSize);
 
+                window.scrollTo({
+                    top: 0,
+                    left: 0
+                })
+
                 setLoading(false);
             } catch (err) {
                 //TODO error handling
@@ -31,6 +36,13 @@ export default function AllAlbums() {
             }
         })();
     }, [currentPage]);
+
+    // useEffect(() => {
+    //     window.scrollTo({
+    //         top: 0,
+    //         left: 0
+    //     })
+    // },[]);
 
     const handlePageChange = (page) => {
         setCurrentPage(page);

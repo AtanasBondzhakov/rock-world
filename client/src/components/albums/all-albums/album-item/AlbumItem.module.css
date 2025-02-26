@@ -2,6 +2,7 @@
     padding: 1rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     border: 1px solid black;
     border-radius: 10px;
@@ -11,8 +12,9 @@
     font-family: 'Outfit', sans-serif;
     text-align: center;
     color: #4b4a4a;
-    max-width: 350px;
+    width: 250px;
     height: 400px;
+    margin: auto;
 }
 
 .albumCard img {
