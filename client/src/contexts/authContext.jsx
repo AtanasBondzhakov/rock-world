@@ -1,10 +1,13 @@
 import { createContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
-import { notification } from "antd";
 
 import usePersistedState from "../hooks/usePersistedState";
 import { PATHS } from "../constants.js";
 import authService from "../services/authService.js";
+import { toasterSuccess } from "../utils/toaster-messages.js";
+
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const AuthContext = createContext();
 
@@ -24,6 +27,8 @@ export const AuthProvider = ({
     }, [location.pathname]);
 
     const handleRegister = async (userData) => {
+        const successMsg = 'Register successful. You are now logged in.';
+        
         try {
             const { password, ...userDetails } = await authService.register(userData.email, userData.password, userData.username);
 
@@ -31,6 +36,7 @@ export const AuthProvider = ({
 
             localStorage.setItem('accessToken', userDetails.accessToken);
 
+            toasterSuccess(successMsg);
             navigate(PATHS.Home);
         } catch (err) {
             setRegisterError(err.message);
@@ -38,6 +44,8 @@ export const AuthProvider = ({
     };
 
     const handleLogin = async (userData) => {
+        const successMsg = `Login successful. Welcome back.`;
+
         try {
             const { password, ...userDetails } = await authService.login(userData.email, userData.password);
 
@@ -45,12 +53,7 @@ export const AuthProvider = ({
 
             localStorage.setItem('accessToken', userDetails.accessToken);
 
-            notification.success({
-                message: 'Login Successful',
-                duration: 3,
-                placement: 'bottomRight',
-            });
-
+            toasterSuccess(successMsg);
             navigate(PATHS.Home);
         } catch (err) {
             setLoginError(err.message);
@@ -58,8 +61,11 @@ export const AuthProvider = ({
     };
 
     const handleLogout = () => {
+        const successMsg = `Logout successful.`;
+
         setAuth({});
         localStorage.removeItem('accessToken');
+        toasterSuccess(successMsg);
         navigate(PATHS.Home);
     };
 
@@ -78,6 +84,7 @@ export const AuthProvider = ({
     return (
         <AuthContext.Provider value={authValues}>
             {children}
+            <ToastContainer />
         </AuthContext.Provider>
     )
 }
