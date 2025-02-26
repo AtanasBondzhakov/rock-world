@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+
 import styles from './PageNotFound.module.css';
 import { PATHS } from "../../constants.js";
 
 export default function PageNotFound() {
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0
+        })
+    }, []);
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>404</h1>

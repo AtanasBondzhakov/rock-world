@@ -11,6 +11,7 @@ import AllAlbums from "./components/albums/all-albums/AllAlbums.jsx"
 import Register from "./components/register/Register.jsx"
 import Login from "./components/login/Login.jsx"
 import Logout from "./components/logout/Logout.jsx"
+import AlbumDetails from "./components/albums/details-album/DetailsAlbum.jsx"
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                 <Route path={PATHS.Register} element={<Register />} />
                 <Route path={PATHS.Login} element={<Login />} />
                 <Route path={PATHS.Logout} element={<Logout />} />
+                <Route path={PATHS.DetailsAlbum} element={<AlbumDetails />} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
 

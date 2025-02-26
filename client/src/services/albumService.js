@@ -24,7 +24,10 @@ const getLatest = () => {
     return requester.get(`/data/albums?${query}`);
 };
 
+const getOne = (albumId) => requester.get(`${BASE_PATH}/${albumId}`);
+
 export default {
     getAll,
-    getLatest
+    getLatest,
+    getOne
 };
