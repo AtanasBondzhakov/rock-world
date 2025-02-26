@@ -1346,59 +1346,6 @@
     	}
     };
     var seedData = {
-    	recipes: {
-    		"3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
-    			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-    			name: "Easy Lasagna",
-    			img: "assets/lasagna.jpg",
-    			ingredients: [
-    				"1 tbsp Ingredient 1",
-    				"2 cups Ingredient 2",
-    				"500 g  Ingredient 3",
-    				"25 g Ingredient 4"
-    			],
-    			steps: [
-    				"Prepare ingredients",
-    				"Mix ingredients",
-    				"Cook until done"
-    			],
-    			_createdOn: 1613551279012
-    		},
-    		"8f414b4f-ab39-4d36-bedb-2ad69da9c830": {
-    			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-    			name: "Grilled Duck Fillet",
-    			img: "assets/roast.jpg",
-    			ingredients: [
-    				"500 g  Ingredient 1",
-    				"3 tbsp Ingredient 2",
-    				"2 cups Ingredient 3"
-    			],
-    			steps: [
-    				"Prepare ingredients",
-    				"Mix ingredients",
-    				"Cook until done"
-    			],
-    			_createdOn: 1613551344360
-    		},
-    		"985d9eab-ad2e-4622-a5c8-116261fb1fd2": {
-    			_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-    			name: "Roast Trout",
-    			img: "assets/fish.jpg",
-    			ingredients: [
-    				"4 cups Ingredient 1",
-    				"1 tbsp Ingredient 2",
-    				"1 tbsp Ingredient 3",
-    				"750 g  Ingredient 4",
-    				"25 g Ingredient 5"
-    			],
-    			steps: [
-    				"Prepare ingredients",
-    				"Mix ingredients",
-    				"Cook until done"
-    			],
-    			_createdOn: 1613551388703
-    		}
-    	},
         albums: {
             "1f414b4f-ab39-4d36-78db-2ad69da9c830": {
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
@@ -1495,7 +1442,55 @@
                 trackCount: 12,
                 duration: 78,
                 _createdOn: 1613551388738
-            }
+            },
+            "4gy14b4f-ab39-4d36-78db-2ahjj6a9c830": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                title: "Paranoid",
+                band: "Black Sabbath",
+                genre: "Heavy metal",
+                released: "18.09.1970",
+                imageUrl: "https://muzikercdn.com/uploads/products/14641/1464190/e3a33fd7.jpg",
+                description:"Paranoid is widely regarded as one of the greatest and most influential heavy metal albums of all time, often cited as a key influence for the development of the genre as well as one of its earliest albums.",
+                trackCount: 8,
+                duration: 42,
+                _createdOn: 1613553388899
+            },
+            "44414b4f-ab39-4d36-78db-2ahj5da9c830": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                title: "Master of Puppets",
+                band: "Metallica",
+                genre: "Trash metal",
+                released: "03.03.1986",
+                imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/b/b2/Metallica_-_Master_of_Puppets_cover.jpg/220px-Metallica_-_Master_of_Puppets_cover.jpg",
+                description:"Master of Puppets peaked at number 29 on the Billboard 200 and received widespread acclaim from critics, who praised its music and political lyrics. It is widely considered to be one of the greatest and most influential metal albums of all time, and is credited with consolidating the American thrash metal scene.",
+                trackCount: 8,
+                duration: 54,
+                _createdOn: 1613553388901
+            },
+            "hf514b4f-ab39-4d36-78db-2ahj5da9c220": {
+                _ownerId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
+                title: "Reign of Blood",
+                band: "Slayer",
+                genre: "Trash metal",
+                released: "20.10.1986",
+                imageUrl: "https://www.decibelmagazine.com/wp-content/uploads/2015/04/slayer-reign-in-blood-billboard-1240-820x820.jpg",
+                description:"Reign in Blood was well received by both critics and fans, and was responsible for bringing Slayer to the attention of a mainstream metal audience. Today, it is often mentioned among the greatest heavy metal records ever.",
+                trackCount: 10,
+                duration: 29,
+                _createdOn: 1613553388960
+            },
+            "hf5f4b4f-ab39-6h36-78db-2ahj5da9c220": {
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                title: "Painkiller",
+                band: "Judas Priest",
+                genre: "Heavy metal",
+                released: "17.09.1990",
+                imageUrl: "https://i.scdn.co/image/ab67616d0000b2736d9f270236c1d77782537fe1",
+                description:"Painkiller is the twelfth studio album by English heavy metal band Judas Priest, released on 17 September 1990, and 18 September in the United States.[4] It was the last Judas Priest album to feature long-time lead singer Rob Halford until his return for the 2005 album Angel of Retribution and the first to feature drummer Scott Travis.",
+                trackCount: 10,
+                duration: 47,
+                _createdOn: 1613553388999
+            },
         }
     };
     var rules$1 = {
