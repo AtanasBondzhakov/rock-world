@@ -5,6 +5,7 @@ import { ALBUM_FORM_KEYS } from '../../../constants.js';
 import styles from './EditAlbum.module.css';
 import albumService from '../../../services/albumService.js';
 import { formatDateString, parseDateString } from '../../../utils/dateUtil.js';
+import { albumSchema } from '../../../schemas/albumSchema.js';
 
 const initialValues = {
     [ALBUM_FORM_KEYS.Title]: '',
@@ -19,6 +20,7 @@ const initialValues = {
 
 export default function EditAlbum() {
     const [albumData, setAlbumData] = useState(initialValues);
+    const [errors, setErrors] = useState({});
 
     const { albumId } = useParams();
     const navigate = useNavigate();
@@ -41,12 +43,19 @@ export default function EditAlbum() {
         };
 
         try {
+            await albumSchema.validate(albumData, { abortEarly: false });
             await albumService.edit(albumId, updatedAlbumData);
-            
+
+            setErrors({});
             navigate(`/albums/${albumId}/details`);
         } catch (err) {
-            //TODO Error handling
-            console.log(err.message);
+            const validationErrors = {};
+
+            err?.inner?.forEach(error => {
+                validationErrors[error.path] = error.message;
+            });
+
+            setErrors(validationErrors);
         }
     };
 
@@ -54,8 +63,7 @@ export default function EditAlbum() {
         (async () => {
             try {
                 const result = await albumService.getOne(albumId);
-                console.log(result);
-                
+
                 setAlbumData({
                     ...result,
                     released: parseDateString(result.released)
@@ -81,6 +89,8 @@ export default function EditAlbum() {
                         value={albumData.title}
                         onChange={onChange}
                     />
+
+                    {errors[ALBUM_FORM_KEYS.Title] && <div className={styles.validationError}>{errors[ALBUM_FORM_KEYS.Title]}</div>}
                 </div>
                 <div className={styles.inputGroup}>
                     <label htmlFor={ALBUM_FORM_KEYS.Band}>Band</label>
@@ -92,6 +102,8 @@ export default function EditAlbum() {
                         value={albumData[ALBUM_FORM_KEYS.Band]}
                         onChange={onChange}
                     />
+
+                    {errors[ALBUM_FORM_KEYS.Band] && <div className={styles.validationError}>{errors[ALBUM_FORM_KEYS.Band]}</div>}
                 </div>
                 <div className={styles.rowGroup}>
                     <div className={styles.inputGroup}>
@@ -104,6 +116,8 @@ export default function EditAlbum() {
                             value={albumData[ALBUM_FORM_KEYS.Genre]}
                             onChange={onChange}
                         />
+
+                        {errors[ALBUM_FORM_KEYS.Genre] && <div className={styles.validationError}>{errors[ALBUM_FORM_KEYS.Genre]}</div>}
                     </div>
                     <div className={styles.inputGroup}>
                         <label htmlFor={ALBUM_FORM_KEYS.Released}>Released</label>
@@ -115,6 +129,8 @@ export default function EditAlbum() {
                             value={albumData[ALBUM_FORM_KEYS.Released]}
                             onChange={onChange}
                         />
+
+                        {errors[ALBUM_FORM_KEYS.Released] && <div className={styles.validationError}>{errors[ALBUM_FORM_KEYS.Released]}</div>}
                     </div>
                 </div>
                 <div className={styles.inputGroup}>
@@ -127,6 +143,8 @@ export default function EditAlbum() {
                         value={albumData[ALBUM_FORM_KEYS.ImageUrl]}
                         onChange={onChange}
                     />
+
+                    {errors[ALBUM_FORM_KEYS.ImageUrl] && <div className={styles.validationError}>{errors[ALBUM_FORM_KEYS.ImageUrl]}</div>}
                 </div>
                 <div className={styles.rowGroup}>
                     <div className={styles.inputGroup}>
@@ -139,6 +157,8 @@ export default function EditAlbum() {
                             value={albumData[ALBUM_FORM_KEYS.TrackCount]}
                             onChange={onChange}
                         />
+
+                        {errors[ALBUM_FORM_KEYS.TrackCount] && <div className={styles.validationError}>{errors[ALBUM_FORM_KEYS.TrackCount]}</div>}
                     </div>
                     <div className={styles.inputGroup}>
                         <label htmlFor={ALBUM_FORM_KEYS.Duration}>Duration</label>
@@ -150,6 +170,8 @@ export default function EditAlbum() {
                             value={albumData[ALBUM_FORM_KEYS.Duration]}
                             onChange={onChange}
                         />
+
+                        {errors[ALBUM_FORM_KEYS.Duration] && <div className={styles.validationError}>{errors[ALBUM_FORM_KEYS.Duration]}</div>}
                     </div>
                 </div>
                 <div className={styles.inputGroup}>
@@ -163,6 +185,8 @@ export default function EditAlbum() {
                         onChange={onChange}
                     >
                     </textarea>
+
+                    {errors[ALBUM_FORM_KEYS.Description] && <div className={styles.validationError}>{errors[ALBUM_FORM_KEYS.Description]}</div>}
                 </div>
                 <button type="submit" className={styles.button}>Submit Album</button>
             </form>
