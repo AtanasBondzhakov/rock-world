@@ -38,7 +38,7 @@ export default function EditAlbum() {
         const updatedAlbumData = {
             ...albumData,
             released: formatDateString(albumData.released)
-        }
+        };
 
         try {
             await albumService.edit(albumId, updatedAlbumData);

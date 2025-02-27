@@ -10,7 +10,7 @@
     min-height: 100vh;
 }
 
-.wrapper > h2 {
+.wrapper>h2 {
     font-size: 70px;
     font-weight: 800;
     color: #ec2e2e;

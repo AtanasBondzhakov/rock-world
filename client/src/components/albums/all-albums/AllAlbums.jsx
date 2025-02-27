@@ -37,16 +37,10 @@ export default function AllAlbums() {
         })();
     }, [currentPage]);
 
-    // useEffect(() => {
-    //     window.scrollTo({
-    //         top: 0,
-    //         left: 0
-    //     })
-    // },[]);
-
     const handlePageChange = (page) => {
         setCurrentPage(page);
-    }
+    };
+    
     return (
         <>
             {loading && <Spinner />}
