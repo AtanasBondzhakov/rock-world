@@ -21,7 +21,7 @@ export default function DetailsAlbum() {
         (async () => {
             try {
                 const resultAlbum = await albumService.getOne(albumId);
-                
+
                 setAlbum(resultAlbum);
                 setLoading(false);
             } catch (err) {
@@ -30,18 +30,20 @@ export default function DetailsAlbum() {
             }
         })();
     }, [albumId]);
-    
+
     return (
         <>
             {loading && <Spinner />}
 
-            <div className={styles.container}>
-                <div className={styles.wrapper}>
-                    <div className={styles.albumContainer}>
-                        <DetailsAlbumItem album={album} isOwner={isOwner} />
+            {!loading && (
+                <div className={styles.container}>
+                    <div className={styles.wrapper}>
+                        <div className={styles.albumContainer}>
+                            <DetailsAlbumItem album={album} isOwner={isOwner} />
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
         </>
     );
 };

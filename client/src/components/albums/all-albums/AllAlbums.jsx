@@ -19,7 +19,7 @@ export default function AllAlbums() {
             const offset = (currentPage - 1) * pageSize;
             try {
                 const result = await albumService.getAll(offset, pageSize);
-                
+
                 setAlbumsList(result);
                 //TODO fix if last items are exactly as pageSize
                 setHasNextPage(result.length === pageSize);
@@ -40,28 +40,30 @@ export default function AllAlbums() {
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
-    
+
     return (
         <>
-            {loading && <Spinner />}
-            
-            <div className={styles.wrapper}>
-                {albumsList.length > 0
-                    ?
-                    <>
-                        <h2>Album Collection</h2>
-                        <div className={styles.container}>
-                            {albumsList.map(album => <AlbumItem key={album._id} {...album} />)}
-                        </div>
 
-                        <Pagination
-                            currentPage={currentPage}
-                            hasNextPage={hasNextPage}
-                            handlePageChange={handlePageChange}
-                        />
-                    </>
-                    : <h2>There is no albums yet.</h2>
+            <div className={styles.wrapper}>
+
+                {loading ? <Spinner />
+                    : albumsList.length > 0
+                        ?
+                        <>
+                            <h2>Album Collection</h2>
+                            <div className={styles.container}>
+                                {albumsList.map(album => <AlbumItem key={album._id} {...album} />)}
+                            </div>
+
+                            <Pagination
+                                currentPage={currentPage}
+                                hasNextPage={hasNextPage}
+                                handlePageChange={handlePageChange}
+                            />
+                        </>
+                        : <h2>There is no albums yet.</h2>
                 }
+
             </div>
         </>
     );
