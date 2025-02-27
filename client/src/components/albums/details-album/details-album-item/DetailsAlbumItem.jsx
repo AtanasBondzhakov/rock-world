@@ -30,7 +30,7 @@ export default function DetailsAlbumItem({
 
             {isOwner && (
                 <div className={styles.buttons}>
-                    <Link path={`/albums/${album._id}/edit`}>Edit</Link>
+                    <Link to={`/albums/${album._id}/edit`}>Edit</Link>
                     <button>Delete</button>
                 </div>
             )}

@@ -13,6 +13,7 @@ import Login from "./components/login/Login.jsx"
 import Logout from "./components/logout/Logout.jsx"
 import AlbumDetails from "./components/albums/details-album/DetailsAlbum.jsx"
 import AddAlbum from "./components/albums/add-album/AddAlbum.jsx"
+import EditAlbum from "./components/albums/edit-album/EditAlbum.jsx"
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
                 <Route path={PATHS.Logout} element={<Logout />} />
                 <Route path={PATHS.DetailsAlbum} element={<AlbumDetails />} />
                 <Route path={PATHS.AddAlbum} element={<AddAlbum />} />
+                <Route path={PATHS.EditAlbum} element={<EditAlbum />} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
 

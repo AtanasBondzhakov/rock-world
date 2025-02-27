@@ -28,9 +28,12 @@ const getOne = (albumId) => requester.get(`${BASE_PATH}/${albumId}`);
 
 const add = (albumData) => requester.post(BASE_PATH, albumData);
 
+const edit = (albumId, albumData) => requester.put(`${BASE_PATH}/${albumId}`, albumData);
+
 export default {
     getAll,
     getLatest,
     getOne,
-    add
+    add,
+    edit
 };

@@ -21,7 +21,7 @@ export default function DetailsAlbum() {
         (async () => {
             try {
                 const resultAlbum = await albumService.getOne(albumId);
-
+                
                 setAlbum(resultAlbum);
                 setLoading(false);
             } catch (err) {
@@ -30,6 +30,7 @@ export default function DetailsAlbum() {
             }
         })();
     }, [albumId]);
+    
     return (
         <>
             {loading && <Spinner />}
