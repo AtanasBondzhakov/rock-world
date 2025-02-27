@@ -30,10 +30,13 @@ const add = (albumData) => requester.post(BASE_PATH, albumData);
 
 const edit = (albumId, albumData) => requester.put(`${BASE_PATH}/${albumId}`, albumData);
 
+const remove = (albumId) => requester.del(`${BASE_PATH}/${albumId}`);
+
 export default {
     getAll,
     getLatest,
     getOne,
     add,
-    edit
+    edit,
+    remove
 };
