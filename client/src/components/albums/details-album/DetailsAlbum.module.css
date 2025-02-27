@@ -27,3 +27,33 @@
     box-shadow: 4px 4px 10px rgba(46, 46, 46, 0.3);
     color: #9c9fa1;
 }
+
+.commentContainer {
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* max-width: 500px; */
+    background-color: #151515;
+    border-radius: 0.5em;
+    margin-bottom: 2em;
+}
+
+.comments {
+    margin-left: 1.5em;
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.comments h2 {
+    margin-bottom: 1em;
+    font-size: 2em;
+    font-weight: bold;
+    color: #a1a1a1; 
+}
+
+.comments h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #a1a1a1; 
+}

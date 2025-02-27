@@ -1,0 +1,19 @@
+.container {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    background-color: #4b4848;
+    width: 500px;
+    border-radius: 10px;
+    height: auto;
+    overflow-wrap: break-word;
+}
+
+.container * {
+    padding: 10px;
+    color: #d3d3d3;
+}
+
+.container p:first-of-type {
+    font-weight: bold;
+  }
