@@ -4,6 +4,7 @@ import styles from './AddAlbum.module.css';
 import { ALBUM_FORM_KEYS, PATHS } from '../../../constants.js';
 import useForm from '../../../hooks/useForm.js';
 import albumService from '../../../services/albumService.js';
+import { albumSchema } from '../../../schemas/albumSchema.js';
 
 const initialValues = {
     [ALBUM_FORM_KEYS.Title]: '',
@@ -17,14 +18,14 @@ const initialValues = {
 }
 
 export default function AddAlbum() {
-    const { formValues, onChange, onSubmit } = useForm(initialValues, addAlbumHandler);
+    const { formValues, errors, onChange, onSubmit } = useForm(initialValues, addAlbumHandler, albumSchema);
 
     const navigate = useNavigate();
 
     async function addAlbumHandler() {
         try {
             await albumService.add(formValues);
-            
+
             navigate(PATHS.Albums);
         } catch (err) {
             //TODO error handling
@@ -46,6 +47,8 @@ export default function AddAlbum() {
                         value={formValues[ALBUM_FORM_KEYS.Title]}
                         onChange={onChange}
                     />
+
+                    {errors[ALBUM_FORM_KEYS.Title] && <div className={styles.validationError}>{errors[ALBUM_FORM_KEYS.Title]}</div>}
                 </div>
                 <div className={styles.inputGroup}>
                     <label htmlFor={ALBUM_FORM_KEYS.Band}>Band</label>
@@ -57,6 +60,8 @@ export default function AddAlbum() {
                         value={formValues[ALBUM_FORM_KEYS.Band]}
                         onChange={onChange}
                     />
+
+                    {errors[ALBUM_FORM_KEYS.Band] && <div className={styles.validationError}>{errors[ALBUM_FORM_KEYS.Band]}</div>}
                 </div>
                 <div className={styles.rowGroup}>
                     <div className={styles.inputGroup}>
@@ -69,6 +74,8 @@ export default function AddAlbum() {
                             value={formValues[ALBUM_FORM_KEYS.Genre]}
                             onChange={onChange}
                         />
+
+                        {errors[ALBUM_FORM_KEYS.Genre] && <div className={styles.validationError}>{errors[ALBUM_FORM_KEYS.Genre]}</div>}
                     </div>
                     <div className={styles.inputGroup}>
                         <label htmlFor={ALBUM_FORM_KEYS.Released}>Released</label>
@@ -80,6 +87,8 @@ export default function AddAlbum() {
                             value={formValues[ALBUM_FORM_KEYS.Released]}
                             onChange={onChange}
                         />
+
+                        {errors[ALBUM_FORM_KEYS.Released] && <div className={styles.validationError}>{errors[ALBUM_FORM_KEYS.Released]}</div>}
                     </div>
                 </div>
                 <div className={styles.inputGroup}>
@@ -92,6 +101,8 @@ export default function AddAlbum() {
                         value={formValues[ALBUM_FORM_KEYS.ImageUrl]}
                         onChange={onChange}
                     />
+
+                    {errors[ALBUM_FORM_KEYS.ImageUrl] && <div className={styles.validationError}>{errors[ALBUM_FORM_KEYS.ImageUrl]}</div>}
                 </div>
                 <div className={styles.rowGroup}>
                     <div className={styles.inputGroup}>
@@ -104,6 +115,8 @@ export default function AddAlbum() {
                             value={formValues[ALBUM_FORM_KEYS.TrackCount]}
                             onChange={onChange}
                         />
+
+                        {errors[ALBUM_FORM_KEYS.TrackCount] && <div className={styles.validationError}>{errors[ALBUM_FORM_KEYS.TrackCount]}</div>}
                     </div>
                     <div className={styles.inputGroup}>
                         <label htmlFor={ALBUM_FORM_KEYS.Duration}>Duration</label>
@@ -115,6 +128,8 @@ export default function AddAlbum() {
                             value={formValues[ALBUM_FORM_KEYS.Duration]}
                             onChange={onChange}
                         />
+
+                        {errors[ALBUM_FORM_KEYS.Duration] && <div className={styles.validationError}>{errors[ALBUM_FORM_KEYS.Duration]}</div>}
                     </div>
                 </div>
                 <div className={styles.inputGroup}>
@@ -128,6 +143,8 @@ export default function AddAlbum() {
                         onChange={onChange}
                     >
                     </textarea>
+
+                    {errors[ALBUM_FORM_KEYS.Description] && <div className={styles.validationError}>{errors[ALBUM_FORM_KEYS.Description]}</div>}
                 </div>
                 <button type="submit" className={styles.button}>Add Album</button>
             </form>
