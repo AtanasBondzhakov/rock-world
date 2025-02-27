@@ -1,5 +1,7 @@
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
+import 'react-toastify/dist/ReactToastify.css';
 import { PATHS } from "./constants.js"
 import { AuthProvider } from "./contexts/authContext.jsx"
 
@@ -33,6 +35,8 @@ function App() {
             </Routes>
 
             <Footer />
+
+            <ToastContainer />
         </AuthProvider>
     )
 }

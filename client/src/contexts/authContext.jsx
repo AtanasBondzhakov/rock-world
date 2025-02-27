@@ -6,9 +6,6 @@ import { PATHS } from "../constants.js";
 import authService from "../services/authService.js";
 import { toasterSuccess } from "../utils/toaster-messages.js";
 
-import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-
 const AuthContext = createContext();
 
 export const AuthProvider = ({
@@ -84,7 +81,6 @@ export const AuthProvider = ({
     return (
         <AuthContext.Provider value={authValues}>
             {children}
-            <ToastContainer />
         </AuthContext.Provider>
     )
 }
