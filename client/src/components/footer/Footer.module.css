@@ -1,7 +1,7 @@
 .container {
     background-color: #080808;
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
     font-family: 'Outfit', sans-serif;
     color: #9c9fa1;
     gap: 1em;
@@ -9,11 +9,9 @@
 
 .contactInfo {
     display: flex;
-    justify-content: space-between;
-    margin: 3em 3em 0;
+    justify-content: space-around;
+    flex-direction: column;
     font-size: 1.5em;
-    padding-bottom: 2em;
-    border-bottom: 1px solid;
 }
 
 .infoContainer {
@@ -46,11 +44,21 @@
 
 .container a {
     text-decoration: none;
-    font-size: 20px;
+    font-size: 1.5em;
     color: #9c9fa1;
 }
 
 .socialMedia a {
-    font-size: 30px;
+    font-size: 2em;
     padding: 0 30px;
+}
+
+.infoContainer a:hover,
+.socialMedia a:hover {
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.infoContainer li:hover {
+    transform: scale(1.1);   
 }
