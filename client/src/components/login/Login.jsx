@@ -17,39 +17,42 @@ export default function Login() {
     const { formValues, onChange, onSubmit } = useForm(initialValues, handleLogin);
 
     return (
-        <div className={styles.authContainer}>
-            <h2 className={styles.authTitle}>Login</h2>
+        <div className={styles.wrapper}>
 
-            {loginError && <div className={styles.error}>{loginError}</div>}
+            <div className={styles.authContainer}>
+                <h2 className={styles.authTitle}>Login</h2>
 
-            <form className={styles.form} onSubmit={onSubmit}>
-                <div className={styles.inputGroup}>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="text"
-                        id="email"
-                        name={AUTH_FORM_KEYS.Email}
-                        placeholder='john@mail.com'
-                        value={formValues[AUTH_FORM_KEYS.Email]}
-                        onChange={onChange}
-                    />
-                </div>
-                <div className={styles.inputGroup}>
-                    <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name={AUTH_FORM_KEYS.Password}
-                        placeholder='******'
-                        value={formValues[AUTH_FORM_KEYS.Password]}
-                        onChange={onChange}
-                    />
-                </div>
-                <button type="submit" className={styles.button}>Login</button>
-            </form>
-            <p className={styles.registerLink}>
-                Don't have an account? <Link to={PATHS.Register}>Sign up</Link>
-            </p>
+                {loginError && <div className={styles.error}>{loginError}</div>}
+
+                <form className={styles.form} onSubmit={onSubmit}>
+                    <div className={styles.inputGroup}>
+                        <label htmlFor="email">Email</label>
+                        <input
+                            type="text"
+                            id="email"
+                            name={AUTH_FORM_KEYS.Email}
+                            placeholder='john@mail.com'
+                            value={formValues[AUTH_FORM_KEYS.Email]}
+                            onChange={onChange}
+                        />
+                    </div>
+                    <div className={styles.inputGroup}>
+                        <label htmlFor="password">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name={AUTH_FORM_KEYS.Password}
+                            placeholder='******'
+                            value={formValues[AUTH_FORM_KEYS.Password]}
+                            onChange={onChange}
+                        />
+                    </div>
+                    <button type="submit" className={styles.button}>Login</button>
+                </form>
+                <p className={styles.registerLink}>
+                    Don't have an account? <Link to={PATHS.Register}>Sign up</Link>
+                </p>
+            </div>
         </div>
     );
 };

@@ -20,10 +20,6 @@ const request = async (method, url, data) => {
     try {
         const response = await fetch(host + url, option);
         if (!response.ok) {
-
-            if(response.status === 404) {
-                return [];
-            }
             
             const error = await response.json();
             throw new Error(error.message);

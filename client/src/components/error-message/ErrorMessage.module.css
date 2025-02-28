@@ -1,0 +1,15 @@
+.container {
+    width: 450px;
+    background-color: #181818;
+    margin: 10em 0 auto;
+    border-radius: 0.5em;
+    height: auto;
+    text-align: center;
+    border: 1px solid #797979;
+    box-shadow: 4px 4px 10px rgb(255, 255, 255, 0.2) ;
+}
+
+.container h3 {
+    font-size: 1.5em;
+    color: #fff;
+}

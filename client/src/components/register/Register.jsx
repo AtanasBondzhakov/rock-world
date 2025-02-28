@@ -17,7 +17,7 @@ const initialValues = {
 export default function Register() {
     const { handleRegister, registerError } = useContext(AuthContext);
 
-    const { formValues, errors, onChange, onSubmit } = useForm(initialValues, handleRegister, registerSchema);
+    const { formValues, formErrors, onChange, onSubmit } = useForm(initialValues, handleRegister, registerSchema);
 
     return (
         <div className={styles.authContainer}>
@@ -37,7 +37,7 @@ export default function Register() {
                         onChange={onChange}
                     />
 
-                    {errors[AUTH_FORM_KEYS.Username] && <div className={styles.validationError}>{errors[AUTH_FORM_KEYS.Username]}</div>}
+                    {formErrors[AUTH_FORM_KEYS.Username] && <div className={styles.validationError}>{formErrors[AUTH_FORM_KEYS.Username]}</div>}
                 </div>
                 <div className={styles.inputGroup}>
                     <label htmlFor={AUTH_FORM_KEYS.Email}>Email</label>
@@ -50,7 +50,7 @@ export default function Register() {
                         onChange={onChange}
                     />
 
-                    {errors[AUTH_FORM_KEYS.Email] && <div className={styles.validationError}>{errors[AUTH_FORM_KEYS.Email]}</div>}
+                    {formErrors[AUTH_FORM_KEYS.Email] && <div className={styles.validationError}>{formErrors[AUTH_FORM_KEYS.Email]}</div>}
                 </div>
                 <div className={styles.inputGroup}>
                     <label htmlFor={AUTH_FORM_KEYS.Password}>Password</label>
@@ -63,7 +63,7 @@ export default function Register() {
                         onChange={onChange}
                     />
 
-                    {errors[AUTH_FORM_KEYS.Password] && <div className={styles.validationError}>{errors[AUTH_FORM_KEYS.Password]}</div>}
+                    {formErrors[AUTH_FORM_KEYS.Password] && <div className={styles.validationError}>{formErrors[AUTH_FORM_KEYS.Password]}</div>}
                 </div>
                 <div className={styles.inputGroup}>
                     <label htmlFor={AUTH_FORM_KEYS.RePassword}>Repeat Password</label>
@@ -76,7 +76,7 @@ export default function Register() {
                         onChange={onChange}
                     />
 
-                    {errors[AUTH_FORM_KEYS.RePassword] && <div className={styles.validationError}>{errors[AUTH_FORM_KEYS.RePassword]}</div>}
+                    {formErrors[AUTH_FORM_KEYS.RePassword] && <div className={styles.validationError}>{formErrors[AUTH_FORM_KEYS.RePassword]}</div>}
                 </div>
                 <button type="submit" className={styles.button}>Register</button>
             </form>

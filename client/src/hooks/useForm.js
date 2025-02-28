@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function useForm(initialValues, submitHandler, validationSchema) {
     const [formValues, setFormValues] = useState(initialValues);
-    const [errors, setErrors] = useState({});
+    const [formErrors, setFormErrors] = useState({});
 
     const onChange = (e) => {
         setFormValues(state => ({ ...state, [e.target.name]: e.target.value }));
@@ -15,22 +15,22 @@ export default function useForm(initialValues, submitHandler, validationSchema) 
             await validationSchema?.validate(formValues, { abortEarly: false });
             await submitHandler(formValues);
 
-            setErrors({});
+            setFormErrors({});
             setFormValues(initialValues);
         } catch (err) {
             const validationErrors = {};
-            
-            err?.inner?.forEach(error => {              
+
+            err?.inner?.forEach(error => {
                 validationErrors[error.path] = error.message;
             });
 
-            setErrors(validationErrors);
+            setFormErrors(validationErrors);
         }
     };
 
     return {
         formValues,
-        errors,
+        formErrors,
         onChange,
         onSubmit
     }

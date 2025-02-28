@@ -4,6 +4,10 @@
     display: flex;
     justify-content: space-around;
     margin-bottom: 3em;
+    background-image: url(/images/catalog.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
 }
 
 .wrapper {
