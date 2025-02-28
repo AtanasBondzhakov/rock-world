@@ -2,8 +2,8 @@
     max-width: 100%;
     padding-top: 100px;
     display: flex;
-    justify-content: space-evenly;
-    height: 100vh;
+    justify-content: space-around;
+    margin-bottom: 3em;
 }
 
 .wrapper {
@@ -28,17 +28,13 @@
     color: #9c9fa1;
 }
 
-.commentContainer {
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* max-width: 500px; */
+.commentsContainer {
     background-color: #151515;
     border-radius: 0.5em;
     margin-bottom: 2em;
 }
 
 .comments {
-    margin-left: 1.5em;
     margin-top: 2em;
     display: flex;
     flex-direction: column;
@@ -50,6 +46,7 @@
     font-size: 2em;
     font-weight: bold;
     color: #a1a1a1; 
+    width: 500px;
 }
 
 .comments h3 {

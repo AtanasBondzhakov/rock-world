@@ -1,4 +1,4 @@
-import dateFormatter from '../../../../utils/dateFormatter.js';
+import { dateFormatter } from '../../../../utils/dateUtil';
 import styles from './CommentAlbumItem.module.css';
 
 export default function CommentAlbumItem({
