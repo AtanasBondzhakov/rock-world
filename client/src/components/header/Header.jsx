@@ -10,7 +10,10 @@ export default function Header() {
 
     return (
         <div className={styles.container}>
+            <div className={styles.logoContainer}>
             <Link to={PATHS.Home}><img src='/images/logo.png' alt='Logo' className={styles.logo} /></Link>
+            <p>Rock World</p>
+            </div>
 
             <ul className={styles.items}>
                 <li><Link to={PATHS.Home}>Home</Link></li>

@@ -6,7 +6,6 @@ import useForm from '../../../hooks/useForm.js';
 import albumService from '../../../services/albumService.js';
 import { albumSchema } from '../../../schemas/albumSchema.js';
 import { useState } from 'react';
-import { toasterError } from '../../../utils/toaster-messages.js';
 
 const initialValues = {
     [ALBUM_FORM_KEYS.Title]: '',
@@ -30,7 +29,9 @@ export default function AddAlbum() {
 
             navigate(PATHS.Albums);
         } catch (err) {
-            toasterError(err.message || 'Something get wrong');
+            //TODO error handling
+            console.log(err.message);
+            
         }
     }
 
