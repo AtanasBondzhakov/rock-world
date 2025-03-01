@@ -11,4 +11,31 @@
 
 .slickDots li.slick-active button::before {
     color: #4caf50;
-  }
+}
+
+@media (max-width: 1024px) {
+    .carousel {
+        max-width: 80vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel {
+        max-width: 90vw;
+        padding: 0.5em;
+    }
+
+    .slickDots li button::before {
+        font-size: 8px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel {
+        max-width: 95vw;
+    }
+
+    .slickDots li button::before {
+        font-size: 6px;
+    }
+}

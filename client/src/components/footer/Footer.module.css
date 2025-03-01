@@ -9,7 +9,7 @@
 
 .contactInfo {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-direction: column;
     font-size: 1.5em;
 }
@@ -17,10 +17,7 @@
 .infoContainer {
     display: flex;
     flex-direction: column;
-}
-
-.infoContainer > * {
-    margin-top: 2em;
+    justify-content: space-between;
 }
 
 .quickLinks {
@@ -61,4 +58,73 @@
 
 .infoContainer li:hover {
     transform: scale(1.1);   
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1em;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .infoContainer, .quickLinks {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1.5em;
+        width: 100%;
+        padding: 0;
+    }
+
+    .contactInfo li {
+        font-size: 0.7em;
+    }
+
+    .infoContainer a {
+        font-size: 1em;
+    }
+    .socialMedia a {
+        font-size: 1.8em;
+    }
+
+    .quickLinks {
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0.5em;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .infoContainer, .quickLinks {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1em;
+        width: 100%;
+        padding: 0;
+    }
+
+    .contactInfo {
+        padding: 0;
+        margin: 0;
+    }
+
+    .contactInfo li {
+        font-size: 0.6em;
+    }
+
+    .socialMedia a {
+        font-size: 1.2em;
+    }
+
+    .quickLinks {
+        display: flex;
+        justify-content: center;
+        font-size: 0.7em;
+    }
 }
