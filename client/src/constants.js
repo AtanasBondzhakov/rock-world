@@ -8,7 +8,8 @@ export const PATHS = {
     Albums: '/albums',
     AddAlbum: '/albums/add-album',
     DetailsAlbum: '/albums/:albumId/details',
-    EditAlbum: '/albums/:albumId/edit'
+    EditAlbum: '/albums/:albumId/edit',
+    Profile: '/auth/profile'
 };
 
 export const ALBUM_FORM_KEYS = {
