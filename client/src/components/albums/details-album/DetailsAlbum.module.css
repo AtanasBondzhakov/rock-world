@@ -59,3 +59,23 @@
     font-weight: bold;
     color: #a1a1a1; 
 }
+
+@media (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin: 0;
+    }
+
+    .wrapper {
+        max-width: 90%;
+        margin: auto;
+        height: auto;
+        gap: 2em;
+    }
+    
+    .commentsContainer {
+        max-width: 500px;
+    }
+}

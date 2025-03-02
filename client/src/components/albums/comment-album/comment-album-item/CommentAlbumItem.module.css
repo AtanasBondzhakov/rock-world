@@ -21,4 +21,11 @@
     color: #222;
     padding: 0.2em 1em 0 1em;
     text-align: start;
+    word-break: break-all;
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 90%;
+    }
 }
