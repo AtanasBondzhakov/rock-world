@@ -12,13 +12,14 @@
     font-family: 'Outfit', sans-serif;
     text-align: center;
     color: #4b4a4a;
-    width: 250px;
-    height: 400px;
+    width: 350px;
+    aspect-ratio: 1/1;
     margin: auto;
+    text-decoration: none;
 }
 
 .albumCard img {
-    max-width: 250px;
+    width: 350px;
     border-radius: .3em;
 }
 
@@ -28,21 +29,23 @@
     justify-content: space-between;
     max-width: 100%;
 }
+
 .info h2 {
     margin: 0.75em 0 0;
-    font-size: 1.5em; 
+    font-size: 1.75em; 
     font-weight: bold;
+    overflow-wrap: break-word;
 }
 
 .info h3 {
-    font-size: 1em;
+    font-size: 1.25em;
     font-weight: normal;
     color: #fff;
     font-style: italic;
 }
 
 .info p {
-    font-size: .75em;
+    font-size: 1em;
     font-weight: 300;
     text-align: center;
     letter-spacing: 1px;
@@ -59,7 +62,7 @@
     border: 1px solid #0b1219;
     border-radius: 5px;
     color: #dbdbdb;
-    background-color: #0f0f10;
+    background-color: #424242;
     text-align: center;
     padding: .75em 1.5em;
     font-size: 1.25em;
@@ -77,5 +80,46 @@
 
     .bottom {
         opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .albumCard,
+    .albumCard img {
+        width: 200px;
+    }
+
+    .info h2 {
+        font-size: 1.5em;
+    }
+    
+    .info h3 {
+        font-size: 1.25em;
+    }
+    
+    .info p {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .albumCard {
+        width: 200px;
+    }
+
+    .albumCard img {
+        width: 200px;
+    }
+
+    .info h2 {
+        font-size: 1.25em;
+    }
+    
+    .info h3 {
+        font-size: 1em;
+    }
+    
+    .info p {
+        font-size: 0.75em;
     }
 }

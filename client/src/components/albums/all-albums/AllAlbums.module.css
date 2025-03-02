@@ -1,6 +1,8 @@
 .wrapper {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     padding-top: 100px;
     font-family: 'Trade winds', sans-serif;
     padding-bottom: 12em;
@@ -15,7 +17,7 @@
     font-weight: 800;
     color: #ec2e2e;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 2em;
     width: 100%;
 }
 
@@ -23,8 +25,47 @@
     max-width: 80vw;
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 30px;
     padding: 2em;
     border-radius: 15px;
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        padding: 0;
+    }
+
+    .wrapper > h2 {
+        font-size: 2.5em;
+        margin-top: 1em;
+        margin-bottom: 0;
+    }
+
+    .container {
+        max-width: 80vw;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 30px;
+        padding: 2em;
+        border-radius: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .wrapper {
+        padding: 0;
+    }
+
+    .wrapper > h2 {
+        font-size: 2em;
+        margin-top: 1em;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }

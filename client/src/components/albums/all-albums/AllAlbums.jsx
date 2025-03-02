@@ -10,7 +10,7 @@ import Pagination from '../../pagination/Pagination.jsx';
 export default function AllAlbums() {
     const [albumsList, setAlbumsList] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [pageSize] = useState(8);
+    const [pageSize] = useState(6);
     const [currentPage, setCurrentPage] = useState(1);
     const [hasNextPage, setHasNextPage] = useState(true);
 
