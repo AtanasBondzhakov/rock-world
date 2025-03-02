@@ -6,6 +6,7 @@ import albumService from '../../../services/albumService.js';
 import Spinner from '../../spinner/Spinner.jsx';
 import AlbumItem from './album-item/AlbumItem.jsx';
 import Pagination from '../../pagination/Pagination.jsx';
+import ScrollToTop from '../../scroll-to-top/ScrollToTop.jsx';
 
 export default function AllAlbums() {
     const [albumsList, setAlbumsList] = useState([]);
@@ -23,11 +24,6 @@ export default function AllAlbums() {
                 setAlbumsList(result.slice(0, pageSize));
                 setHasNextPage(result.length > pageSize);
 
-                window.scrollTo({
-                    top: 0,
-                    left: 0
-                })
-
                 setLoading(false);
             } catch (err) {
                 //TODO error handling
@@ -42,6 +38,7 @@ export default function AllAlbums() {
 
     return (
         <>
+            <ScrollToTop dependency={currentPage} />
 
             <div className={styles.wrapper}>
 

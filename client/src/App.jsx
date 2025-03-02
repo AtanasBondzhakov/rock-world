@@ -16,10 +16,13 @@ import Logout from "./components/logout/Logout.jsx"
 import AlbumDetails from "./components/albums/details-album/DetailsAlbum.jsx"
 import AddAlbum from "./components/albums/add-album/AddAlbum.jsx"
 import EditAlbum from "./components/albums/edit-album/EditAlbum.jsx"
+import ScrollToTop from "./components/scroll-to-top/ScrollToTop.jsx";
 
 function App() {
     return (
         <AuthProvider>
+            <ScrollToTop />
+            
             <Header />
 
             <Routes>
