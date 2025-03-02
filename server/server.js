@@ -1491,7 +1491,8 @@
                 duration: 47,
                 _createdOn: 1613553388999
             },
-        }
+        },
+        comments: {}
     };
     var rules$1 = {
     	users: {
