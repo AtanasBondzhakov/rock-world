@@ -18,11 +18,10 @@ export default function AllAlbums() {
         (async () => {
             const offset = (currentPage - 1) * pageSize;
             try {
-                const result = await albumService.getAll(offset, pageSize);
+                const result = await albumService.getAll(offset, pageSize + 1);
 
-                setAlbumsList(result);
-                //TODO fix if last items are exactly as pageSize
-                setHasNextPage(result.length === pageSize);
+                setAlbumsList(result.slice(0, pageSize));
+                setHasNextPage(result.length > pageSize);
 
                 window.scrollTo({
                     top: 0,

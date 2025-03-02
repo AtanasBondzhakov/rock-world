@@ -27,17 +27,22 @@ export default function DetailsAlbum() {
 
     const isOwner = userId === album._ownerId;
 
-    useEffect(() => {
+    const handleGetComments = async () => {
         const offset = (currentPage - 1) * pageSize;
 
+        const resultComments = await commentService.getAll(offset, pageSize + 1, albumId);
+
+        setHasNextPage(resultComments.length > pageSize);
+        setComments(resultComments.slice(0, pageSize));
+    }
+
+    useEffect(() => {
         (async () => {
             try {
-                //TODO fix if last items are exactly as pageSize
                 const resultAlbum = await albumService.getOne(albumId);
-                const resultComments = await commentService.getAll(offset, pageSize, albumId);
 
-                setHasNextPage(resultComments.length === pageSize);
-                setComments(resultComments);
+                handleGetComments();
+
                 setAlbum(resultAlbum);
             } catch (err) {
                 setError(err.message);
@@ -48,15 +53,10 @@ export default function DetailsAlbum() {
     }, [albumId, currentPage]);
 
     const handleAddComment = async (values) => {
-        const offset = (currentPage - 1) * pageSize;
-
-        //TODO Fix fetching comments when new comments appear
         try {
             await commentService.create(albumId, email, values.comment);
-            const resultComments = await commentService.getAll(offset, pageSize, albumId);
 
-            setHasNextPage(resultComments.length === pageSize);
-            setComments(resultComments);
+            handleGetComments();
         } catch (err) {
             setError(err.message);
         }
@@ -67,48 +67,44 @@ export default function DetailsAlbum() {
     };
 
     return (
-        <>
+        <div className={styles.container}>
+            {loading && <Spinner />}
 
+            {error.length > 0 && (
+                <ErrorMessage message={error} />
+            )}
 
-            <div className={styles.container}>
-                {loading && <Spinner />}
+            {(!loading && error.length === 0) && (
+                <>
+                    <div className={styles.wrapper}>
+                        <div className={styles.albumContainer}>
+                            <DetailsAlbumItem album={album} isOwner={isOwner} />
+                        </div>
 
-                {error.length > 0 && (
-                    <ErrorMessage message={error} />
-                )}
-                {(!loading && error.length === 0) && (
-                    <>
-                        <div className={styles.wrapper}>
-                            <div className={styles.albumContainer}>
-                                <DetailsAlbumItem album={album} isOwner={isOwner} />
+                        {isAuthenticated &&
+                            <div className={styles.commentContainer}>
+                                <CommentAlbum handleAddComment={handleAddComment} />
                             </div>
-
-                            {isAuthenticated &&
-                                <div className={styles.commentContainer}>
-                                    <CommentAlbum handleAddComment={handleAddComment} />
-                                </div>
-                            }
-                        </div>
-                        <div className={styles.comments}>
-                            {comments.length > 0
-                                ?
-                                <>
-                                    <h2>All Comments</h2>
-                                    {comments.map(comment => <CommentAlbumItem key={comment._id} {...comment} />)}
-                                    <Pagination
-                                        currentPage={currentPage}
-                                        hasNextPage={hasNextPage}
-                                        handlePageChange={handlePageChange}
-                                    />
-                                </>
-                                :
-                                <h2>No comments yet.</h2>
-                            }
-                        </div>
-                    </>
-                )}
-            </div>
-
-        </>
+                        }
+                    </div>
+                    <div className={styles.comments}>
+                        {comments.length > 0
+                            ?
+                            <>
+                                <h2>All Comments</h2>
+                                {comments.map(comment => <CommentAlbumItem key={comment._id} {...comment} />)}
+                                <Pagination
+                                    currentPage={currentPage}
+                                    hasNextPage={hasNextPage}
+                                    handlePageChange={handlePageChange}
+                                />
+                            </>
+                            :
+                            <h2>No comments yet.</h2>
+                        }
+                    </div>
+                </>
+            )}
+        </div>
     );
 };

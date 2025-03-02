@@ -12,14 +12,14 @@
     font-family: 'Outfit', sans-serif;
     text-align: center;
     color: #4b4a4a;
-    width: 350px;
+    width: 300px;
     aspect-ratio: 1/1;
     margin: auto;
     text-decoration: none;
 }
 
 .albumCard img {
-    width: 350px;
+    width: 300px;
     border-radius: .3em;
 }
 
