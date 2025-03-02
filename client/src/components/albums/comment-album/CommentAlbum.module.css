@@ -25,7 +25,19 @@
     border-radius: 4px;
     font-size: 1rem;
     margin-bottom: 8px;
-    color: #333;
+    color: #111;
+  }
+
+  .button {
+    background: #ec2e2e;
+    border: none;
+    padding: 0.8em;
+    margin-top: 1em;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
   }
   
   .input:focus {

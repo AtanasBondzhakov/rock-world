@@ -1,41 +1,40 @@
 .container {
-    max-width: 100%;
     padding-top: 100px;
     display: flex;
     justify-content: space-around;
-    margin-bottom: 3em;
-    background-image: url(/images/catalog.jpg);
+    background-image: url(/images/details.webp);
     background-size: cover;
     background-position: center;
-    height: 100vh;
 }
 
 .wrapper {
-    border-radius: 0.5em;
     margin-top: 2em;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
     max-width: 700px;
+    height: auto;
     gap: 2em;
+}
+
+.albumContainer,
+.commentsContainer {
+    border-radius: 0.5em;
+    background-color: #3f3f3f;
+    border: 1px solid rgb(114, 114, 114);
+    box-shadow: 4px 4px 10px rgb(26, 26, 26);
+    color: #c2c2c2;
 }
 
 .albumContainer {
     display: flex;
     flex-direction: column;
-    padding-bottom: 1em;
-    border-radius: 0.5em;
-    background-color: #252525;
-    border: 1px solid rgb(114, 114, 114);
-    box-shadow: 4px 4px 10px rgba(46, 46, 46, 0.3);
-    color: #9c9fa1;
+    padding: 1em;
 }
 
 .commentsContainer {
-    background-color: #151515;
-    border-radius: 0.5em;
     margin-bottom: 2em;
+    width: 60%;
 }
 
 .comments {
@@ -46,11 +45,13 @@
 }
 
 .comments h2 {
-    margin-bottom: 1em;
     font-size: 2em;
     font-weight: bold;
-    color: #a1a1a1; 
-    width: 500px;
+    width: auto;
+    padding: 0.3em 0.7em;
+    border-radius: 0.3em;
+    margin: 0;
+    color: #fff;
 }
 
 .comments h3 {

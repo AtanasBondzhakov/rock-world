@@ -57,6 +57,7 @@ export default function DetailsAlbumItem({
                 </div>
             </div>
             <div className={styles.description}>
+                <span>Description:</span>
                 <p>{album.description}</p>
             </div>
 

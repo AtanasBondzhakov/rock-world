@@ -9,7 +9,7 @@ export default function CommentAlbumItem({
 
     return (
         <div className={styles.container}>
-            <p>{email} - {dateFormatter(_createdOn)}</p>
+            <span>{email} - {dateFormatter(_createdOn)}</span>
             <p>{comment}</p>
         </div>
     );

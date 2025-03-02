@@ -82,7 +82,7 @@ export default function DetailsAlbum() {
                         </div>
 
                         {isAuthenticated &&
-                            <div className={styles.commentContainer}>
+                            <div className={styles.commentsContainer}>
                                 <CommentAlbum handleAddComment={handleAddComment} />
                             </div>
                         }
@@ -91,7 +91,7 @@ export default function DetailsAlbum() {
                         {comments.length > 0
                             ?
                             <>
-                                <h2>All Comments</h2>
+                                <h2>Comments</h2>
                                 {comments.map(comment => <CommentAlbumItem key={comment._id} {...comment} />)}
                                 <Pagination
                                     currentPage={currentPage}

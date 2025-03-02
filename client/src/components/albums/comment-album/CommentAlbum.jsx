@@ -20,7 +20,7 @@ export default function CommentAlbum({
                         value={formValues[ALBUM_FORM_KEYS.Comment]}
                         onChange={onChange}
                     ></textarea>
-                    <button type="submit" className='button'>Comment</button>
+                    <button type="submit" className={styles.button}>Comment</button>
                 </form>
             </div>
         </div>
