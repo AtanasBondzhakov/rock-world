@@ -7,6 +7,7 @@ import { PATHS } from '../../../../constants.js';
 import { toasterSuccess } from '../../../../utils/toaster-messages.js';
 
 import DeleteAlbumModal from '../../delete-album-modal/DeleteAlbumModal.jsx';
+import ErrorMessage from '../../../error-message/ErrorMessage.jsx';
 
 
 export default function DetailsAlbumItem({
@@ -14,6 +15,7 @@ export default function DetailsAlbumItem({
     isOwner
 }) {
     const [showModal, setShowModal] = useState(false);
+    const [error, setError] = useState('');
 
     const navigate = useNavigate();
 
@@ -27,6 +29,7 @@ export default function DetailsAlbumItem({
 
     const handleDeleteAlbum = async () => {
         const successMsg = 'Album deleted successfully';
+
         try {
             await albumService.remove(album._id);
 
@@ -34,45 +37,50 @@ export default function DetailsAlbumItem({
 
             navigate(PATHS.Albums);
         } catch (err) {
-            //TODO error handling
-            console.log(err.message);
+            setError(err.message);
         }
     };
     return (
-        <>
-            <div className={styles.main}>
-                <div className={styles.imgContainer}>
-                    <img src={album.imageUrl} alt="" />
-                </div>
-                <div className={styles.info}>
-                    <div className={styles.heading}>
-                        <h2>{album.title}</h2>
-                        <h3>By {album.band}</h3>
-                    </div>
-                    <div className={styles.secondary}>
-                        <p>Released: <span>{album.released}</span></p>
-                        <p>Tracks count: <span>{album.trackCount}</span></p>
-                        <p>Duration: <span>{album.duration} mins</span></p>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.description}>
-                <span>Description:</span>
-                <p>{album.description}</p>
-            </div>
+        <div>
+            {error && <ErrorMessage message={error} />}
 
-            {isOwner && (
-                <div className={styles.buttons}>
-                    <Link to={`/albums/${album._id}/edit`}>Edit</Link>
-                    <button onClick={handleDeleteButtonClick}>Delete</button>
-                </div>
+            {!error && (
+                <>
+                    <div className={styles.main}>
+                        <div className={styles.imgContainer}>
+                            <img src={album.imageUrl} alt="" />
+                        </div>
+                        <div className={styles.info}>
+                            <div className={styles.heading}>
+                                <h2>{album.title}</h2>
+                                <h3>By {album.band}</h3>
+                            </div>
+                            <div className={styles.secondary}>
+                                <p>Released: <span>{album.released}</span></p>
+                                <p>Tracks count: <span>{album.trackCount}</span></p>
+                                <p>Duration: <span>{album.duration} mins</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.description}>
+                        <span>Description:</span>
+                        <p>{album.description}</p>
+                    </div>
+
+                    {isOwner && (
+                        <div className={styles.buttons}>
+                            <Link to={`/albums/${album._id}/edit`}>Edit</Link>
+                            <button onClick={handleDeleteButtonClick}>Delete</button>
+                        </div>
+                    )}
+
+                    {showModal &&
+                        <DeleteAlbumModal
+                            handleCancelButtonClick={handleCancelButtonClick}
+                            handleDeleteAlbum={handleDeleteAlbum}
+                        />}
+                </>
             )}
-
-            {showModal &&
-                <DeleteAlbumModal
-                    handleCancelButtonClick={handleCancelButtonClick}
-                    handleDeleteAlbum={handleDeleteAlbum}
-                />}
-        </>
+        </div>
     );
 };
