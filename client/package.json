@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "react-scripts start"
+    "start": "vite preview"
   },
   "dependencies": {
     "@react-spring/web": "^9.7.5",
