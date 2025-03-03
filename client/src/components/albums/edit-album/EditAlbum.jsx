@@ -6,6 +6,7 @@ import styles from './EditAlbum.module.css';
 import albumService from '../../../services/albumService.js';
 import { formatDateString, parseDateString } from '../../../utils/dateUtil.js';
 import { albumSchema } from '../../../schemas/albumSchema.js';
+import ErrorMessage from '../../error-message/ErrorMessage.jsx';
 
 const initialValues = {
     [ALBUM_FORM_KEYS.Title]: '',
@@ -21,6 +22,7 @@ const initialValues = {
 export default function EditAlbum() {
     const [albumData, setAlbumData] = useState(initialValues);
     const [errors, setErrors] = useState({});
+    const [serverError, setServerError] = useState('');
 
     const { albumId } = useParams();
     const navigate = useNavigate();
@@ -69,7 +71,7 @@ export default function EditAlbum() {
                     released: parseDateString(result.released)
                 });
             } catch (err) {
-                //TODO error handling
+                setServerError(err.message);
                 console.log(err.message);
             }
         })();
@@ -77,6 +79,9 @@ export default function EditAlbum() {
 
     return (
         <div className={styles.container}>
+
+            {serverError && <ErrorMessage message={serverError}/>}
+
             <h1 className={styles.title}>Edit Album</h1>
             <form className={styles.form} onSubmit={handleEdit}>
                 <div className={styles.inputGroup}>
