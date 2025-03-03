@@ -12,6 +12,7 @@ import CommentAlbum from '../comment-album/CommentAlbum.jsx';
 import CommentAlbumItem from '../comment-album/comment-album-item/CommentAlbumItem.jsx';
 import Pagination from '../../pagination/Pagination.jsx';
 import ErrorMessage from '../../error-message/ErrorMessage.jsx';
+import ScrollToTop from '../../scroll-to-top/ScrollToTop.jsx';
 
 export default function DetailsAlbum() {
     const [album, setAlbum] = useState({});
@@ -34,7 +35,7 @@ export default function DetailsAlbum() {
 
         setHasNextPage(resultComments.length > pageSize);
         setComments(resultComments.slice(0, pageSize));
-    }
+    };
 
     useEffect(() => {
         (async () => {
@@ -67,44 +68,46 @@ export default function DetailsAlbum() {
     };
 
     return (
-        <div className={styles.container}>
-            {loading && <Spinner />}
+        <>
+            <ScrollToTop dependency={[currentPage, comments]} />
 
-            {error.length > 0 && (
-                <ErrorMessage message={error} />
-            )}
+            <div className={styles.container}>
+                {loading && <Spinner />}
 
-            {(!loading && error.length === 0) && (
-                <>
-                    <div className={styles.wrapper}>
-                        <div className={styles.albumContainer}>
-                            <DetailsAlbumItem album={album} isOwner={isOwner} />
-                        </div>
+                {error && <ErrorMessage message={error} />}
 
-                        {isAuthenticated &&
-                            <div className={styles.commentsContainer}>
-                                <CommentAlbum handleAddComment={handleAddComment} />
+                {!loading && !error && (
+                    <>
+                        <div className={styles.wrapper}>
+                            <div className={styles.albumContainer}>
+                                <DetailsAlbumItem album={album} isOwner={isOwner} />
                             </div>
-                        }
-                    </div>
-                    <div className={styles.comments}>
-                        {comments.length > 0
-                            ?
-                            <>
-                                <h2>Comments</h2>
-                                {comments.map(comment => <CommentAlbumItem key={comment._id} {...comment} />)}
-                                <Pagination
-                                    currentPage={currentPage}
-                                    hasNextPage={hasNextPage}
-                                    handlePageChange={handlePageChange}
-                                />
-                            </>
-                            :
-                            <h2>No comments yet.</h2>
-                        }
-                    </div>
-                </>
-            )}
-        </div>
+
+                            {isAuthenticated &&
+                                <div className={styles.commentsContainer}>
+                                    <CommentAlbum handleAddComment={handleAddComment} />
+                                </div>
+                            }
+                        </div>
+                        <div className={styles.comments}>
+                            {comments.length > 0
+                                ? <>
+                                    <h2>Comments</h2>
+
+                                    {comments.map(comment => <CommentAlbumItem key={comment._id} {...comment} />)}
+
+                                    <Pagination
+                                        currentPage={currentPage}
+                                        hasNextPage={hasNextPage}
+                                        handlePageChange={handlePageChange}
+                                    />
+                                </>
+                                : <h2>No comments yet.</h2>
+                            }
+                        </div>
+                    </>
+                )}
+            </div>
+        </>
     );
 };
