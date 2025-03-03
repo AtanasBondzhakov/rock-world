@@ -6,6 +6,7 @@ import useForm from '../../../hooks/useForm.js';
 import albumService from '../../../services/albumService.js';
 import { albumSchema } from '../../../schemas/albumSchema.js';
 import { useState } from 'react';
+import ErrorMessage from '../../error-message/ErrorMessage.jsx';
 
 const initialValues = {
     [ALBUM_FORM_KEYS.Title]: '',
@@ -20,6 +21,7 @@ const initialValues = {
 
 export default function AddAlbum() {
     const { formValues, formErrors, onChange, onSubmit } = useForm(initialValues, addAlbumHandler, albumSchema);
+    const [error, setError] = useState('');
 
     const navigate = useNavigate();
 
@@ -29,14 +31,15 @@ export default function AddAlbum() {
 
             navigate(PATHS.Albums);
         } catch (err) {
-            //TODO error handling
-            console.log(err.message);
-            
+            setError(err.message);
         }
-    }
+    };
 
     return (
         <div className={styles.container}>
+
+            {error && <ErrorMessage message={error} />}
+
             <h1 className={styles.title}>Add new Album</h1>
             <form className={styles.form} onSubmit={onSubmit}>
                 <div className={styles.inputGroup}>
