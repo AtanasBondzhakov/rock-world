@@ -7,7 +7,7 @@ import { PATHS } from '../../constants.js';
 import AuthContext from '../../contexts/authContext.jsx';
 
 export default function Header() {
-    const { isAuthenticated } = useContext(AuthContext);
+    const { isAuthenticated, username } = useContext(AuthContext);
     const location = useLocation();
 
     const [active, setActive] = useState(PATHS.Home);
@@ -28,13 +28,91 @@ export default function Header() {
                 <p>Rock World</p>
             </div>
 
-            <div className={styles.mobile}>
+            <div className={styles.nav}>
+                <div className={styles.mobile}>
 
-                <div className={styles.hamburger}>
-                    <RxHamburgerMenu className={styles.icon} onClick={handleMobileMenu} />
+                    <div className={styles.hamburger}>
+                        <RxHamburgerMenu className={styles.icon} onClick={handleMobileMenu} />
+                    </div>
+
+                    <ul className={`${styles.mobileMenu} ${isMobile ? styles.mobileActive : ''}`}>
+                        <li>
+                            <Link
+                                to={PATHS.Home}
+                                className={active === PATHS.Home ? styles.active : ''}
+                            >
+                                Home
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to={PATHS.Albums}
+                                className={active === PATHS.Albums ? styles.active : ''}
+                            >
+                                Albums
+                            </Link>
+                        </li>
+
+                        {isAuthenticated
+                            ?
+                            <div className={styles.auth}>
+                                <li>
+                                    <Link
+                                        to={PATHS.AddAlbum}
+                                        className={active === PATHS.AddAlbum ? styles.active : ''}
+                                    >
+                                        Add
+                                        Album</Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to={PATHS.Profile}
+                                        className={active === PATHS.Profile ? styles.active : ''}
+                                    >
+                                        Profile
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to={PATHS.Logout}
+                                        className={active === PATHS.Logout ? styles.active : ''}
+                                    >
+                                        Logout
+                                    </Link>
+                                </li>
+                            </div>
+                            :
+                            <div className={styles.guest}>
+                                <li>
+                                    <Link
+                                        to={PATHS.Login}
+                                        className={active === PATHS.Login ? styles.active : ''}
+                                    >
+                                        Login
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to={PATHS.Register}
+                                        className={active === PATHS.Register ? styles.active : ''}
+                                    >
+                                        Register
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to={PATHS.About}
+                                        className={active === PATHS.About ? styles.active : ''}
+                                    >
+                                        About
+                                    </Link>
+                                </li>
+                            </div>
+                        }
+                    </ul>
                 </div>
 
-                <ul className={`${styles.mobileMenu} ${isMobile ? styles.mobileActive : ''}`}>
+                <ul className={styles.items}>
                     <li>
                         <Link
                             to={PATHS.Home}
@@ -109,83 +187,9 @@ export default function Header() {
                         </div>
                     }
                 </ul>
+
+                <span>Welcome, {username ? username : 'guest'}</span>
             </div>
-
-            <ul className={styles.items}>
-                <li>
-                    <Link
-                        to={PATHS.Home}
-                        className={active === PATHS.Home ? styles.active : ''}
-                    >
-                        Home
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        to={PATHS.Albums}
-                        className={active === PATHS.Albums ? styles.active : ''}
-                    >
-                        Albums
-                    </Link>
-                </li>
-
-                {isAuthenticated
-                    ?
-                    <div className={styles.auth}>
-                        <li>
-                            <Link
-                                to={PATHS.AddAlbum}
-                                className={active === PATHS.AddAlbum ? styles.active : ''}
-                            >
-                                Add
-                                Album</Link>
-                        </li>
-                        <li>
-                            <Link
-                                to={PATHS.Profile}
-                                className={active === PATHS.Profile ? styles.active : ''}
-                            >
-                                Profile
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to={PATHS.Logout}
-                                className={active === PATHS.Logout ? styles.active : ''}
-                            >
-                                Logout
-                            </Link>
-                        </li>
-                    </div>
-                    :
-                    <div className={styles.guest}>
-                        <li>
-                            <Link
-                                to={PATHS.Login}
-                                className={active === PATHS.Login ? styles.active : ''}
-                            >
-                                Login
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to={PATHS.Register}
-                                className={active === PATHS.Register ? styles.active : ''}
-                            >
-                                Register
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to={PATHS.About}
-                                className={active === PATHS.About ? styles.active : ''}
-                            >
-                                About
-                            </Link>
-                        </li>
-                    </div>
-                }
-            </ul>
         </div >
     );
 };

@@ -23,6 +23,13 @@
     padding-left: 1em;
 }
 
+.nav {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    gap: 0.5em;
+}
+
 .logoContainer p {
     font-size: 2em;
     color: #ec2e2e;
@@ -30,9 +37,16 @@
     padding: 0;
 }
 
+.container span {
+    color: #fff;
+    padding-right: 1em;
+    margin-bottom: 0.6em;
+}
+
 .items {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 0.5em;
 }
 
 .auth,
@@ -64,6 +78,7 @@
     color: #8d8d8d;
     text-decoration: underline;
     scale: 1.2;
+    transform-origin: bottom;
 }
 
 .hamburger,
