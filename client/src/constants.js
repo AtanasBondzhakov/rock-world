@@ -21,7 +21,8 @@ export const ALBUM_FORM_KEYS = {
     Description: 'description',
     TrackCount: 'trackCount',
     Duration: 'duration',
-    Comment: 'comment'
+    Comment: 'comment',
+    Search: 'search'
 };
 
 export const AUTH_FORM_KEYS = {
