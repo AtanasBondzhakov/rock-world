@@ -32,11 +32,19 @@ const edit = (albumId, albumData) => requester.put(`${BASE_PATH}/${albumId}`, al
 
 const remove = (albumId) => requester.del(`${BASE_PATH}/${albumId}`);
 
+const search = (searchText) => {
+    const query = new URLSearchParams({
+        where: `title LIKE "${searchText}"`
+    })
+    return requester.get(`${BASE_PATH}?${query}`)
+}
+
 export default {
     getAll,
     getLatest,
     getOne,
     add,
     edit,
-    remove
+    remove,
+    search
 };
