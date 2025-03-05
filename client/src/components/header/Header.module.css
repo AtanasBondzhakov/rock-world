@@ -13,9 +13,17 @@
                 linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
 }
 
+.left {
+    display: flex;
+    justify-content: start;
+    width: 50%;
+    gap: 2em;
+}
+
 .logoContainer {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .logo {
@@ -31,7 +39,7 @@
 }
 
 .logoContainer p {
-    font-size: 2em;
+    font-size: 1.5em;
     color: #ec2e2e;
     margin: 0;
     padding: 0;

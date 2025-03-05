@@ -17,7 +17,6 @@ export default function PageNotFound() {
             <Link to={PATHS.Home} className={styles.button}>
                 Go Back to Rock Home
             </Link>
-
         </div>
     );
 };

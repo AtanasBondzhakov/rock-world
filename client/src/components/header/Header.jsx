@@ -4,7 +4,9 @@ import { RxHamburgerMenu } from "react-icons/rx";
 
 import styles from './Header.module.css';
 import { PATHS } from '../../constants.js';
+
 import AuthContext from '../../contexts/authContext.jsx';
+import SearchForm from '../search/search-form/SearchForm.jsx';
 
 export default function Header() {
     const { isAuthenticated, username } = useContext(AuthContext);
@@ -23,9 +25,12 @@ export default function Header() {
 
     return (
         <div className={styles.container}>
-            <div className={styles.logoContainer}>
-                <Link to={PATHS.Home}><img src='/images/logo.png' alt='Logo' className={styles.logo} /></Link>
-                <p>Rock World</p>
+            <div className={styles.left}>
+                <div className={styles.logoContainer}>
+                    <Link to={PATHS.Home}><img src='/images/logo.png' alt='Logo' className={styles.logo} /></Link>
+                    <p>Rock World</p>
+                </div>
+                <SearchForm />
             </div>
 
             <div className={styles.nav}>
