@@ -20,69 +20,72 @@ export default function Register() {
     const { formValues, formErrors, onChange, onSubmit } = useForm(initialValues, handleRegister, registerSchema);
 
     return (
-        <div className={styles.authContainer}>
-            <h2 className={styles.authTitle}>Register</h2>
+        <div className={styles.container}>
 
-            {registerError && <div className={styles.error}>{registerError}</div>}
+            <div className={styles.authContainer}>
+                <h2 className={styles.authTitle}>Register</h2>
 
-            <form className={styles.form} onSubmit={onSubmit}>
-                <div className={styles.inputGroup}>
-                    <label htmlFor={AUTH_FORM_KEYS.Username}>Username</label>
-                    <input
-                        type="text"
-                        id={AUTH_FORM_KEYS.Username}
-                        name={AUTH_FORM_KEYS.Username}
-                        placeholder='John'
-                        value={formValues[AUTH_FORM_KEYS.Username]}
-                        onChange={onChange}
-                    />
+                {registerError && <div className={styles.error}>{registerError}</div>}
 
-                    {formErrors[AUTH_FORM_KEYS.Username] && <div className={styles.validationError}>{formErrors[AUTH_FORM_KEYS.Username]}</div>}
-                </div>
-                <div className={styles.inputGroup}>
-                    <label htmlFor={AUTH_FORM_KEYS.Email}>Email</label>
-                    <input
-                        type="text"
-                        id={AUTH_FORM_KEYS.Email}
-                        name={AUTH_FORM_KEYS.Email}
-                        placeholder='john@mail.com'
-                        value={formValues[AUTH_FORM_KEYS.Email]}
-                        onChange={onChange}
-                    />
+                <form className={styles.form} onSubmit={onSubmit}>
+                    <div className={styles.inputGroup}>
+                        <label htmlFor={AUTH_FORM_KEYS.Username}>Username</label>
+                        <input
+                            type="text"
+                            id={AUTH_FORM_KEYS.Username}
+                            name={AUTH_FORM_KEYS.Username}
+                            placeholder='John'
+                            value={formValues[AUTH_FORM_KEYS.Username]}
+                            onChange={onChange}
+                        />
 
-                    {formErrors[AUTH_FORM_KEYS.Email] && <div className={styles.validationError}>{formErrors[AUTH_FORM_KEYS.Email]}</div>}
-                </div>
-                <div className={styles.inputGroup}>
-                    <label htmlFor={AUTH_FORM_KEYS.Password}>Password</label>
-                    <input
-                        type="password"
-                        id={AUTH_FORM_KEYS.Password}
-                        name={AUTH_FORM_KEYS.Password}
-                        placeholder='******'
-                        value={formValues[AUTH_FORM_KEYS.Password]}
-                        onChange={onChange}
-                    />
+                        {formErrors[AUTH_FORM_KEYS.Username] && <div className={styles.validationError}>{formErrors[AUTH_FORM_KEYS.Username]}</div>}
+                    </div>
+                    <div className={styles.inputGroup}>
+                        <label htmlFor={AUTH_FORM_KEYS.Email}>Email</label>
+                        <input
+                            type="text"
+                            id={AUTH_FORM_KEYS.Email}
+                            name={AUTH_FORM_KEYS.Email}
+                            placeholder='john@mail.com'
+                            value={formValues[AUTH_FORM_KEYS.Email]}
+                            onChange={onChange}
+                        />
 
-                    {formErrors[AUTH_FORM_KEYS.Password] && <div className={styles.validationError}>{formErrors[AUTH_FORM_KEYS.Password]}</div>}
-                </div>
-                <div className={styles.inputGroup}>
-                    <label htmlFor={AUTH_FORM_KEYS.RePassword}>Repeat Password</label>
-                    <input
-                        type="password"
-                        id={AUTH_FORM_KEYS.RePassword}
-                        name={AUTH_FORM_KEYS.RePassword}
-                        placeholder='******'
-                        value={formValues[AUTH_FORM_KEYS.RePassword]}
-                        onChange={onChange}
-                    />
+                        {formErrors[AUTH_FORM_KEYS.Email] && <div className={styles.validationError}>{formErrors[AUTH_FORM_KEYS.Email]}</div>}
+                    </div>
+                    <div className={styles.inputGroup}>
+                        <label htmlFor={AUTH_FORM_KEYS.Password}>Password</label>
+                        <input
+                            type="password"
+                            id={AUTH_FORM_KEYS.Password}
+                            name={AUTH_FORM_KEYS.Password}
+                            placeholder='******'
+                            value={formValues[AUTH_FORM_KEYS.Password]}
+                            onChange={onChange}
+                        />
 
-                    {formErrors[AUTH_FORM_KEYS.RePassword] && <div className={styles.validationError}>{formErrors[AUTH_FORM_KEYS.RePassword]}</div>}
-                </div>
-                <button type="submit" className={styles.button}>Register</button>
-            </form>
-            <p className={styles.loginLink}>
-                Already have an account? <Link to={PATHS.Login}>Sign in</Link>
-            </p>
+                        {formErrors[AUTH_FORM_KEYS.Password] && <div className={styles.validationError}>{formErrors[AUTH_FORM_KEYS.Password]}</div>}
+                    </div>
+                    <div className={styles.inputGroup}>
+                        <label htmlFor={AUTH_FORM_KEYS.RePassword}>Repeat Password</label>
+                        <input
+                            type="password"
+                            id={AUTH_FORM_KEYS.RePassword}
+                            name={AUTH_FORM_KEYS.RePassword}
+                            placeholder='******'
+                            value={formValues[AUTH_FORM_KEYS.RePassword]}
+                            onChange={onChange}
+                        />
+
+                        {formErrors[AUTH_FORM_KEYS.RePassword] && <div className={styles.validationError}>{formErrors[AUTH_FORM_KEYS.RePassword]}</div>}
+                    </div>
+                    <button type="submit" className={styles.button}>Register</button>
+                </form>
+                <p className={styles.loginLink}>
+                    Already have an account? <Link to={PATHS.Login}>Sign in</Link>
+                </p>
+            </div>
         </div>
     );
 };

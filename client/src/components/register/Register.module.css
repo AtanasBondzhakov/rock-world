@@ -1,5 +1,13 @@
+.container {
+  font-family: 'Outfit', sans-serif;
+  display: flex;
+  padding-bottom: 2em;
+  align-items: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.2)), url(/images/create-edit.jpg);
+  background-size: cover;
+  background-position: center;
+}
 .authContainer {
-    font-family: 'Outfit', sans-serif;
     display: flex;
     flex-direction: column;
     max-width: 30em;

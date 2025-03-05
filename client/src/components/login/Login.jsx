@@ -17,7 +17,7 @@ export default function Login() {
     const { formValues, onChange, onSubmit } = useForm(initialValues, handleLogin);
 
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.container}>
 
             <div className={styles.authContainer}>
                 <h2 className={styles.authTitle}>Login</h2>
