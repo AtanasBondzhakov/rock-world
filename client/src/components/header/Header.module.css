@@ -48,7 +48,7 @@
 .container span {
     color: #fff;
     padding-right: 1em;
-    margin-bottom: 0.6em;
+    margin-top: 0.8em;
 }
 
 .items {
@@ -107,12 +107,12 @@
         background-color: rgba(131, 131, 131, 0.7);
     }
     
-    .logoContainer {
+    .left {
         display: flex;
-        align-items: start;
+        align-items: center;
         font-size: 0.6em;
         margin-bottom: auto;
-        margin-top: 1.5em;
+        margin-top: 0.2em;
     }
 
     .mobile {
@@ -152,18 +152,22 @@
         align-items: end;
     }
 
-    .mobileMenu.mobileActive a {
+    /* .mobileMenu.mobileActive a {
         text-decoration: none;
         color: #ec2e2e;
-    }
+    } */
 
-    .mobileMenu.mobileActive li {
+    /* .mobileMenu.mobileActive li {
         list-style: none;
         padding-bottom: 1em;
-    }
+    } */
 
-    .mobile a.active {
+    /* .mobile a.active {
         color: #8d8d8d;
         text-decoration: underline;
+    } */
+
+    .mobileMenu span {
+        padding-right: 0;
     }
 }

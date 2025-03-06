@@ -7,6 +7,18 @@ import { PATHS } from '../../constants.js';
 
 import AuthContext from '../../contexts/authContext.jsx';
 import SearchForm from '../search/search-form/SearchForm.jsx';
+import HeaderLiItem from './header-li-item/HeaderLiItem.jsx';
+
+const navLinks = [
+    { path: PATHS.Home, name: "Home", requiresAuth: null },
+    { path: PATHS.Albums, name: "Albums", requiresAuth: null },
+    { path: PATHS.About, name: "About", requiresAuth: null },
+    { path: PATHS.Login, name: "Login", requiresAuth: false },
+    { path: PATHS.Register, name: "Register", requiresAuth: false },
+    { path: PATHS.AddAlbum, name: "Add Album", requiresAuth: true },
+    { path: PATHS.Profile, name: "Profile", requiresAuth: true },
+    { path: PATHS.Logout, name: "Logout", requiresAuth: true },
+];
 
 export default function Header() {
     const { isAuthenticated, username } = useContext(AuthContext);
@@ -41,159 +53,35 @@ export default function Header() {
                     </div>
 
                     <ul className={`${styles.mobileMenu} ${isMobile ? styles.mobileActive : ''}`}>
-                        <li>
-                            <Link
-                                to={PATHS.Home}
-                                className={active === PATHS.Home ? styles.active : ''}
-                            >
-                                Home
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to={PATHS.Albums}
-                                className={active === PATHS.Albums ? styles.active : ''}
-                            >
-                                Albums
-                            </Link>
-                        </li>
-
-                        {isAuthenticated
-                            ?
-                            <div className={styles.auth}>
-                                <li>
-                                    <Link
-                                        to={PATHS.AddAlbum}
-                                        className={active === PATHS.AddAlbum ? styles.active : ''}
-                                    >
-                                        Add
-                                        Album</Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        to={PATHS.Profile}
-                                        className={active === PATHS.Profile ? styles.active : ''}
-                                    >
-                                        Profile
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        to={PATHS.Logout}
-                                        className={active === PATHS.Logout ? styles.active : ''}
-                                    >
-                                        Logout
-                                    </Link>
-                                </li>
-                            </div>
-                            :
-                            <div className={styles.guest}>
-                                <li>
-                                    <Link
-                                        to={PATHS.Login}
-                                        className={active === PATHS.Login ? styles.active : ''}
-                                    >
-                                        Login
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        to={PATHS.Register}
-                                        className={active === PATHS.Register ? styles.active : ''}
-                                    >
-                                        Register
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        to={PATHS.About}
-                                        className={active === PATHS.About ? styles.active : ''}
-                                    >
-                                        About
-                                    </Link>
-                                </li>
-                            </div>
+                        {navLinks
+                            .filter(link =>
+                                link.requiresAuth === null ||
+                                (isAuthenticated ? link.requiresAuth : link.requiresAuth === false)
+                            )
+                            .map(link => (
+                                <HeaderLiItem key={link.name} path={link.path} name={link.name} />
+                            ))
                         }
+                        
+                        <span>Welcome, {username ? username : 'guest'}</span>
                     </ul>
                 </div>
 
                 <ul className={styles.items}>
-                    <li>
-                        <Link
-                            to={PATHS.Home}
-                            className={active === PATHS.Home ? styles.active : ''}
-                        >
-                            Home
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to={PATHS.Albums}
-                            className={active === PATHS.Albums ? styles.active : ''}
-                        >
-                            Albums
-                        </Link>
-                    </li>
 
-                    {isAuthenticated
-                        ?
-                        <div className={styles.auth}>
-                            <li>
-                                <Link
-                                    to={PATHS.AddAlbum}
-                                    className={active === PATHS.AddAlbum ? styles.active : ''}
-                                >
-                                    Add
-                                    Album</Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to={PATHS.Profile}
-                                    className={active === PATHS.Profile ? styles.active : ''}
-                                >
-                                    Profile
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to={PATHS.Logout}
-                                    className={active === PATHS.Logout ? styles.active : ''}
-                                >
-                                    Logout
-                                </Link>
-                            </li>
-                        </div>
-                        :
-                        <div className={styles.guest}>
-                            <li>
-                                <Link
-                                    to={PATHS.Login}
-                                    className={active === PATHS.Login ? styles.active : ''}
-                                >
-                                    Login
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to={PATHS.Register}
-                                    className={active === PATHS.Register ? styles.active : ''}
-                                >
-                                    Register
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to={PATHS.About}
-                                    className={active === PATHS.About ? styles.active : ''}
-                                >
-                                    About
-                                </Link>
-                            </li>
-                        </div>
+                    {navLinks
+                        .filter(link =>
+                            link.requiresAuth === null ||
+                            (isAuthenticated ? link.requiresAuth : link.requiresAuth === false)
+                        )
+                        .map(link => (
+                            <HeaderLiItem key={link.name} path={link.path} name={link.name} />
+                        ))
                     }
+
+                    <span>Welcome, {username ? username : 'guest'}</span>
                 </ul>
 
-                <span>Welcome, {username ? username : 'guest'}</span>
             </div>
         </div >
     );

@@ -1329,17 +1329,17 @@
     		"35c62d76-8152-4626-8712-eeb96381bea8": {
     			email: "peter@abv.bg",
     			username: "Peter",
-    			hashedPassword: "f2363895609d1d2167652a32b25148841b98235bbf9600bb5399c2c3fa64142b"
+    			hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1"
     		},
     		"847ec027-f659-4086-8032-5173e2f9c93a": {
     			email: "george@abv.bg",
     			username: "George",
-    			hashedPassword: "1c7f429f62205d2310876181fd57cb0336519a746d32bb0ce5733a880d1777d6"
+    			hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1"
     		},
     		"60f0cf0b-34b0-4abd-9769-8c42f830dffc": {
     			email: "admin@abv.bg",
     			username: "Admin",
-    			hashedPassword: "5f90494eadbc269a00366385ad5acff2fa8b8fed3ebf59b2388f923d01400f84"
+    			hashedPassword: "fac7060c3e17e6f151f247eacb2cd5ae80b8c36aedb8764e18a41bbdc16aa302"
     		}
     	},
     	sessions: {
@@ -1531,13 +1531,6 @@
     ];
 
     const server = http__default['default'].createServer(requestHandler(plugins, services));
-
-    // const port = 3030;
-
-    // server.listen(port);
-
-    // console.log(`Server started on port ${port}. You can make requests to http://localhost:${port}/`);
-    // console.log(`Admin panel located at http://localhost:${port}/admin`);
 
     return server;
 

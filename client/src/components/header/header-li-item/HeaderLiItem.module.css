@@ -1,0 +1,46 @@
+.liItem {
+    list-style: none;
+    margin-right: 1em;
+    padding: 0.3em 0.3em 0
+}
+
+.liItem a {
+    color: #ec2e2e;
+    text-decoration: none;
+    font-size: 1.5em;
+    font-weight: 600;
+    display: inline-block;
+    transition: transform 0.3s ease;   
+}
+
+.liItem a:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.liItem a.active {
+    color: #8d8d8d;
+    text-decoration: underline;
+    scale: 1.2;
+    transform-origin: bottom;
+}
+
+@media (max-width: 768px) {
+    .liItem {
+        list-style: none;
+        margin-right: 0;
+        font-size: 0.7em;
+        padding-bottom: 1em;
+    }
+    
+    .liItem a {
+        text-decoration: none;
+        color: #ec2e2e;
+        font-weight: 600;
+    }
+    
+    .liItem a.active {
+        color: #8d8d8d;
+        transform-origin: right;
+    }
+}
