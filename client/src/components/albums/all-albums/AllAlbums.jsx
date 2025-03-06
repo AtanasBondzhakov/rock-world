@@ -12,7 +12,7 @@ import ErrorMessage from '../../error-message/ErrorMessage.jsx';
 export default function AllAlbums() {
     const [albumsList, setAlbumsList] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [pageSize] = useState(6);
+    const [pageSize] = useState(10);
     const [currentPage, setCurrentPage] = useState(1);
     const [hasNextPage, setHasNextPage] = useState(true);
     const [error, setError] = useState('');

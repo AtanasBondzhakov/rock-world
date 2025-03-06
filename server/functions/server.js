@@ -183,7 +183,7 @@
         if (req.readableEnded) {
             body = req.body;
         } else {
-            body = req.body;
+            body = await parseBody(req);
         }
 
         return {
@@ -1346,7 +1346,7 @@
     	}
     };
     var seedData = {
-        albums: {
+         albums: {
             "1f414b4f-ab39-4d36-78db-2ad69da9c830": {
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
                 title: "Kill 'Em All",

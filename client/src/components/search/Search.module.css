@@ -6,9 +6,8 @@
     padding-top: 100px;
     font-family: 'Trade winds', sans-serif;
     padding-bottom: 12em;
-    background-image: url(/images/catalog.jpg);
-    background-size: cover;
-    background-position: center;
+    background-image: url(/images/catalog.png);
+    background-size: auto;
     min-height: 100vh;
 }
 

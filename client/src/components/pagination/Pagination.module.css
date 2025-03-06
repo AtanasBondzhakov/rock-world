@@ -9,10 +9,10 @@
 
 .container button {
     padding: 0.5em 1em;
-    background-color: #ec2e2e;
+    background-color: #000000;
     color: #fff;
     border-radius: 0.5em;
-    font-size: 1em;
+    font-size: 1.25em;
     border: 1px solid #949494;
     cursor: pointer;
     margin: 0 2em 0;
@@ -24,15 +24,15 @@
     justify-content: center;
     height: 100%;
     color: #fff;
-    background-color: rgba(148, 148, 148, 0.4);
+    background-color: rgb(85, 85, 85);
     font-size: 1.25em;
     border-radius: 0.5em;
-    padding: 0.3em;
+    padding: 0.5em 1em;
 }
 
 button:disabled {
-    background-color: #6d6d6d;
-    opacity: 0.5;
+    background-color: #353535;
+    opacity: 0.8;
     cursor: auto;
     color: #fff;
 }

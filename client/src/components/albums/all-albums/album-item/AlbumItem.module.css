@@ -1,5 +1,5 @@
 .albumCard {
-    padding: 1rem;
+    padding: 1em;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -7,7 +7,7 @@
     border: 1px solid black;
     border-radius: 10px;
     box-shadow: 4px 4px rgb(46, 46, 46, 0.5);
-    background-color: #151515;
+    background-color: #0c0b0b;
     transition: 0.2s linear;
     font-family: 'Outfit', sans-serif;
     text-align: center;
@@ -19,7 +19,7 @@
 }
 
 .albumCard img {
-    width: 300px;
+    width: 250px;
     border-radius: .3em;
 }
 

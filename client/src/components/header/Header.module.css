@@ -9,8 +9,9 @@
     font-weight: 500;
     font-family: 'New Rocker', sans-serif;
     max-height: 80px;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent),
-                linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent),
+                linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent); */
+                background-color: #222;
 }
 
 .left {
