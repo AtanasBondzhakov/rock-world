@@ -18,6 +18,7 @@ import AddAlbum from "./components/albums/add-album/AddAlbum.jsx"
 import EditAlbum from "./components/albums/edit-album/EditAlbum.jsx"
 import ScrollToTop from "./components/scroll-to-top/ScrollToTop.jsx";
 import Search from "./components/search/Search.jsx";
+import About from "./components/about/About.jsx";
 
 function App() {
     return (
@@ -36,6 +37,7 @@ function App() {
                 <Route path={PATHS.AddAlbum} element={<AddAlbum />} />
                 <Route path={PATHS.EditAlbum} element={<EditAlbum />} />
                 <Route path="/search/:searchQuery" element={<Search />} />
+                <Route path={PATHS.About} element={<About />} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
 
