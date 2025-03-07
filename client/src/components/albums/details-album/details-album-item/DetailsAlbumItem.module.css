@@ -92,6 +92,10 @@
     transition: transform 0.2s ease;
 }
 
+.buttons .fav {
+    font-size: 0.75em;
+}
+
 .buttons a {
     text-decoration: none;
 }

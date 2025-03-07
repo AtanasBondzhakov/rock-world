@@ -6,7 +6,6 @@
     url('/images/electric-guitar.jpg') center/cover no-repeat !important;
     display: flex;
     font-family: 'New Rocker', sans-serif;
-    
 }
 
 .heading {
@@ -19,7 +18,8 @@
     text-transform: uppercase;
     max-width: 500px;
     text-align: center;
-    margin-left: 30px;
+    margin-top: 2em;
+    margin-left: 2em;
     line-height: 1.2;
 }
 

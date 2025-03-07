@@ -1492,7 +1492,8 @@
                 _createdOn: 1613553388999
             },
         },
-        comments: {}
+        comments: {},
+        favorites: {}
     };
     var rules$1 = {
     	users: {
