@@ -28,8 +28,8 @@ export default function DetailsAlbumItem({
             try {
                 //TODO try to find only one instead of all
                 const favorites = await favoriteService.getAll();
-                const myFavorite = favorites.find(fav => fav.albumId === album._id && fav.userId === userId);
-
+                const myFavorite = favorites.find(fav => fav.albumData._id === album._id && fav.userId === userId);
+                
                 setFavoriteId(myFavorite?._id);
             } catch (err) {
                 setError(err.message);
@@ -116,7 +116,6 @@ export default function DetailsAlbumItem({
 
                         </div>
                     )}
-
 
                     {showModal &&
                         <DeleteAlbumModal
