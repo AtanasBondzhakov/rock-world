@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
+import { useEffect } from "react";
 
 import styles from './SearchForm.module.css';
 import useForm from "../../../hooks/useForm";
@@ -14,6 +15,12 @@ export default function SearchForm() {
     };
 
     const { formValues, formErrors, onChange, onSubmit } = useForm({ search: '' }, handleSearchAlbum, searchSchema);
+
+    useEffect(() => {
+        if (formErrors[ALBUM_FORM_KEYS.Search]) {
+            formErrors[ALBUM_FORM_KEYS.Search] = '';
+        }
+    }, [location.pathname]);
 
     return (
         <div className={styles.container}>
