@@ -22,6 +22,12 @@ const request = async (method, url, data) => {
         if (!response.ok) {
             
             const error = await response.json();
+
+            if (response.status === 403 && error.message === 'Invalid access token') {
+                localStorage.removeItem('auth');
+                localStorage.removeItem('accessToken');
+            }
+
             throw new Error(error.message);
         }
 
