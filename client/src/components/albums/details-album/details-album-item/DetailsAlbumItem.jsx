@@ -26,6 +26,7 @@ export default function DetailsAlbumItem({
     useEffect(() => {
         (async () => {
             try {
+                //TODO try to find only one instead of all
                 const favorites = await favoriteService.getAll();
                 const myFavorite = favorites.find(fav => fav.albumId === album._id && fav.userId === userId);
 
@@ -61,7 +62,7 @@ export default function DetailsAlbumItem({
     const handleFavorite = async () => {
         try {
             if (!favoriteId) {
-                const newFavorite = await favoriteService.add(album._id, userId);
+                const newFavorite = await favoriteService.add(album, userId);
                 setFavoriteId(newFavorite._id);
 
                 return;
