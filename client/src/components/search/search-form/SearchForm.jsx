@@ -27,7 +27,7 @@ export default function SearchForm() {
             <form className={styles.search} onSubmit={onSubmit}>
                 <input
                     type="text"
-                    placeholder='Search for album'
+                    placeholder='Search for album/band'
                     name={ALBUM_FORM_KEYS.Search}
                     value={formValues[ALBUM_FORM_KEYS.Search]}
                     onChange={onChange}

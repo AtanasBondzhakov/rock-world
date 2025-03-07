@@ -34,7 +34,7 @@ const remove = (albumId) => requester.del(`${BASE_PATH}/${albumId}`);
 
 const search = (searchText) => {
     const query = new URLSearchParams({
-        where: `title LIKE "${searchText}"`
+        where: `title LIKE "${searchText}" OR band LIKE "${searchText}"`
     })
     return requester.get(`${BASE_PATH}?${query}`)
 }
