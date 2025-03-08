@@ -1,11 +1,12 @@
 import styles from './About.module.css';
+import about from '../../../images/about.webp';
 
 export default function About() {
     return (
         <div className={styles.container}>
             <div className={styles.top}>
                 <div className={styles.image}>
-                    <img src="/images/about.webp" alt="Guitar and drums" />
+                    <img src={about} alt="Guitar and drums" />
                 </div>
                 <div className={styles.heading}>
                     <p>Welcome to Rock World, the ultimate

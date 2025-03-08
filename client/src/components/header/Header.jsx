@@ -4,10 +4,13 @@ import { RxHamburgerMenu } from "react-icons/rx";
 
 import styles from './Header.module.css';
 import { PATHS } from '../../constants.js';
+import logo from '../../../images/logo.png';
 
 import AuthContext from '../../contexts/authContext.jsx';
 import SearchForm from '../search/search-form/SearchForm.jsx';
 import HeaderLiItem from './header-li-item/HeaderLiItem.jsx';
+
+
 
 const navLinks = [
     { path: PATHS.Home, name: "Home", requiresAuth: null },
@@ -39,7 +42,7 @@ export default function Header() {
         <div className={styles.container}>
             <div className={styles.left}>
                 <div className={styles.logoContainer}>
-                    <Link to={PATHS.Home}><img src='/images/logo.png' alt='Logo' className={styles.logo} /></Link>
+                    <Link to={PATHS.Home}><img src={logo} alt='Logo' className={styles.logo} /></Link>
                     <p>Rock World</p>
                 </div>
                 <SearchForm />
