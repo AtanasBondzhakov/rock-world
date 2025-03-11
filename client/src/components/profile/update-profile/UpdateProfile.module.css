@@ -1,0 +1,145 @@
+.container {
+  font-family: 'Outfit', sans-serif;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2em;
+  align-items: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.2)), url(/images/create-edit.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+.authContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 30em;
+    width: 100%;
+    margin: 10em auto 5em;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    border-radius: 0.5em;
+    padding: 2em 0;
+    background-color: #151515;
+  }
+
+.authTitle {
+    font-size: 1.8em;
+    color: #c2c2c2;;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    width: 70%;
+    margin-top: 1.5em;
+}
+
+.error {
+    font-size: 1em;
+    color: #c00000;
+}
+
+.validationError {
+    color: #c00000;
+    font-size: 1em;
+    margin-top: 0.3em;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.inputGroup label {
+    font-size: 1em;
+    color: #c2c2c2;
+    margin-bottom: 0.5em;
+}
+
+.inputGroup input,
+.inputGroup textarea {
+    background: #333030;
+    border-color: #888888;
+    border-radius: 0.5em;
+    padding: 0.8em;
+    font-size: 1em;
+    color: #ffffff;
+    outline: none;
+}
+
+ .button {
+    background: #ec2e2e;
+    border: none;
+    padding: 0.8em;
+    margin-top: 1em;
+    border-radius: 0.5em;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+.inputGroup input::placeholder,
+.inputGroup textarea::placeholder {
+    opacity: 0.5;
+    color: #a0a0b2;
+}
+
+.button:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 4px 10px rgba(112, 113, 114, 0.6);
+  }
+
+.loginLink {
+    margin-top: 1em;
+    font-size: 0.9em;
+    color: #c2c2c2;
+}
+
+.loginLink a {
+    color: #ec2e2e;
+    text-decoration: none;
+}
+
+.loginLink a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+    .authContainer {
+    max-width: 20em;
+    padding: 0.5em 0;
+    }
+  
+    .authTitle {
+      font-size: 1.25em;
+    }
+  
+    .form {
+      width: 90%;
+      gap: 1em;
+    }
+
+    .validationError,
+    .error {
+        font-size: 0.8em;
+    }
+  
+    .inputGroup input {
+      padding: 0.8em;
+      font-size: 0.8em;
+    }
+  
+    .button {
+      padding: 0.6em;
+      font-size: 0.8em;
+    }
+  
+    .loginLink {
+      font-size: 0.8em;
+      text-align: center;
+    }
+  }
