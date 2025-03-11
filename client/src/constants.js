@@ -9,7 +9,8 @@ export const PATHS = {
     AddAlbum: '/albums/add-album',
     DetailsAlbum: '/albums/:albumId/details',
     EditAlbum: '/albums/:albumId/edit',
-    Profile: '/auth/profile'
+    Profile: '/auth/profile',
+    UpdateProfile: '/auth/profile/:userId/update'
 };
 
 export const ALBUM_FORM_KEYS = {
@@ -29,5 +30,8 @@ export const AUTH_FORM_KEYS = {
     Username: 'username',
     Email: 'email',
     Password: 'password',
-    RePassword: 'rePassword'
+    RePassword: 'rePassword',
+    FirstName: 'firstName',
+    LastName: 'lastName',
+    Bio: 'bio'
 };

@@ -68,11 +68,17 @@
 
 .container span {
     font-size: 0.75em;
+    margin-right: auto;
 }
 
 .favorites a{  
     margin: 0;
     padding: 0; 
+}
+
+.favorites h3 {
+    font-weight: normal;
+    text-align: center;
 }
 
 img>.info {

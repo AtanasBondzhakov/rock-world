@@ -1493,7 +1493,8 @@
             },
         },
         comments: {},
-        favorites: {}
+        favorites: {},
+        profiles: {}
     };
     var rules$1 = {
     	users: {

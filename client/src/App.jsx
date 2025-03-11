@@ -20,12 +20,13 @@ import ScrollToTop from "./components/scroll-to-top/ScrollToTop.jsx";
 import Search from "./components/search/Search.jsx";
 import About from "./components/about/About.jsx";
 import Profile from "./components/profile/Profile.jsx";
+import UpdateProfile from "./components/profile/update-profile/UpdateProfile.jsx";
 
 function App() {
     return (
         <AuthProvider>
             <ScrollToTop />
-            
+
             <Header />
 
             <Routes>
@@ -40,6 +41,7 @@ function App() {
                 <Route path="/search/:searchQuery" element={<Search />} />
                 <Route path={PATHS.About} element={<About />} />
                 <Route path={PATHS.Profile} element={<Profile />} />
+                <Route path={PATHS.UpdateProfile} element={<UpdateProfile />} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
 
