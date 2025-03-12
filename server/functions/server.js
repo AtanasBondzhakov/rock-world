@@ -1490,6 +1490,50 @@
                 trackCount: 10,
                 duration: 47,
                 _createdOn: 1613553388999
+            },"hfrk9b4f-ab39-6h36-78db-2ahj5da9c220": {
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                title: "Nevermind",
+                band: "Nirvana",
+                genre: "Grunge",
+                released: "24.09.1991",
+                imageUrl: "https://www.billboard.com/wp-content/uploads/media/Nirvana-nevermind-cover-billboard-1548.jpg?w=942&h=623&crop=1",
+                description:"Written primarily by frontman Kurt Cobain, Nevermind is noted for channeling a range of emotions, being noted as dark, humorous, and disturbing. Its themes include anti-establishment and anti-sexism views, frustration, alienation, and troubled love inspired by Cobain's broken relationship with Bikini Kill's Tobi Vail.",
+                trackCount: 13,
+                duration: 43,
+                _createdOn: 1613553395099
+            },"9o5f4b4f-ab39-6h36-78db-2ahj5da9c4r5": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                title: "Senjutso",
+                band: "Iron Maiden",
+                genre: "Heavy metal",
+                released: "03.09.2021",
+                imageUrl: "https://m.media-amazon.com/images/I/616YiXD0UgL._UF1000,1000_QL80_.jpg",
+                description:"Senjutsu (Japanese: 戦術, 'Tactics') is the seventeenth studio album by English heavy metal band Iron Maiden, released on 3 September 2021.[5][6] Their first album in six years, it was a critical and commercial success, praised for its ambitious epic scope. Two singles, 'The Writing on the Wall' and 'Stratego', were released to promote the album. ",
+                trackCount: 10,
+                duration: 81,
+                _createdOn: 1613554098999
+            },"hf5f4b4f-ab39-6h36-45vb-2ahj5da9c220": {
+                _ownerId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
+                title: "The Sickness",
+                band: "Disturbed",
+                genre: "Nu metal",
+                released: "07.03.2000",
+                imageUrl: "https://i.scdn.co/image/ab67616d0000b2732b222dcd5c4fcac7c0e81da2",
+                description:"The Sickness is the debut studio album by American heavy metal band Disturbed. The album peaked at number 29 on the US Billboard 200, and spent a total of 106 weeks on the chart. The Sickness was certified five times platinum by the RIAA for shipments of over five million copies in the US, making it the band's most successful album.",
+                trackCount: 12,
+                duration: 48,
+                _createdOn: 1713553388999
+            },"hf5f4b3e-ab39-6h36-78db-2ahj5da9cjh5": {
+                _ownerId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
+                title: "Countdown to Extinction",
+                band: "Megadeth",
+                genre: "Heavy metal",
+                released: "14.07.1992",
+                imageUrl: "https://i.scdn.co/image/ab67616d0000b2737b178f928742be1492c6fba2",
+                description:"Countdown to Extinction is the fifth studio album by American thrash metal band Megadeth. It was the group's second studio release to feature the 'classic' lineup of Dave Mustaine, Marty Friedman, David Ellefson and Nick Menza, with all of them contributing to songwriting on the album. The album features some of the band's best known songs such as 'Symphony of Destruction', 'Sweating Bullets', and 'Skin o' My Teeth', which enjoyed significant chart success and made a great musical impact.",
+                trackCount: 11,
+                duration: 48,
+                _createdOn: 1730053388999
             },
         },
         comments: {},
