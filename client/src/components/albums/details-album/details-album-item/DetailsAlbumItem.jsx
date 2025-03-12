@@ -11,6 +11,9 @@ import ErrorMessage from '../../../error-message/ErrorMessage.jsx';
 import AuthContext from '../../../../contexts/authContext.jsx';
 import favoriteService from '../../../../services/favoriteService.js';
 
+import { FaHeart } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
+
 export default function DetailsAlbumItem({
     album,
     isOwner
@@ -111,9 +114,8 @@ export default function DetailsAlbumItem({
                                 </>
                             )}
                             <button className={styles.fav} onClick={handleFavorite}>
-                                {favoriteId ? 'Remove from Favorites' : 'Add to Favorites'}
+                                {favoriteId ? <FaHeart /> : <FaRegHeart />}
                             </button>
-
                         </div>
                     )}
 

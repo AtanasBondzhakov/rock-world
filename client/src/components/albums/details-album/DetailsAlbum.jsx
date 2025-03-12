@@ -78,32 +78,36 @@ export default function DetailsAlbum() {
 
                 {!loading && !error && (
                     <>
-                        <div className={styles.wrapper}>
-                            <div className={styles.albumContainer}>
-                                <DetailsAlbumItem album={album} isOwner={isOwner} />
-                            </div>
+                        <h2>Album Details</h2>
 
-                            {isAuthenticated &&
-                                <div className={styles.commentsContainer}>
-                                    <CommentAlbum handleAddComment={handleAddComment} />
+                        <div className={styles.details}>
+                            <div className={styles.wrapper}>
+                                <div className={styles.albumContainer}>
+                                    <DetailsAlbumItem album={album} isOwner={isOwner} />
                                 </div>
-                            }
-                        </div>
-                        <div className={styles.comments}>
-                            {comments.length > 0
-                                ? <>
-                                    <h2>Comments</h2>
 
-                                    {comments.map(comment => <CommentAlbumItem key={comment._id} {...comment} />)}
+                                {isAuthenticated &&
+                                    <div className={styles.commentsContainer}>
+                                        <CommentAlbum handleAddComment={handleAddComment} />
+                                    </div>
+                                }
+                            </div>
+                            <div className={styles.comments}>
+                                {comments.length > 0
+                                    ? <>
+                                        <h2>Comments</h2>
 
-                                    <Pagination
-                                        currentPage={currentPage}
-                                        hasNextPage={hasNextPage}
-                                        handlePageChange={handlePageChange}
-                                    />
-                                </>
-                                : <h2>No comments yet.</h2>
-                            }
+                                        {comments.map(comment => <CommentAlbumItem key={comment._id} {...comment} />)}
+
+                                        <Pagination
+                                            currentPage={currentPage}
+                                            hasNextPage={hasNextPage}
+                                            handlePageChange={handlePageChange}
+                                        />
+                                    </>
+                                    : <h2>No comments yet.</h2>
+                                }
+                            </div>
                         </div>
                     </>
                 )}

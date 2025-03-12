@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-.imgContainer img{
+.imgContainer img {
     border-radius: 0.5em;
     max-width: 350px;
 }
@@ -92,10 +92,6 @@
     transition: transform 0.2s ease;
 }
 
-.buttons .fav {
-    font-size: 0.75em;
-}
-
 .buttons a {
     text-decoration: none;
 }
@@ -118,20 +114,20 @@
         justify-content: center;
     }
 
-    .imgContainer img{
+    .imgContainer img {
         max-width: 250px;
     }
-    
+
     .heading {
         margin: 0 auto 0.5em;
         gap: 0.5em;
     }
-    
+
     .heading h2 {
         font-size: 1.5em;
         margin: 0;
     }
-    
+
     .heading h3 {
         font-size: 1em;
         margin: 0;
@@ -144,11 +140,11 @@
     .secondary p {
         margin: 0;
     }
-    
-    .description span  {
+
+    .description span {
         margin: 0;
     }
-       
+
 
     .description {
         padding: 0.3em;

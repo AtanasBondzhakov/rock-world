@@ -1,11 +1,31 @@
 .container {
     padding-top: 100px;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     background-image: url(/images/details.webp);
     background-size: cover;
     background-position: center;
     min-height: 100vh;
+}
+
+.details {
+    display: flex;
+    justify-content: space-around;
+}
+
+.container > h2 {
+    background-color: #585858e8;
+    font-size: 2.5em;
+    display: flex;
+    max-width: 10em;
+    justify-content: center;
+    font-weight: 800;
+    border-radius: 0.3em;
+    color: #000000;
+    text-align: center;
+    margin: 1em auto;
+    width: 100%;
+    font-family: 'Trade winds', sans-serif;
 }
 
 .wrapper {
@@ -78,5 +98,10 @@
     
     .commentsContainer {
         max-width: 500px;
+    }
+
+    .comments h2 {
+        font-size: 1em;
+        margin-bottom: 2em;
     }
 }
