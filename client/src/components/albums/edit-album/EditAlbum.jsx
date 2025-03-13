@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { ALBUM_FORM_KEYS } from '../../../constants.js';
@@ -6,6 +6,9 @@ import styles from './EditAlbum.module.css';
 import albumService from '../../../services/albumService.js';
 import { formatDateString, parseDateString } from '../../../utils/dateUtil.js';
 import { albumSchema } from '../../../schemas/albumSchema.js';
+import favoriteService from '../../../services/favoriteService.js';
+import AuthContext from '../../../contexts/authContext.jsx';
+
 import ErrorMessage from '../../error-message/ErrorMessage.jsx';
 
 const initialValues = {
@@ -23,8 +26,10 @@ export default function EditAlbum() {
     const [albumData, setAlbumData] = useState(initialValues);
     const [errors, setErrors] = useState({});
     const [serverError, setServerError] = useState('');
+    const [favoriteId, setFavoriteId] = useState('');
 
     const { albumId } = useParams();
+    const { userId } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const onChange = (e) => {
@@ -48,6 +53,10 @@ export default function EditAlbum() {
             await albumSchema.validate(albumData, { abortEarly: false });
             await albumService.edit(albumId, updatedAlbumData);
 
+            if(favoriteId) {
+                await favoriteService.edit(favoriteId, updatedAlbumData, userId);
+            }
+
             setErrors({});
             navigate(`/albums/${albumId}/details`);
         } catch (err) {
@@ -70,17 +79,22 @@ export default function EditAlbum() {
                     ...result,
                     released: parseDateString(result.released)
                 });
+
+                const favorites = await favoriteService.getAll();
+                const myFavorite = favorites.find(fav => fav.albumData._id === albumId && fav.userId === userId);
+
+                setFavoriteId(myFavorite?._id);
             } catch (err) {
                 setServerError(err.message);
                 console.log(err.message);
             }
         })();
-    }, [albumId]);
+    }, [albumId, userId]);
 
     return (
         <div className={styles.container}>
 
-            {serverError && <ErrorMessage message={serverError}/>}
+            {serverError && <ErrorMessage message={serverError} />}
 
             <h1 className={styles.title}>Edit Album</h1>
             <form className={styles.form} onSubmit={handleEdit}>

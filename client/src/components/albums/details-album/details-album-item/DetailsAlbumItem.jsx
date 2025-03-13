@@ -30,6 +30,7 @@ export default function DetailsAlbumItem({
         (async () => {
             try {
                 //TODO try to find only one instead of all
+                //TODO extract this part as abstract function
                 const favorites = await favoriteService.getAll();
                 const myFavorite = favorites.find(fav => fav.albumData._id === album._id && fav.userId === userId);
                 
