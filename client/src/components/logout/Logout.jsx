@@ -1,31 +1,38 @@
 import { useContext, useEffect, useState } from "react";
 
+import styles from './Logout.module.css';
 import authService from "../../services/authService.js";
 import AuthContext from "../../contexts/authContext.jsx";
 
 import Spinner from "../spinner/Spinner.jsx";
+import ErrorMessage from "../error-message/ErrorMessage.jsx";
 
 export default function Logout() {
     const { handleLogout } = useContext(AuthContext);
 
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         (async () => {
             try {
                 await authService.logout();
+
                 handleLogout();
-                setLoading(false);
             } catch (err) {
-                //TODO error handling
-                console.log(err.message);
+                setError(err.message);
+            } finally {
+                setLoading(false);
             }
         })();
     }, []);
 
     return (
-        <>
-            {loading && <Spinner />}
-        </>
+        <div className={styles.container}>
+            {loading
+                ? <Spinner />
+                : <ErrorMessage message={error} />
+            }
+        </div>
     );
 };
