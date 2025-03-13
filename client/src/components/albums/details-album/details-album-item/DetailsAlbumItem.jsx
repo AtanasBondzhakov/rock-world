@@ -54,6 +54,8 @@ export default function DetailsAlbumItem({
         try {
             await albumService.remove(album._id);
 
+            await favoriteService.remove(favoriteId);
+
             toasterSuccess(successMsg);
 
             navigate(PATHS.Albums);
