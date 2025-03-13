@@ -5,15 +5,22 @@ import albumService from '../../../services/albumService.js';
 
 import LatestAlbumsCarousel from './latest-albums-carousel/LatestAlbumsCarousel.jsx';
 import LatestAlbumsItem from './latest-albums-item/LatestAlbumsItem.jsx';
+import ErrorMessage from '../../error-message/ErrorMessage.jsx'
 
 export default function LatestAlbums() {
     const [latestAlbums, setLatestAlbums] = useState([]);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         (async () => {
-            const result = await albumService.getLatest();
+            try {
+                const result = await albumService.getLatest();
 
-            setLatestAlbums(result);
+                setLatestAlbums(result);
+            } catch (err) {
+                const errorMessage = 'Albums are currently unavailable.';
+                setError(errorMessage);
+            }
         })();
     }, []);
 
@@ -23,15 +30,19 @@ export default function LatestAlbums() {
                 <h1>Recently Added Albums</h1>
             </div>
             <div>
-                <LatestAlbumsCarousel>
-                    {latestAlbums.map(album => {
-                        return (
-                            <div key={album._id}>
-                                <LatestAlbumsItem {...album} />
-                            </div>
-                        )
-                    })}
-                </LatestAlbumsCarousel>
+                {error
+                    ? <div className={styles.content}><ErrorMessage message={error} /></div>
+                    : (
+                        <LatestAlbumsCarousel>
+                            {latestAlbums.map(album => {
+                                return (
+                                    <div key={album._id}>
+                                        <LatestAlbumsItem {...album} />
+                                    </div>
+                                )
+                            })}
+                        </LatestAlbumsCarousel>
+                    )}
             </div>
         </div>
     );
