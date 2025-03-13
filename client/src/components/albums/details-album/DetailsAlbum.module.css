@@ -82,7 +82,7 @@
 }
 
 @media (max-width: 768px) {
-    .container {
+    .details {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -103,5 +103,10 @@
     .comments h2 {
         font-size: 1em;
         margin-bottom: 2em;
+    }
+
+    .container > h2 {
+        font-size: 2em;
+        margin-top: 1em;
     }
 }

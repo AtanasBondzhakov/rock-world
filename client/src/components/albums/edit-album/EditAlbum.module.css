@@ -2,12 +2,13 @@
     font-family: 'Outfit', sans-serif;
     display: flex;
     flex-direction: column;
-    padding-top: 100px;
+    padding-top: 6em;
     padding-bottom: 8em;
     align-items: center;
     background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.2)), url(/images/create-edit.jpg);
     background-size: cover;
     background-position: center;
+    height: 100vh;
 }
 
 .title {
@@ -19,13 +20,10 @@
 .form {
     display: flex;
     flex-direction: column;
-    width: 30em;
     gap: 1.5em;
 }
 
 .validationError {
-    /* display: flex;
-    flex: 0 0 auto; */
     color: #c00000;
     font-size: 1em;
     margin-top: 0.3em;
@@ -47,7 +45,7 @@
 .inputGroup textarea {
     background: #333030;
     border-color: #888888;
-    border-radius: 0.6em;
+    border-radius: 0.5em;
     padding: 0.8em;
     font-size: 1rem;
     color: #ffffff;
@@ -75,7 +73,7 @@
     border: none;
     padding: 0.8em;
     margin-top: 1em;
-    border-radius: 0.6em;
+    border-radius: 0.5em;
     color: #fff;
     font-size: 1em;
     cursor: pointer;
@@ -85,4 +83,40 @@
 .button:hover {
     transform: scale(1.02);
     box-shadow: 0px 4px 10px rgba(100, 181, 246, 0.6);
+}
+
+@media (max-width: 640px) {
+    .container {
+        max-width: auto;
+        padding: 0.5em 0;
+    }
+
+    .title {
+        font-size: 1.25em;
+    }
+
+    .form {
+        width: 90%;
+        gap: 1em;
+    }
+
+    .validationError,
+    .error {
+        font-size: 0.8em;
+    }
+
+    .rowGroup {
+        flex-direction: column;
+    }
+
+    .inputGroup input,
+    .inputGroup textarea {
+        padding: 0.8em;
+        font-size: 0.8em;
+    }
+
+    .button {
+        padding: 0.6em;
+        font-size: 0.8em;
+    }
 }

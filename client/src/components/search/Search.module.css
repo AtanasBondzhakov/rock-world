@@ -12,11 +12,16 @@
 }
 
 .wrapper>h2 {
-    font-size: 70px;
+    background-color: #585858e8;
+    font-size: 2.5em;
+    display: flex;
+    max-width: 10em;
+    justify-content: center;
     font-weight: 800;
-    color: #ec2e2e;
+    border-radius: 0.3em;
+    color: #000000;
     text-align: center;
-    margin-top: 2em;
+    margin: 1em 0;
     width: 100%;
 }
 

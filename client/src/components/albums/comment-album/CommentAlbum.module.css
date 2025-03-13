@@ -23,7 +23,7 @@
   padding: 8px;
   border: 2px solid #363232;
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 1em;
   margin-bottom: 8px;
   color: #111;
 }
@@ -58,6 +58,10 @@
     text-align: center;
     border-radius: 0.3em;
     color: #fff;
+    font-size: 1em;
+  }
+
+  .container h2{
     font-size: 1em;
   }
 }
