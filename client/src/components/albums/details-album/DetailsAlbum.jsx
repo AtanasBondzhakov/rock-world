@@ -31,10 +31,14 @@ export default function DetailsAlbum() {
     const handleGetComments = async () => {
         const offset = (currentPage - 1) * pageSize;
 
-        const resultComments = await commentService.getAll(offset, pageSize + 1, albumId);
-
-        setHasNextPage(resultComments.length > pageSize);
-        setComments(resultComments.slice(0, pageSize));
+        try {
+            const resultComments = await commentService.getAll(offset, pageSize + 1, albumId);
+            
+            setHasNextPage(resultComments.length > pageSize);
+            setComments(resultComments.slice(0, pageSize));
+        } catch (err) {
+            setError(err.message);
+        }
     };
 
     useEffect(() => {
