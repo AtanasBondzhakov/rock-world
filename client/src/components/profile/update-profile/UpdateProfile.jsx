@@ -1,6 +1,9 @@
 import { useContext, useState, } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { storage } from '../../../../firebase.js';
+import { ref, uploadBytes } from "firebase/storage";
+
 import styles from './UpdateProfile.module.css';
 import { AUTH_FORM_KEYS } from '../../../constants.js';
 import useForm from '../../../hooks/useForm.js';
@@ -18,6 +21,7 @@ const initialValues = {
 export default function UpdateProfile() {
     const { formValues, formErrors, onChange, onSubmit } = useForm(initialValues, handleEditUser, profileSchema);
     const [error, setError] = useState('');
+    const [image, setImage] = useState(null);
 
     const { userId } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -26,11 +30,22 @@ export default function UpdateProfile() {
         try {
             await profileService.edit(userId, formValues);
 
+            await uploadProfilePicture(image, userId);
+            
             navigate('/auth/profile');
         } catch (err) {
             setError(err.message);
-        }
+        } 
     };
+
+    const onChangeImage = (e) => {
+        setImage(e.target.files[0]);
+    };
+    
+    async function uploadProfilePicture(file, userId) {
+        const storageRef = ref(storage, `profile-pictures/${userId}/${file.name}`);
+        await uploadBytes(storageRef, file);
+    }
 
     return (
         <div className={styles.container}>
@@ -80,6 +95,11 @@ export default function UpdateProfile() {
                         </textarea>
 
                         {formErrors[AUTH_FORM_KEYS.Bio] && <div className={styles.validationError}>{formErrors[AUTH_FORM_KEYS.Bio]}</div>}
+                    </div>
+
+                    <div className={styles.inputGroup}>
+                        <label htmlFor="image">Profile Picture</label>
+                        <input type="file" id="image" name='image' onChange={onChangeImage} />
                     </div>
                     <button type="submit" className={styles.button}>Update</button>
                 </form>
