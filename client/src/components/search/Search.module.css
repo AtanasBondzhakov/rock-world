@@ -1,7 +1,7 @@
 .wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     padding-top: 100px;
     font-family: 'Trade winds', sans-serif;
@@ -27,12 +27,13 @@
 
 .container {
     max-width: 80vw;
-    margin: auto;
+    margin: 2em auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* Ensures 3 columns */
     grid-gap: 30px;
     padding: 2em;
     border-radius: 15px;
+    justify-content: center;
 }
 
 @media (max-width: 768px) {
