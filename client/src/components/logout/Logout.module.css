@@ -6,10 +6,3 @@
     height: 100vh;
     margin-top: 10em;
 }
-
-@media (max-width: 768px) {
-    .container {
-        margin:5em auto 0;
-        max-width: 250px;
-    }
-}

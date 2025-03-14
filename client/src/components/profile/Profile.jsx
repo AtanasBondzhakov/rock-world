@@ -7,10 +7,14 @@ import favoriteService from '../../services/favoriteService.js';
 import profileService from '../../services/profileService.js';
 
 import ProfileFavoriteItem from './profile-favorite-item/ProfileFavoriteItem.jsx';
+import ErrorMessage from '../error-message/ErrorMessage.jsx';
+import Spinner from '../spinner/Spinner.jsx';
 
 export default function Profile() {
     const [favoritesInfo, setFavoritesInfo] = useState([]);
     const [profile, setProfile] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
 
     const { username, email, userId } = useContext(AuthContext);
 
@@ -19,68 +23,74 @@ export default function Profile() {
             try {
                 const allFavorites = await favoriteService.getAll();
                 const myFavorites = allFavorites.filter(fav => fav.userId === userId);
+                const result = await profileService.get(userId);
 
+                setProfile(result);
                 setFavoritesInfo(myFavorites);
             } catch (err) {
-                //TODO
-                console.log(err.message);
+                setError(err.message);
+            } finally {
+                setLoading(false);
             }
-        })();
-    }, []);
-
-    useEffect(() => {
-        (async () => {
-            const result = await profileService.get(userId);
-
-            setProfile(result);
         })();
     }, [userId]);
 
     //TODO change profile image and Bio
     return (
-        <div className={styles.container}>
-            <div className={styles.userInfo}>
-                <div className={styles.infoLeft}>
-                    <img src="/images/about.webp" alt="" />
-                    <Link to={`/auth/profile/${userId}/update`}>Edit Profile</Link>
-                </div>
-                <div className={styles.infoRight}>
-                    <div className={styles.top}>
-                        <span>Account Information</span>
-                        <hr style={{ width: '100%' }} />
-                        <div className={styles.names}>
-                            <div className={styles.username}>
-                                <span>Username:</span>
-                                <p>{username}</p>
+        <div className={styles.wrapper}>
+            {loading && <Spinner />}
+
+            <div className={styles.container}>
+                {(!loading && error) && <ErrorMessage message={error} />}
+
+                {(!loading && !error) && (
+                    <>
+                        <div className={styles.userInfo}>
+                            <div className={styles.infoLeft}>
+                                <img src="/images/about.webp" alt="" />
+                                <Link to={`/auth/profile/${userId}/update`}>Edit Profile</Link>
                             </div>
-                            <div className={styles.email}>
-                                <span>Email:</span>
-                                <p>{email}</p>
-                            </div>
-                            <div className={styles.email}>
-                                <span>First name:</span>
-                                <p>{profile?.firstName || 'n/a'}</p>
-                            </div>
-                            <div className={styles.email}>
-                                <span>Last name:</span>
-                                <p>{profile?.lastName || 'n/a'}</p>
+                            <div className={styles.infoRight}>
+                                <div className={styles.top}>
+                                    <span>Account Information</span>
+                                    <hr style={{ width: '100%' }} />
+                                    <div className={styles.names}>
+                                        <div className={styles.username}>
+                                            <span>Username:</span>
+                                            <p>{username}</p>
+                                        </div>
+                                        <div className={styles.email}>
+                                            <span>Email:</span>
+                                            <p>{email}</p>
+                                        </div>
+                                        <div className={styles.email}>
+                                            <span>First name:</span>
+                                            <p>{profile?.firstName || 'n/a'}</p>
+                                        </div>
+                                        <div className={styles.email}>
+                                            <span>Last name:</span>
+                                            <p>{profile?.lastName || 'n/a'}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={styles.bottom}>
+                                    <span>Bio:</span>
+                                    <hr />
+                                    <p>{profile?.bio || 'n/a'}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className={styles.bottom}>
-                        <span>Bio:</span>
-                        <hr />
-                        <p>{profile?.bio || 'n/a'}</p>
-                    </div>
-                </div>
-            </div>
-            <span>Favorite Albums</span>
-            <hr style={{ width: '100%' }} />
-            <div className={styles.favorites}>
-                {favoritesInfo.length > 0
-                    ? favoritesInfo.map(fav => <ProfileFavoriteItem key={fav._id} {...fav.albumData} />)
-                    : <h3>There is no albums yet</h3>
-                }
+                        <span>Favorite Albums</span>
+                        <hr style={{ width: '100%' }} />
+                        <div className={styles.favorites}>
+                            {favoritesInfo.length > 0
+                                ? favoritesInfo.map(fav => <ProfileFavoriteItem key={fav._id} {...fav.albumData} />)
+                                : <h3>There is no albums yet</h3>
+                            }
+                        </div>
+                    </>
+                )}
+
             </div>
         </div>
     );
