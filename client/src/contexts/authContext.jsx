@@ -5,6 +5,7 @@ import usePersistedState from "../hooks/usePersistedState";
 import { PATHS } from "../constants.js";
 import authService from "../services/authService.js";
 import { toasterSuccess } from "../utils/toaster-messages.js";
+import profileService from "../services/profileService.js";
 
 const AuthContext = createContext();
 
@@ -25,13 +26,15 @@ export const AuthProvider = ({
 
     const handleRegister = async (userData) => {
         const successMsg = 'Register successful. You are now logged in.';
-        
+
         try {
             const { password, ...userDetails } = await authService.register(userData.email, userData.password, userData.username);
 
             setAuth(userDetails);
 
             localStorage.setItem('accessToken', userDetails.accessToken);
+            
+            await profileService.add(userDetails);
 
             toasterSuccess(successMsg);
             navigate(PATHS.Home);
