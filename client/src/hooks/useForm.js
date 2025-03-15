@@ -32,6 +32,7 @@ export default function useForm(initialValues, submitHandler, validationSchema) 
         formValues,
         formErrors,
         onChange,
-        onSubmit
+        onSubmit,
+        setFormValues
     }
 }

@@ -1,4 +1,4 @@
-import { useContext, useState, } from 'react';
+import { useContext, useEffect, useState, } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import styles from './UpdateProfile.module.css';
@@ -7,6 +7,7 @@ import useForm from '../../../hooks/useForm.js';
 import profileService from '../../../services/profileService.js';
 import AuthContext from '../../../contexts/authContext.jsx';
 import { profileSchema } from '../../../schemas/profileSchema.js';
+
 import ErrorMessage from '../../error-message/ErrorMessage.jsx';
 
 const initialValues = {
@@ -16,7 +17,7 @@ const initialValues = {
 };
 
 export default function UpdateProfile() {
-    const { formValues, formErrors, onChange, onSubmit } = useForm(initialValues, handleEditUser, profileSchema);
+    const { formValues, formErrors, onChange, onSubmit, setFormValues } = useForm(initialValues, handleEditUser, profileSchema);
     const [error, setError] = useState('');
 
     const { userId } = useContext(AuthContext);
@@ -31,6 +32,22 @@ export default function UpdateProfile() {
             setError(err.message);
         }
     };
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const userProfile = await profileService.get(userId);
+
+                setFormValues({
+                    [AUTH_FORM_KEYS.FirstName]: userProfile.firstName || '',
+                    [AUTH_FORM_KEYS.LastName]: userProfile.lastName || '',
+                    [AUTH_FORM_KEYS.Bio]: userProfile.bio || '',
+                });
+            } catch (err) {
+                setError(err.message);
+            }
+        })();
+    }, [userId]);
 
     return (
         <div className={styles.container}>
