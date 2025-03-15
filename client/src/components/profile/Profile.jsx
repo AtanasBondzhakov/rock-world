@@ -45,44 +45,39 @@ export default function Profile() {
 
                 {(!loading && !error) && (
                     <>
-                        <div className={styles.userInfo}>
-                            <div className={styles.infoLeft}>
-                                <img src="/images/about.webp" alt="" />
-                                <Link to={`/auth/profile/${userId}/update`}>Edit Profile</Link>
-                            </div>
-                            <div className={styles.infoRight}>
-                                <div className={styles.top}>
-                                    <span>Account Information</span>
-                                    <hr style={{ width: '100%' }} />
-                                    <div className={styles.names}>
-                                        <div className={styles.username}>
-                                            <span>Username:</span>
-                                            <p>{username}</p>
-                                        </div>
-                                        <div className={styles.email}>
-                                            <span>Email:</span>
-                                            <p>{email}</p>
-                                        </div>
-                                        <div className={styles.email}>
-                                            <span>First name:</span>
-                                            <p>{profile?.firstName || 'n/a'}</p>
-                                        </div>
-                                        <div className={styles.email}>
-                                            <span>Last name:</span>
-                                            <p>{profile?.lastName || 'n/a'}</p>
-                                        </div>
+                        <div className={styles.info}>
+                            <div className={styles.top}>
+                                <span>Account Information</span>
+                                <hr style={{ width: '100%' }} />
+                                <div className={styles.names}>
+                                    <div className={styles.username}>
+                                        <span>Username:</span>
+                                        <p>{username}</p>
+                                    </div>
+                                    <div className={styles.email}>
+                                        <span>Email:</span>
+                                        <p>{email}</p>
+                                    </div>
+                                    <div className={styles.email}>
+                                        <span>First name:</span>
+                                        <p>{profile?.firstName || 'n/a'}</p>
+                                    </div>
+                                    <div className={styles.email}>
+                                        <span>Last name:</span>
+                                        <p>{profile?.lastName || 'n/a'}</p>
                                     </div>
                                 </div>
-                                <div className={styles.bottom}>
-                                    <span>Bio:</span>
-                                    <hr />
-                                    <p>{profile?.bio || 'n/a'}</p>
-                                </div>
                             </div>
+                            <div className={styles.bottom}>
+                                <span>Bio:</span>
+                                <hr />
+                                <p>{profile?.bio || 'n/a'}</p>
+                            </div>
+                            <Link to={`/auth/profile/${userId}/update`}>Edit Profile</Link>
                         </div>
-                        <span>Favorite Albums</span>
-                        <hr style={{ width: '100%' }} />
                         <div className={styles.favorites}>
+                            <span>Favorite Albums</span>
+                            <hr style={{ width: '100%' }} />
                             {favoritesInfo.length > 0
                                 ? favoritesInfo.map(fav => <ProfileFavoriteItem key={fav._id} {...fav.albumData} />)
                                 : <h3>There is no albums yet</h3>
