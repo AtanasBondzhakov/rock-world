@@ -21,6 +21,7 @@ import Search from "./components/search/Search.jsx";
 import About from "./components/about/About.jsx";
 import Profile from "./components/profile/Profile.jsx";
 import UpdateProfile from "./components/profile/update-profile/UpdateProfile.jsx";
+import Contacts from "./components/contacts/Contacts.jsx";
 
 function App() {
     return (
@@ -42,6 +43,7 @@ function App() {
                 <Route path={PATHS.About} element={<About />} />
                 <Route path={PATHS.Profile} element={<Profile />} />
                 <Route path={PATHS.UpdateProfile} element={<UpdateProfile />} />
+                <Route path={PATHS.Contacts} element={<Contacts />} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
 
