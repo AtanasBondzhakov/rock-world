@@ -18,8 +18,9 @@ const navLinks = [
     { path: PATHS.About, name: "About", requiresAuth: null },
     { path: PATHS.Login, name: "Login", requiresAuth: false },
     { path: PATHS.Register, name: "Register", requiresAuth: false },
-    { path: PATHS.AddAlbum, name: "Add Album", requiresAuth: true },
+    { path: PATHS.AddAlbum, name: "Add-Album", requiresAuth: true },
     { path: PATHS.Profile, name: "Profile", requiresAuth: true },
+    { path: PATHS.Contacts, name: "Contacts", requiresAuth: null },
     { path: PATHS.Logout, name: "Logout", requiresAuth: true },
 ];
 
@@ -65,26 +66,29 @@ export default function Header() {
                                 <HeaderLiItem key={link.name} path={link.path} name={link.name} />
                             ))
                         }
-                        
+
                         <span>Welcome, {username ? username : 'guest'}</span>
                     </ul>
                 </div>
 
-                <ul className={styles.items}>
+                <div className={styles.items}>
 
-                    {navLinks
-                        .filter(link =>
-                            link.requiresAuth === null ||
-                            (isAuthenticated ? link.requiresAuth : link.requiresAuth === false)
-                        )
-                        .map(link => (
-                            <HeaderLiItem key={link.name} path={link.path} name={link.name} />
-                        ))
-                    }
+                    <ul className={styles.menu}>
+
+                        {navLinks
+                            .filter(link =>
+                                link.requiresAuth === null ||
+                                (isAuthenticated ? link.requiresAuth : link.requiresAuth === false)
+                            )
+                            .map(link => (
+                                <HeaderLiItem key={link.name} path={link.path} name={link.name} />
+                            ))
+                        }
+
+                    </ul>
 
                     <span>Welcome, {username ? username : 'guest'}</span>
-                </ul>
-
+                </div>
             </div>
         </div >
     );

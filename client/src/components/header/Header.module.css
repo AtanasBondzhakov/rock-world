@@ -9,9 +9,7 @@
     font-weight: 500;
     font-family: 'New Rocker', sans-serif;
     max-height: 80px;
-    /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent),
-                linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent); */
-                background-color: #222;
+    background-color: #222;
 }
 
 .left {
@@ -36,7 +34,6 @@
     display: flex;
     justify-content: end;
     align-items: end;
-    gap: 0.5em;
 }
 
 .logoContainer p {
@@ -44,18 +41,24 @@
     color: #ec2e2e;
     margin: 0;
     padding: 0;
+    white-space: nowrap;
 }
 
 .container span {
     color: #fff;
-    padding-right: 1em;
-    margin-top: 0.8em;
+    margin: auto 1em 0.5em;
+    white-space: nowrap;
 }
 
 .items {
     display: flex;
+}
+
+.menu {
+    display: flex;
     justify-content: space-between;
     margin-bottom: 0.5em;
+    gap: 0.5em;
 }
 
 .auth,
@@ -63,27 +66,26 @@
     display: flex;
 }
 
-.items li {
+.menu li {
     list-style: none;
-    margin-right: 1em;
     padding: 0.3em 0.3em 0
 }
 
-.items a {
+.menu a {
     color: #ec2e2e;
     text-decoration: none;
     font-size: 1.5em;
     font-weight: 600;
     display: inline-block;
-    transition: transform 0.3s ease;   
+    transition: transform 0.3s ease;
 }
 
-.items a:hover {
+.menu a:hover {
     transform: scale(1.2);
     cursor: pointer;
 }
 
-.items a.active {
+.menu a.active {
     color: #8d8d8d;
     text-decoration: underline;
     scale: 1.2;
@@ -107,7 +109,7 @@
         font-family: 'New Rocker', sans-serif;
         background-color: rgba(131, 131, 131, 0.7);
     }
-    
+
     .left {
         display: flex;
         align-items: center;
@@ -153,22 +155,8 @@
         align-items: end;
     }
 
-    /* .mobileMenu.mobileActive a {
-        text-decoration: none;
-        color: #ec2e2e;
-    } */
-
-    /* .mobileMenu.mobileActive li {
-        list-style: none;
-        padding-bottom: 1em;
-    } */
-
-    /* .mobile a.active {
-        color: #8d8d8d;
-        text-decoration: underline;
-    } */
-
     .mobileMenu span {
-        padding-right: 0;
+        margin: 0;
+        font-size: 0.6em;
     }
 }
