@@ -13,6 +13,7 @@
   "dependencies": {
     "@react-spring/web": "^9.7.5",
     "antd": "^5.24.2",
+    "emailjs-com": "^3.2.0",
     "firebase": "^11.4.0",
     "firebase-tools": "^13.32.0",
     "react": "^18.3.1",
