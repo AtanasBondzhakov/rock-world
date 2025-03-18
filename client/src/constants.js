@@ -33,5 +33,6 @@ export const AUTH_FORM_KEYS = {
     RePassword: 'rePassword',
     FirstName: 'firstName',
     LastName: 'lastName',
-    Bio: 'bio'
+    Bio: 'bio',
+    Message: 'message'
 };
