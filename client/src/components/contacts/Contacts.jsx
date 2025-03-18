@@ -1,9 +1,11 @@
-import { useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import emailjs from 'emailjs-com';
 
 import styles from './Contacts.module.css';
-import { AUTH_FORM_KEYS, PATHS } from '../../constants';
+import { AUTH_FORM_KEYS } from '../../constants';
 import useForm from '../../hooks/useForm';
+import AuthContext from '../../contexts/authContext';
+import { contactsSchema } from '../../schemas/contactsSchema';
 
 import { MdEmail } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
@@ -17,8 +19,10 @@ const initialValues = {
 
 export default function Contacts() {
     const formRef = useRef();
+    const { username, email } = useContext(AuthContext);
 
-    const { formValues, onChange, onSubmit } = useForm(initialValues, handleSendEmail);
+    const { formValues, formErrors, setFormValues, onChange, onSubmit } = useForm(initialValues, handleSendEmail, contactsSchema);
+    const [error, setError] = useState('');
 
     async function handleSendEmail() {
         try {
@@ -29,9 +33,18 @@ export default function Contacts() {
                 import.meta.env.VITE_USER_ID
             );
         } catch (err) {
-            console.log(err);
+            setError('Your message was not sent. Try again later');
         }
     }
+
+    useEffect(() => {
+        (async () => {
+            setFormValues({
+                [AUTH_FORM_KEYS.Username]: username || '',
+                [AUTH_FORM_KEYS.Email]: email || ''
+            })
+        })();
+    }, [username, email]);
 
     return (
         <div className={styles.container}>
@@ -45,33 +58,48 @@ export default function Contacts() {
                 </div>
                 <div className={styles.formContainer}>
                     <h3>Send us a message</h3>
+
+                    {error && <div className={styles.error}>{error}</div>}
+
                     <form className={styles.contactForm} onSubmit={onSubmit} ref={formRef}>
-                        <input
-                            type="text"
-                            name={[AUTH_FORM_KEYS.Username]}
-                            placeholder='Enter your username'
-                            id={[AUTH_FORM_KEYS.Username]}
-                            value={formValues[AUTH_FORM_KEYS.Username]}
-                            onChange={onChange}
-                        />
-                        <input
-                            type="email"
-                            name={[AUTH_FORM_KEYS.Email]}
-                            placeholder='Enter your email'
-                            id={[AUTH_FORM_KEYS.Email]}
-                            value={formValues[AUTH_FORM_KEYS.Email]}
-                            onChange={onChange}
-                        />
-                        <textarea
-                            type="text"
-                            name={[AUTH_FORM_KEYS.Message]}
-                            placeholder='Enter your message'
-                            id={[AUTH_FORM_KEYS.Message]}
-                            rows={5}
-                            value={formValues[AUTH_FORM_KEYS.Message]}
-                            onChange={onChange}
-                        >
-                        </textarea>
+                        <div className={styles.inputGroup}>
+                            <input
+                                type="text"
+                                name={[AUTH_FORM_KEYS.Username]}
+                                placeholder='Enter your username'
+                                id={[AUTH_FORM_KEYS.Username]}
+                                value={formValues[AUTH_FORM_KEYS.Username]}
+                                onChange={onChange}
+                            />
+                            {formErrors[AUTH_FORM_KEYS.Username] && <div className={styles.validationError}>{formErrors[AUTH_FORM_KEYS.Username]}</div>}
+                        </div>
+
+                        <div className={styles.inputGroup}>
+                            <input
+                                type="email"
+                                name={[AUTH_FORM_KEYS.Email]}
+                                placeholder='Enter your email'
+                                id={[AUTH_FORM_KEYS.Email]}
+                                value={formValues[AUTH_FORM_KEYS.Email]}
+                                onChange={onChange}
+                            />
+                            {formErrors[AUTH_FORM_KEYS.Email] && <div className={styles.validationError}>{formErrors[AUTH_FORM_KEYS.Email]}</div>}
+                        </div>
+
+                        <div className={styles.inputGroup}>
+                            <textarea
+                                type="text"
+                                name={[AUTH_FORM_KEYS.Message]}
+                                placeholder='Enter your message'
+                                id={[AUTH_FORM_KEYS.Message]}
+                                rows={5}
+                                value={formValues[AUTH_FORM_KEYS.Message]}
+                                onChange={onChange}
+                            >
+                            </textarea>
+                            {formErrors[AUTH_FORM_KEYS.Message] && <div className={styles.validationError}>{formErrors[AUTH_FORM_KEYS.Message]}</div>}
+                        </div>
+
                         <button type='submit'>Send</button>
                     </form>
                 </div>

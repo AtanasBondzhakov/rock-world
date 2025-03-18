@@ -13,9 +13,10 @@
     align-items: center;
     width: 40%;
     background-color: rgb(109, 109, 109);
-    height: 400px;
+    height: auto;
     border-radius: 0.5em;
     gap: 3em;
+    padding: 1em;
 }
 
 .contactInfo {
@@ -58,10 +59,25 @@
     gap: 1em;
 }
 
-.contactForm input, textarea {
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    position: relative;
+  }
+
+.inputGroup input, textarea {
     border: none;
     border-radius: 0.3em;
     padding: 0.8em;
+    margin-bottom: 0.75em;
+    outline: none;
+}
+
+.inputGroup input::placeholder,
+.inputGroup textarea::placeholder {
+  opacity: 0.5;
+  color: #a0a0b2;
 }
 
 .formContainer h3 {
@@ -80,4 +96,19 @@
     font-size: 1em;
     cursor: pointer;
     width: auto;
+}
+
+.validationError {
+    color: #c00000;
+    font-size: 0.8em;
+    margin-bottom: 0.3em;
+
+    position: absolute;
+    top: 90%;
+    left: 0;
+}
+
+.error {
+    font-size: 1em;
+    color: #c00000;
 }
