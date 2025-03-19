@@ -14,7 +14,7 @@ import Register from "./components/register/Register.jsx"
 import Login from "./components/login/Login.jsx"
 import Logout from "./components/logout/Logout.jsx"
 import AlbumDetails from "./components/albums/details-album/DetailsAlbum.jsx"
-import AddAlbum from "./components/albums/add-album/AddAlbum.jsx"
+import CreateAlbum from "./components/albums/create-album/CreateAlbum.jsx"
 import EditAlbum from "./components/albums/edit-album/EditAlbum.jsx"
 import ScrollToTop from "./components/scroll-to-top/ScrollToTop.jsx";
 import Search from "./components/search/Search.jsx";
@@ -37,7 +37,7 @@ function App() {
                 <Route path={PATHS.Login} element={<Login />} />
                 <Route path={PATHS.Logout} element={<Logout />} />
                 <Route path={PATHS.DetailsAlbum} element={<AlbumDetails />} />
-                <Route path={PATHS.AddAlbum} element={<AddAlbum />} />
+                <Route path={PATHS.CreateAlbum} element={<CreateAlbum />} />
                 <Route path={PATHS.EditAlbum} element={<EditAlbum />} />
                 <Route path="/search/:searchQuery" element={<Search />} />
                 <Route path={PATHS.About} element={<About />} />

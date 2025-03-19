@@ -6,7 +6,7 @@ export const PATHS = {
     About: '/about',
     Contacts: '/contacts',
     Albums: '/albums',
-    AddAlbum: '/albums/add-album',
+    CreateAlbum: '/albums/create-album',
     DetailsAlbum: '/albums/:albumId/details',
     EditAlbum: '/albums/:albumId/edit',
     Profile: '/auth/profile',

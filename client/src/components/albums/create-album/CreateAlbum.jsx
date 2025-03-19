@@ -1,11 +1,12 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import styles from './AddAlbum.module.css';
+import styles from './CreateAlbum.module.css';
 import { ALBUM_FORM_KEYS, PATHS } from '../../../constants.js';
 import useForm from '../../../hooks/useForm.js';
-import albumService from '../../../services/albumService.js';
 import { albumSchema } from '../../../schemas/albumSchema.js';
-import { useState } from 'react';
+import { useCreateAlbum } from '../../../api/albumsApi.js';
+
 import ErrorMessage from '../../error-message/ErrorMessage.jsx';
 
 const initialValues = {
@@ -17,17 +18,19 @@ const initialValues = {
     [ALBUM_FORM_KEYS.Description]: '',
     [ALBUM_FORM_KEYS.TrackCount]: '',
     [ALBUM_FORM_KEYS.Duration]: '',
-}
+};
 
-export default function AddAlbum() {
-    const { formValues, formErrors, onChange, onSubmit } = useForm(initialValues, addAlbumHandler, albumSchema);
+export default function CreateAlbum() {
+    const { formValues, formErrors, onChange, onSubmit } = useForm(initialValues, createAlbumHandler, albumSchema);
     const [error, setError] = useState('');
+
+    const { createAlbum } = useCreateAlbum();
 
     const navigate = useNavigate();
 
-    async function addAlbumHandler() {
+    async function createAlbumHandler() {
         try {
-            await albumService.add(formValues);
+            await createAlbum(formValues);
 
             navigate(PATHS.Albums);
         } catch (err) {
@@ -40,7 +43,7 @@ export default function AddAlbum() {
 
             {error && <ErrorMessage message={error} />}
 
-            <h1 className={styles.title}>Add new Album</h1>
+            <h1 className={styles.title}>Create Album</h1>
             <form className={styles.form} onSubmit={onSubmit}>
                 <div className={styles.inputGroup}>
                     <label htmlFor={ALBUM_FORM_KEYS.Title}>Title</label>
@@ -151,7 +154,7 @@ export default function AddAlbum() {
 
                     {formErrors[ALBUM_FORM_KEYS.Description] && <div className={styles.validationError}>{formErrors[ALBUM_FORM_KEYS.Description]}</div>}
                 </div>
-                <button type="submit" className={styles.button}>Add Album</button>
+                <button type="submit" className={styles.button}>Create Album</button>
             </form>
         </div>
     );

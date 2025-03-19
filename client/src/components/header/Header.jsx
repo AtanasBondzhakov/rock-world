@@ -18,7 +18,7 @@ const navLinks = [
     { path: PATHS.About, name: "About", requiresAuth: null },
     { path: PATHS.Login, name: "Login", requiresAuth: false },
     { path: PATHS.Register, name: "Register", requiresAuth: false },
-    { path: PATHS.AddAlbum, name: "Add-Album", requiresAuth: true },
+    { path: PATHS.CreateAlbum, name: "Create", requiresAuth: true },
     { path: PATHS.Profile, name: "Profile", requiresAuth: true },
     { path: PATHS.Contacts, name: "Contacts", requiresAuth: null },
     { path: PATHS.Logout, name: "Logout", requiresAuth: true },
