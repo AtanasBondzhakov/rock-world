@@ -10,6 +10,7 @@ import { contactsSchema } from '../../schemas/contactsSchema';
 import { MdEmail } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
 import { FaLocationDot } from "react-icons/fa6";
+import Map from '../map/Map';
 
 const initialValues = {
     [AUTH_FORM_KEYS.Username]: '',
@@ -52,12 +53,12 @@ export default function Contacts() {
                 <div className={styles.infoContainer}>
                     <ul className={styles.contactInfo}>
                         <li><MdEmail /> rock-world@yahoo.com</li>
-                        <li><FaPhone /> 0888-444-333</li>
-                        <li><FaLocationDot /> Springfield, XY 12345</li>
+                        <li><FaPhone /> (+359)888444333</li>
+                        <li><FaLocationDot /> Plovdiv, Bulgaria</li>
                     </ul>
                 </div>
                 <div className={styles.formContainer}>
-                    <h3>Send us a message</h3>
+                    <h3>Contact us</h3>
 
                     {error && <div className={styles.error}>{error}</div>}
 
@@ -103,6 +104,11 @@ export default function Contacts() {
                         <button type='submit'>Send</button>
                     </form>
                 </div>
+            </div>
+
+            <div className={styles.map}>
+                <p>Where are we located?</p>
+                <Map />
             </div>
         </div>
     );

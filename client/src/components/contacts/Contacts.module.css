@@ -1,18 +1,22 @@
 .container {
     display: flex;
+    flex-direction: column;
+    gap: 5em;
     width: 100%;
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(219deg, rgba(226,31,14,0.5) 0%, rgba(19,4,4,1) 34%, rgba(136,136,136,1) 100%);
+    margin: 5em 0;
 }
 
 .contacts {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40%;
-    background-color: rgb(109, 109, 109);
+    width: 700px;
+    margin-top: 8em;
+    background-color: rgb(58, 58, 58);
+    color: #fff;
     height: auto;
     border-radius: 0.5em;
     gap: 3em;
@@ -47,7 +51,7 @@
     display: flex;
     flex-direction: column;
     gap: 2em;
-    margin:auto 1.5em;
+    margin: auto 1.5em;
     flex: 1;
     height: 100%;
 }
@@ -59,14 +63,27 @@
     gap: 1em;
 }
 
+.map {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    max-width: 900px;
+}
+
+.map p {
+    color: #fff;
+    font-size: 1.5em;
+}
+
 .inputGroup {
     display: flex;
     flex-direction: column;
     text-align: left;
     position: relative;
-  }
+}
 
-.inputGroup input, textarea {
+.inputGroup input,
+textarea {
     border: none;
     border-radius: 0.3em;
     padding: 0.8em;
@@ -76,8 +93,8 @@
 
 .inputGroup input::placeholder,
 .inputGroup textarea::placeholder {
-  opacity: 0.5;
-  color: #a0a0b2;
+    opacity: 0.5;
+    color: #a0a0b2;
 }
 
 .formContainer h3 {
@@ -111,4 +128,35 @@
 .error {
     font-size: 1em;
     color: #c00000;
+}
+
+@media (max-width: 640px) {
+    .container {
+        gap: 2em;
+        margin: 1em 0;
+        height: auto;
+    }
+    
+    .contacts {
+        width: 300px;
+        margin-top: 1em;
+        gap: 1em;
+    }
+
+    .formContainer {
+        gap: 1em;
+        padding-right: 1em;
+    }
+    
+    .contactForm {
+        gap: 1em;
+    }
+
+    .formContainer h3 {
+        font-size: 1em;
+    }
+
+    .map p {
+        font-size: 1em;
+    }
 }
