@@ -3,9 +3,9 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    padding-top: 100px;
+    padding-top: 6em;
     font-family: 'Trade winds', sans-serif;
-    padding-bottom: 12em;
+    padding-bottom: 1.5em;
     background-image: url(/images/catalog.png);
     background-size: auto;
     min-height: 100vh;
