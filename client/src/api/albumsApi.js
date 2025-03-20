@@ -45,3 +45,29 @@ export const useGetAllAlbums = (offset, pageSize) => {
         hasNextPage
     };
 };
+
+export const useGetOneAlbum = (albumId) => {
+    const [album, setAlbum] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const result = await requester.get(`${BASE_PATH}/${albumId}`);
+
+                setAlbum(result);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        })();
+    }, [albumId]);
+
+    return {
+        album,
+        loading,
+        error
+    }
+};

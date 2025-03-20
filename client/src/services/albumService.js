@@ -2,17 +2,17 @@ import requester from "./requester.js";
 
 const BASE_PATH = '/data/albums';
 
-const getAll = (offset, pageSize) => {
-    const query = new URLSearchParams({
-        sortBy: '_createdOn desc',
-        offset,
-        pageSize
-    });
+// const getAll = (offset, pageSize) => {
+//     const query = new URLSearchParams({
+//         sortBy: '_createdOn desc',
+//         offset,
+//         pageSize
+//     });
 
-    const albums = requester.get(`${BASE_PATH}?${query}`);
+//     const albums = requester.get(`${BASE_PATH}?${query}`);
 
-    return albums;
-};
+//     return albums;
+// };
 
 const getLatest = () => {
     const query = new URLSearchParams({
@@ -24,9 +24,9 @@ const getLatest = () => {
     return requester.get(`/data/albums?${query}`);
 };
 
-const getOne = (albumId) => requester.get(`${BASE_PATH}/${albumId}`);
+// const getOne = (albumId) => requester.get(`${BASE_PATH}/${albumId}`);
 
-const add = (albumData) => requester.post(BASE_PATH, albumData);
+// const add = (albumData) => requester.post(BASE_PATH, albumData);
 
 const edit = (albumId, albumData) => requester.put(`${BASE_PATH}/${albumId}`, albumData);
 
@@ -40,10 +40,10 @@ const search = (searchText) => {
 }
 
 export default {
-    getAll,
+    // getAll,
     getLatest,
-    getOne,
-    add,
+    // getOne,
+    // add,
     edit,
     remove,
     search

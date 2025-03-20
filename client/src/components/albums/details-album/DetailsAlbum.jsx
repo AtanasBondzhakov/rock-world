@@ -13,18 +13,21 @@ import CommentAlbumItem from '../comment-album/comment-album-item/CommentAlbumIt
 import Pagination from '../../pagination/Pagination.jsx';
 import ErrorMessage from '../../error-message/ErrorMessage.jsx';
 import ScrollToTop from '../../scroll-to-top/ScrollToTop.jsx';
+import { useGetOneAlbum } from '../../../api/albumsApi.js';
 
 export default function DetailsAlbum() {
-    const [album, setAlbum] = useState({});
-    const [loading, setLoading] = useState(true);
+    // const [album, setAlbum] = useState({});
+    // const [loading, setLoading] = useState(true);
     const [comments, setComments] = useState([]);
     const [pageSize] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
     const [hasNextPage, setHasNextPage] = useState(true);
-    const [error, setError] = useState('');
+    // const [error, setError] = useState('');
 
     const { albumId } = useParams();
     const { userId, isAuthenticated, email } = useContext(AuthContext);
+
+    const { album, loading, error } = useGetOneAlbum(albumId);
 
     const isOwner = userId === album._ownerId;
 
@@ -33,7 +36,7 @@ export default function DetailsAlbum() {
 
         try {
             const resultComments = await commentService.getAll(offset, pageSize + 1, albumId);
-            
+
             setHasNextPage(resultComments.length > pageSize);
             setComments(resultComments.slice(0, pageSize));
         } catch (err) {
@@ -41,21 +44,23 @@ export default function DetailsAlbum() {
         }
     };
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const resultAlbum = await albumService.getOne(albumId);
+    // useEffect(() => {
+    //     (async () => {
+    //         try {
+    //             const resultAlbum = await albumService.getOne(albumId);
 
-                handleGetComments();
+    //             handleGetComments();
 
-                setAlbum(resultAlbum);
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        })();
-    }, [albumId, currentPage]);
+    //             setAlbum(resultAlbum);
+    //         } catch (err) {
+    //             setError(err.message);
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     })();
+    // }, [albumId, currentPage]);
+
+    //TODO fix comments not load on mount
 
     const handleAddComment = async (values) => {
         try {
