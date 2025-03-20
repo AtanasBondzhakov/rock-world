@@ -1,9 +1,8 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import styles from './DetailsAlbum.module.css';
 import AuthContext from '../../../contexts/authContext.jsx';
-import albumService from '../../../services/albumService.js';
 import commentService from '../../../services/commentService.js';
 
 import DetailsAlbumItem from './details-album-item/DetailsAlbumItem.jsx';
