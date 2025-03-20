@@ -120,3 +120,33 @@ export const useEditAlbum = () => {
         editAlbum
     }
 };
+
+export const useSearch = (searchQuery) => {
+    const [searchResult, setSearchResult] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+
+    const query = new URLSearchParams({
+        where: `title LIKE "${searchQuery}" OR band LIKE "${searchQuery}"`
+    })
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const result = await requester.get(`${BASE_PATH}?${query}`);
+
+                setSearchResult(result);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        })();
+    }, [searchQuery]);
+
+    return {
+        searchResult,
+        loading,
+        error
+    }
+};
