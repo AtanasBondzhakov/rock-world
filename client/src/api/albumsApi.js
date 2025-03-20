@@ -100,3 +100,11 @@ export const useGetLatestAlbums = () => {
         error
     }
 };
+
+export const useDeleteAlbum = () => {
+    const deleteAlbum = (albumId) => requester.del(`${BASE_PATH}/${albumId}`);
+
+    return {
+        deleteAlbum
+    }
+};

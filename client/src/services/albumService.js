@@ -30,7 +30,7 @@ const BASE_PATH = '/data/albums';
 
 const edit = (albumId, albumData) => requester.put(`${BASE_PATH}/${albumId}`, albumData);
 
-const remove = (albumId) => requester.del(`${BASE_PATH}/${albumId}`);
+// const remove = (albumId) => requester.del(`${BASE_PATH}/${albumId}`);
 
 const search = (searchText) => {
     const query = new URLSearchParams({
@@ -41,10 +41,10 @@ const search = (searchText) => {
 
 export default {
     // getAll,
-    getLatest,
+    // getLatest,
     // getOne,
     // add,
     edit,
-    remove,
+    // remove,
     search
 };

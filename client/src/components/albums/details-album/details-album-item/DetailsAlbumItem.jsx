@@ -2,9 +2,9 @@ import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import styles from './DetailsAlbumItem.module.css';
-import albumService from '../../../../services/albumService.js';
 import { PATHS } from '../../../../constants.js';
 import { toasterSuccess } from '../../../../utils/toaster-messages.js';
+import { useDeleteAlbum } from '../../../../api/albumsApi.js';
 
 import DeleteAlbumModal from '../../delete-album-modal/DeleteAlbumModal.jsx';
 import ErrorMessage from '../../../error-message/ErrorMessage.jsx';
@@ -23,6 +23,7 @@ export default function DetailsAlbumItem({
     const [favoriteId, setFavoriteId] = useState('');
 
     const { isAuthenticated, userId } = useContext(AuthContext);
+    const { deleteAlbum } = useDeleteAlbum();
 
     const navigate = useNavigate();
 
@@ -33,7 +34,7 @@ export default function DetailsAlbumItem({
                 //TODO extract this part as abstract function
                 const favorites = await favoriteService.getAll();
                 const myFavorite = favorites.find(fav => fav.albumData._id === album._id && fav.userId === userId);
-                
+
                 setFavoriteId(myFavorite?._id);
             } catch (err) {
                 setError(err.message);
@@ -53,12 +54,13 @@ export default function DetailsAlbumItem({
         const successMsg = 'Album deleted successfully';
 
         try {
-            await albumService.remove(album._id);
+            await deleteAlbum(album._id);
 
-            await favoriteService.remove(favoriteId);
+            if(favoriteId) {
+                await favoriteService.remove(favoriteId);
+            }
 
             toasterSuccess(successMsg);
-
             navigate(PATHS.Albums);
         } catch (err) {
             setError(err.message);
