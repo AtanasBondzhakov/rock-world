@@ -1,28 +1,13 @@
-import { useEffect, useState } from 'react';
-
 import styles from './LatestAlbums.module.css';
-import albumService from '../../../services/albumService.js';
+
+import { useGetLatestAlbums } from '../../../api/albumsApi.js';
 
 import LatestAlbumsCarousel from './latest-albums-carousel/LatestAlbumsCarousel.jsx';
 import LatestAlbumsItem from './latest-albums-item/LatestAlbumsItem.jsx';
 import ErrorMessage from '../../error-message/ErrorMessage.jsx'
 
 export default function LatestAlbums() {
-    const [latestAlbums, setLatestAlbums] = useState([]);
-    const [error, setError] = useState('');
-
-    useEffect(() => {
-        (async () => {
-            try {
-                const result = await albumService.getLatest();
-
-                setLatestAlbums(result);
-            } catch (err) {
-                const errorMessage = 'Albums are currently unavailable.';
-                setError(errorMessage);
-            }
-        })();
-    }, []);
+    const { latestAlbums, error } = useGetLatestAlbums();
 
     return (
         <div className={styles.container}>

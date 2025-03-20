@@ -71,3 +71,32 @@ export const useGetOneAlbum = (albumId) => {
         error
     }
 };
+
+export const useGetLatestAlbums = () => {
+    const [latestAlbums, setLatestAlbums] = useState([]);
+    const [error, setError] = useState('');
+
+    const query = new URLSearchParams({
+        sortBy: '_createdOn desc',
+        offset: 0,
+        pageSize: 5
+    });
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const result = await requester.get(`/data/albums?${query}`)
+
+                setLatestAlbums(result);
+            } catch (err) {
+                const errorMessage = 'Albums are currently unavailable.';
+                setError(errorMessage);
+            }
+        })();
+    }, []);
+
+    return {
+        latestAlbums,
+        error
+    }
+};

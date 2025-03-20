@@ -14,15 +14,15 @@ const BASE_PATH = '/data/albums';
 //     return albums;
 // };
 
-const getLatest = () => {
-    const query = new URLSearchParams({
-        sortBy: '_createdOn desc',
-        offset: 0,
-        pageSize: 5
-    });
+// const getLatest = () => {
+//     const query = new URLSearchParams({
+//         sortBy: '_createdOn desc',
+//         offset: 0,
+//         pageSize: 5
+//     });
 
-    return requester.get(`/data/albums?${query}`);
-};
+//     return requester.get(`/data/albums?${query}`);
+// };
 
 // const getOne = (albumId) => requester.get(`${BASE_PATH}/${albumId}`);
 
