@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import requester from "../services/requester.js";
+import { formatDateString, parseDateString } from "../utils/dateUtil.js";
 
 const BASE_PATH = '/data/albums';
 
@@ -56,7 +57,10 @@ export const useGetOneAlbum = (albumId) => {
             try {
                 const result = await requester.get(`${BASE_PATH}/${albumId}`);
 
-                setAlbum(result);
+                setAlbum({
+                    ...result,
+                    released: parseDateString(result.released)
+                })
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -106,5 +110,13 @@ export const useDeleteAlbum = () => {
 
     return {
         deleteAlbum
+    }
+};
+
+export const useEditAlbum = () => {
+    const editAlbum = (albumId, albumData) => requester.put(`${BASE_PATH}/${albumId}`, albumData);
+
+    return {
+        editAlbum
     }
 };
