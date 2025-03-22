@@ -5,8 +5,7 @@ import styles from './DetailsAlbumItem.module.css';
 import { PATHS } from '../../../../constants.js';
 import { toasterSuccess } from '../../../../utils/toaster-messages.js';
 import { useDeleteAlbum } from '../../../../api/albumsApi.js';
-import { useAddFavorite, useGetOneFavorite } from '../../../../api/favoritesApi.js';
-import favoriteService from '../../../../services/favoriteService.js';
+import { useAddFavorite, useGetOneFavorite, useRemoveFavorite } from '../../../../api/favoritesApi.js';
 
 import DeleteAlbumModal from '../../delete-album-modal/DeleteAlbumModal.jsx';
 import ErrorMessage from '../../../error-message/ErrorMessage.jsx';
@@ -28,6 +27,7 @@ export default function DetailsAlbumItem({
     const { deleteAlbum } = useDeleteAlbum();
     const { addFavorite } = useAddFavorite();
     const { favoriteId, refetch } = useGetOneFavorite(album._id, userId);
+    const { removeFavorite } = useRemoveFavorite();
 
     const handleDeleteButtonClick = () => {
         setShowModal(true);
@@ -45,7 +45,7 @@ export default function DetailsAlbumItem({
 
             if (favoriteId) {
                 //TODO remove favorite from all users
-                await favoriteService.remove(favoriteId);
+                await removeFavorite(album._id)
             }
 
             toasterSuccess(successMsg);
@@ -60,7 +60,7 @@ export default function DetailsAlbumItem({
             if (!favoriteId) {
                 await addFavorite(album, userId);
             } else {
-                await favoriteService.remove(favoriteId);
+                await removeFavorite(favoriteId);
             }
 
             refetch();

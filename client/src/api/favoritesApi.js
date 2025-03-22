@@ -39,3 +39,11 @@ export const useGetOneFavorite = (albumId, userId) => {
         refetch: fetchFavorite
     };
 };
+
+export const useRemoveFavorite = () => {
+    const removeFavorite = (favoriteId) => requester.del(`${BASE_URL}/${favoriteId}`);
+
+    return {
+        removeFavorite
+    }
+};
