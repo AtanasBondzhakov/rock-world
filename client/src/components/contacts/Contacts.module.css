@@ -130,6 +130,10 @@ textarea {
     color: #c00000;
 }
 
+.formContainer button:disabled {
+    cursor: not-allowed;
+}
+
 @media (max-width: 640px) {
     .container {
         gap: 2em;

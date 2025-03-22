@@ -7,10 +7,11 @@ import useForm from '../../hooks/useForm';
 import AuthContext from '../../contexts/authContext';
 import { contactsSchema } from '../../schemas/contactsSchema';
 
+import Map from '../map/Map';
+
 import { MdEmail } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
 import { FaLocationDot } from "react-icons/fa6";
-import Map from '../map/Map';
 
 const initialValues = {
     [AUTH_FORM_KEYS.Username]: '',
@@ -24,8 +25,10 @@ export default function Contacts() {
 
     const { formValues, formErrors, setFormValues, onChange, onSubmit } = useForm(initialValues, handleSendEmail, contactsSchema);
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     async function handleSendEmail() {
+        setLoading(true);
         try {
             await emailjs.sendForm(
                 import.meta.env.VITE_SERVICE_ID,
@@ -35,8 +38,10 @@ export default function Contacts() {
             );
         } catch (err) {
             setError('Your message was not sent. Try again later');
+        } finally {
+            setLoading(false);
         }
-    }
+    };
 
     useEffect(() => {
         (async () => {
@@ -101,7 +106,7 @@ export default function Contacts() {
                             {formErrors[AUTH_FORM_KEYS.Message] && <div className={styles.validationError}>{formErrors[AUTH_FORM_KEYS.Message]}</div>}
                         </div>
 
-                        <button type='submit'>Send</button>
+                        <button type='submit' disabled={loading ? 'disabled' : ''}>Send</button>
                     </form>
                 </div>
             </div>
