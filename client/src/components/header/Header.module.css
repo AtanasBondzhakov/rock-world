@@ -10,6 +10,7 @@
     font-family: 'New Rocker', sans-serif;
     max-height: 80px;
     background-color: #222;
+    z-index: 1;
 }
 
 .left {
