@@ -5,14 +5,13 @@ import { ALBUM_FORM_KEYS } from '../../../constants.js';
 import styles from './EditAlbum.module.css';
 import { formatDateString } from '../../../utils/dateUtil.js';
 import { albumSchema } from '../../../schemas/albumSchema.js';
-import favoriteService from '../../../services/favoriteService.js';
 import useForm from '../../../hooks/useForm.js';
 import { useEditAlbum, useGetOneAlbum } from '../../../api/albumsApi.js';
 
 import AuthContext from '../../../contexts/authContext.jsx';
 import ErrorMessage from '../../error-message/ErrorMessage.jsx';
 import Spinner from '../../spinner/Spinner.jsx';
-import { useGetOneFavorite } from '../../../api/favoritesApi.js';
+import { useEditFavorite, useGetOneFavorite } from '../../../api/favoritesApi.js';
 
 const initialValues = {
     [ALBUM_FORM_KEYS.Title]: '',
@@ -36,6 +35,7 @@ export default function EditAlbum() {
     const { album } = useGetOneAlbum(albumId);
     const { editAlbum } = useEditAlbum();
     const { favoriteId } = useGetOneFavorite(albumId, userId);
+    const { editFavorite } = useEditFavorite();
 
     const {
         formValues,
@@ -58,7 +58,7 @@ export default function EditAlbum() {
             });
 
             if (favoriteId) {
-                await favoriteService.edit(favoriteId, formValues, userId);
+                await editFavorite(favoriteId, formValues, userId);
             }
 
             navigate(`/albums/${albumId}/details`);

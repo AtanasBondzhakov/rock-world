@@ -70,4 +70,12 @@ export const useMyFavorites = (userId) => {
     return {
         myFavorites
     }
-}
+};
+
+export const useEditFavorite = () => {
+    const editFavorite = (favoriteId, albumData, userId) => requester.put(`${BASE_URL}/${favoriteId}`, { albumData, userId });
+
+    return {
+        editFavorite
+    }
+};
