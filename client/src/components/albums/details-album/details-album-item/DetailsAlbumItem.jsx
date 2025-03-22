@@ -5,11 +5,12 @@ import styles from './DetailsAlbumItem.module.css';
 import { PATHS } from '../../../../constants.js';
 import { toasterSuccess } from '../../../../utils/toaster-messages.js';
 import { useDeleteAlbum } from '../../../../api/albumsApi.js';
+import { useAddFavorite } from '../../../../api/favoritesApi.js';
+import favoriteService from '../../../../services/favoriteService.js';
 
 import DeleteAlbumModal from '../../delete-album-modal/DeleteAlbumModal.jsx';
 import ErrorMessage from '../../../error-message/ErrorMessage.jsx';
 import AuthContext from '../../../../contexts/authContext.jsx';
-import favoriteService from '../../../../services/favoriteService.js';
 
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
@@ -21,6 +22,8 @@ export default function DetailsAlbumItem({
     const [showModal, setShowModal] = useState(false);
     const [error, setError] = useState('');
     const [favoriteId, setFavoriteId] = useState('');
+
+    const { addFavorite } = useAddFavorite();
 
     const { isAuthenticated, userId } = useContext(AuthContext);
     const { deleteAlbum } = useDeleteAlbum();
@@ -56,7 +59,7 @@ export default function DetailsAlbumItem({
         try {
             await deleteAlbum(album._id);
 
-            if(favoriteId) {
+            if (favoriteId) {
                 await favoriteService.remove(favoriteId);
             }
 
@@ -70,7 +73,7 @@ export default function DetailsAlbumItem({
     const handleFavorite = async () => {
         try {
             if (!favoriteId) {
-                const newFavorite = await favoriteService.add(album, userId);
+                const newFavorite = await addFavorite(album, userId);
                 setFavoriteId(newFavorite._id);
 
                 return;
