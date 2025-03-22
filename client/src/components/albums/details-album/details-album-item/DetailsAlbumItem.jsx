@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import styles from './DetailsAlbumItem.module.css';
 import { PATHS } from '../../../../constants.js';
 import { toasterSuccess } from '../../../../utils/toaster-messages.js';
 import { useDeleteAlbum } from '../../../../api/albumsApi.js';
-import { useAddFavorite } from '../../../../api/favoritesApi.js';
+import { useAddFavorite, useGetOneFavorite } from '../../../../api/favoritesApi.js';
 import favoriteService from '../../../../services/favoriteService.js';
 
 import DeleteAlbumModal from '../../delete-album-modal/DeleteAlbumModal.jsx';
@@ -21,29 +21,13 @@ export default function DetailsAlbumItem({
 }) {
     const [showModal, setShowModal] = useState(false);
     const [error, setError] = useState('');
-    const [favoriteId, setFavoriteId] = useState('');
-
-    const { addFavorite } = useAddFavorite();
 
     const { isAuthenticated, userId } = useContext(AuthContext);
-    const { deleteAlbum } = useDeleteAlbum();
-
     const navigate = useNavigate();
 
-    useEffect(() => {
-        (async () => {
-            try {
-                //TODO try to find only one instead of all
-                //TODO extract this part as abstract function
-                const favorites = await favoriteService.getAll();
-                const myFavorite = favorites.find(fav => fav.albumData._id === album._id && fav.userId === userId);
-
-                setFavoriteId(myFavorite?._id);
-            } catch (err) {
-                setError(err.message);
-            }
-        })();
-    }, [album]);
+    const { deleteAlbum } = useDeleteAlbum();
+    const { addFavorite } = useAddFavorite();
+    const { favoriteId, refetch } = useGetOneFavorite(album._id, userId);
 
     const handleDeleteButtonClick = () => {
         setShowModal(true);
@@ -60,6 +44,7 @@ export default function DetailsAlbumItem({
             await deleteAlbum(album._id);
 
             if (favoriteId) {
+                //TODO remove favorite from all users
                 await favoriteService.remove(favoriteId);
             }
 
@@ -73,14 +58,12 @@ export default function DetailsAlbumItem({
     const handleFavorite = async () => {
         try {
             if (!favoriteId) {
-                const newFavorite = await addFavorite(album, userId);
-                setFavoriteId(newFavorite._id);
-
-                return;
+                await addFavorite(album, userId);
+            } else {
+                await favoriteService.remove(favoriteId);
             }
 
-            await favoriteService.remove(favoriteId)
-            setFavoriteId('');
+            refetch();
         } catch (err) {
             setError(err.message);
         }
