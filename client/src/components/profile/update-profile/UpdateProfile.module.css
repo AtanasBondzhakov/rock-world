@@ -62,7 +62,7 @@
 .inputGroup input,
 .inputGroup textarea {
     background: #333030;
-    border-color: #888888;
+    border: 1px solid #888888;
     border-radius: 0.5em;
     padding: 0.8em;
     font-size: 1em;
