@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import styles from './Profile.module.css';
 import AuthContext from '../../contexts/authContext.jsx';
-import favoriteService from '../../services/favoriteService.js';
 import profileService from '../../services/profileService.js';
 
 import ProfileFavoriteItem from './profile-favorite-item/ProfileFavoriteItem.jsx';
@@ -48,7 +47,7 @@ export default function Profile() {
                     <>
                         <div className={styles.info}>
                             <div className={styles.top}>
-                                <span>Account Information</span>
+                                <h2>Account Information</h2>
                                 <hr style={{ width: '100%' }} />
                                 <div className={styles.names}>
                                     <div className={styles.username}>
@@ -77,7 +76,7 @@ export default function Profile() {
                             <Link to={`/auth/profile/${userId}/update`}>Edit Profile</Link>
                         </div>
                         <div className={styles.favorites}>
-                            <span>Favorite Albums</span>
+                            <h2>Favorite Albums</h2>
                             <hr style={{ width: '100%' }} />
                             {myFavorites.length > 0
                                 ? myFavorites.map(fav => <ProfileFavoriteItem key={fav._id} {...fav.albumData} />)
