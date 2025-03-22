@@ -6,13 +6,13 @@ const BASE_URL = '/data/favorites';
 
 const getAll = () => requester.get(BASE_URL);
 
-const remove = (favoriteId) => requester.del(`${BASE_URL}/${favoriteId}`);
+// const remove = (favoriteId) => requester.del(`${BASE_URL}/${favoriteId}`);
 
 const edit = (favoriteId, albumData, userId) => requester.put(`${BASE_URL}/${favoriteId}`, {albumData, userId});
 
 export default {
     // add,
     getAll,
-    remove,
+    // remove,
     edit
 }

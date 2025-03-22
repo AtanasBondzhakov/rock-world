@@ -41,12 +41,12 @@ export default function DetailsAlbumItem({
         const successMsg = 'Album deleted successfully';
 
         try {
-            await deleteAlbum(album._id);
-
+            
             if (favoriteId) {
                 //TODO remove favorite from all users
-                await removeFavorite(album._id)
+                await removeFavorite(favoriteId);
             }
+            await deleteAlbum(album._id);
 
             toasterSuccess(successMsg);
             navigate(PATHS.Albums);
