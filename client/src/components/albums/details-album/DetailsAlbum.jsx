@@ -19,14 +19,14 @@ export default function DetailsAlbum() {
     const [currentPage, setCurrentPage] = useState(1);
 
     const { albumId } = useParams();
-    const { userId, isAuthenticated } = useContext(AuthContext);
+    const { userId, isAuthenticated, email } = useContext(AuthContext);
 
     const { album, loading, error } = useGetOneAlbum(albumId);
     const { createComment } = useCreateComment();
 
     const offset = (currentPage - 1) * pageSize;
 
-    const { comments, error: commentsError, hasNextPage } = useGetComments(offset, pageSize, albumId);
+    const { comments, setComments, error: commentsError, hasNextPage } = useGetComments(offset, pageSize, albumId);
 
     const isOwner = userId === album._ownerId;
 
@@ -35,9 +35,11 @@ export default function DetailsAlbum() {
 
     const handleAddComment = async (values) => {
         try {
-            await createComment(albumId, values.comment);
+            const newComment = await createComment(albumId, values.comment);
 
-            // handleGetComments();
+            setComments(prevState => [{ ...newComment, author: { email: 'Nasko' } }, ...prevState]);
+
+            handleGetComments();
         } catch (err) {
             // setCommentError(err.message);
         }

@@ -39,6 +39,7 @@ export const useGetComments = (offset, pageSize, albumId) => {
 
     return {
         comments,
+        setComments,
         error,
         hasNextPage
     }
