@@ -9,6 +9,7 @@ import profileService from '../../services/profileService.js';
 import ProfileFavoriteItem from './profile-favorite-item/ProfileFavoriteItem.jsx';
 import ErrorMessage from '../error-message/ErrorMessage.jsx';
 import Spinner from '../spinner/Spinner.jsx';
+import { useMyFavorites } from '../../api/favoritesApi.js';
 
 export default function Profile() {
     const [favoritesInfo, setFavoritesInfo] = useState([]);
@@ -16,17 +17,17 @@ export default function Profile() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
+
     const { username, email, userId } = useContext(AuthContext);
+
+    const { myFavorites } = useMyFavorites(userId);
 
     useEffect(() => {
         (async () => {
             try {
-                const allFavorites = await favoriteService.getAll();
-                const myFavorites = allFavorites.filter(fav => fav.userId === userId);
                 const result = await profileService.get(userId);
 
                 setProfile(result);
-                setFavoritesInfo(myFavorites);
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -78,8 +79,8 @@ export default function Profile() {
                         <div className={styles.favorites}>
                             <span>Favorite Albums</span>
                             <hr style={{ width: '100%' }} />
-                            {favoritesInfo.length > 0
-                                ? favoritesInfo.map(fav => <ProfileFavoriteItem key={fav._id} {...fav.albumData} />)
+                            {myFavorites.length > 0
+                                ? myFavorites.map(fav => <ProfileFavoriteItem key={fav._id} {...fav.albumData} />)
                                 : <h3>There is no albums yet</h3>
                             }
                         </div>
