@@ -37,7 +37,7 @@ export default function DetailsAlbum() {
         try {
             const newComment = await createComment(albumId, values.comment);
 
-            setComments(prevState => [{ ...newComment, author: { email: 'Nasko' } }, ...prevState]);
+            setComments(prevState => [{ ...newComment, author: { email } }, ...prevState]);
 
             handleGetComments();
         } catch (err) {

@@ -12,6 +12,7 @@ import { useEditAlbum, useGetOneAlbum } from '../../../api/albumsApi.js';
 import AuthContext from '../../../contexts/authContext.jsx';
 import ErrorMessage from '../../error-message/ErrorMessage.jsx';
 import Spinner from '../../spinner/Spinner.jsx';
+import { useGetOneFavorite } from '../../../api/favoritesApi.js';
 
 const initialValues = {
     [ALBUM_FORM_KEYS.Title]: '',
@@ -27,7 +28,6 @@ const initialValues = {
 export default function EditAlbum() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const [favoriteId, setFavoriteId] = useState('');
 
     const { albumId } = useParams();
     const { userId } = useContext(AuthContext);
@@ -35,6 +35,7 @@ export default function EditAlbum() {
 
     const { album } = useGetOneAlbum(albumId);
     const { editAlbum } = useEditAlbum();
+    const { favoriteId } = useGetOneFavorite(albumId, userId);
 
     const {
         formValues,
@@ -67,20 +68,6 @@ export default function EditAlbum() {
             setLoading(false);
         }
     };
-
-    useEffect(() => {
-        (async () => {
-            try {
-                const favorites = await favoriteService.getAll();
-                const myFavorite = favorites.find(fav => fav.albumData._id === albumId && fav.userId === userId);
-
-                setFavoriteId(myFavorite?._id);
-            } catch (err) {
-                setError(err.message);
-                console.log(err.message);
-            }
-        })();
-    }, [albumId, userId]);
 
     return (
         <div className={styles.container}>
