@@ -47,3 +47,27 @@ export const useRemoveFavorite = () => {
         removeFavorite
     }
 };
+
+export const useMyFavorites = (userId) => {
+    const [myFavorites, setMyFavorites] = useState([]);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const query = new URLSearchParams({
+                    where: `userId="${userId}"`
+                });
+
+                const result = await requester.get(`${BASE_URL}?${query}`);
+
+                setMyFavorites(result)
+            } catch (err) {
+                //TODO error handling
+            }
+        })();
+    }, [userId]);
+
+    return {
+        myFavorites
+    }
+}
