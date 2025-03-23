@@ -29,12 +29,16 @@
     color: #c00000;
     font-size: 1em;
     margin-top: 0.3em;
+    position: absolute;
+    top: 95%;
+    left: 0;
 }
 
 .inputGroup {
     display: flex;
     flex-direction: column;
     text-align: left;
+    position: relative;
 }
 
 .inputGroup label {

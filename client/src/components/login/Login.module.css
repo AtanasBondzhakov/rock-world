@@ -21,6 +21,7 @@
     border-radius: 0.5em;
     padding: 2em 0;
     background-color: #151515;
+    position: relative;
 }
 
 .authTitle {
@@ -39,6 +40,10 @@
 .error {
     font-size: 1em;
     color: #c00000;
+    margin-top: 0.3em;
+    position: absolute;
+    top: 20%;
+    left: 28%;
 }
 
 .inputGroup {

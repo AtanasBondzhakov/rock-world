@@ -1,11 +1,12 @@
 import styles from './CommentAlbum.module.css';
 import useForm from '../../../hooks/useForm.js';
 import { ALBUM_FORM_KEYS } from '../../../constants.js';
+import { commentSchema } from '../../../schemas/commentsSchema.js';
 
 export default function CommentAlbum({
     handleAddComment
 }) {
-    const { formValues, onChange, onSubmit } = useForm({ comment: '' }, handleAddComment);
+    const { formValues, formErrors, onChange, onSubmit } = useForm({ comment: '' }, handleAddComment, commentSchema);
 
     return (
         <div className={styles.container}>
@@ -20,6 +21,8 @@ export default function CommentAlbum({
                         value={formValues[ALBUM_FORM_KEYS.Comment]}
                         onChange={onChange}
                     ></textarea>
+
+                    {formErrors[ALBUM_FORM_KEYS.Comment] && <div className={styles.validationError}>{formErrors[ALBUM_FORM_KEYS.Comment]}</div>}
                     <button type="submit" className={styles.button}>Comment</button>
                 </form>
             </div>
