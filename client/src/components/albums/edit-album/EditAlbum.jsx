@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
-import { ALBUM_FORM_KEYS } from '../../../constants.js';
+import { ALBUM_FORM_KEYS, PATHS } from '../../../constants.js';
 import styles from './EditAlbum.module.css';
 import { formatDateString } from '../../../utils/dateUtil.js';
 import { albumSchema } from '../../../schemas/albumSchema.js';
@@ -48,6 +48,12 @@ export default function EditAlbum() {
     useEffect(() => {
         setFormValues(album);
     }, [album]);
+
+    const isOwner = userId === album._ownerId;
+
+    if (userId && album._id && !isOwner) {
+        return <Navigate to={PATHS.Home} />
+    }
 
     async function handleEdit() {
         setLoading(true);
