@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import styles from './DetailsAlbumItem.module.css';
-import { PATHS } from '../../../../constants.js';
+import { ALBUM_MESSAGES, PATHS } from '../../../../constants.js';
 import { toasterSuccess } from '../../../../utils/toaster-messages.js';
 import { useDeleteAlbum } from '../../../../api/albumsApi.js';
 import { useAddFavorite, useGetOneFavorite, useRemoveFavorite } from '../../../../api/favoritesApi.js';
@@ -38,8 +38,6 @@ export default function DetailsAlbumItem({
     };
 
     const handleDeleteAlbum = async () => {
-        const successMsg = 'Album deleted successfully';
-
         try {
             
             if (favoriteId) {
@@ -48,7 +46,7 @@ export default function DetailsAlbumItem({
             }
             await deleteAlbum(album._id);
 
-            toasterSuccess(successMsg);
+            toasterSuccess(ALBUM_MESSAGES.DELETE_SUCCESS);
             navigate(PATHS.Albums);
         } catch (err) {
             setError(err.message);

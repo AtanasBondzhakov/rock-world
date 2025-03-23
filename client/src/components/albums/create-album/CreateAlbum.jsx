@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import styles from './CreateAlbum.module.css';
-import { ALBUM_FORM_KEYS, PATHS } from '../../../constants.js';
+import { ALBUM_FORM_KEYS, ALBUM_MESSAGES, PATHS } from '../../../constants.js';
 import useForm from '../../../hooks/useForm.js';
 import { albumSchema } from '../../../schemas/albumSchema.js';
 import { useCreateAlbum } from '../../../api/albumsApi.js';
+import { toasterSuccess } from '../../../utils/toaster-messages.js';
 
 import ErrorMessage from '../../error-message/ErrorMessage.jsx';
 
@@ -32,6 +33,7 @@ export default function CreateAlbum() {
         try {
             await createAlbum(formValues);
 
+            toasterSuccess(ALBUM_MESSAGES.CREATE_SUCCESS);
             navigate(PATHS.Albums);
         } catch (err) {
             setError(err.message);

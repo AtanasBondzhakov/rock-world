@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import usePersistedState from "../hooks/usePersistedState";
-import { PATHS } from "../constants.js";
+import { AUTH_MESSAGES, PATHS } from "../constants.js";
 import authService from "../services/authService.js";
 import { toasterSuccess } from "../utils/toaster-messages.js";
 import profileService from "../services/profileService.js";
@@ -25,9 +25,7 @@ export const AuthProvider = ({
     }, [location.pathname]);
 
     const handleRegister = async (userData) => {
-        const successMsg = 'Register successful. You are now logged in.';
-
-        try {
+         try {
             const { password, ...userDetails } = await authService.register(userData.email, userData.password, userData.username);
 
             setAuth(userDetails);
@@ -36,7 +34,7 @@ export const AuthProvider = ({
             
             await profileService.add(userDetails);
 
-            toasterSuccess(successMsg);
+            toasterSuccess(AUTH_MESSAGES.REGISTER_SUCCESS);
             navigate(PATHS.Home);
         } catch (err) {
             setRegisterError(err.message);
@@ -44,8 +42,6 @@ export const AuthProvider = ({
     };
 
     const handleLogin = async (userData) => {
-        const successMsg = `Login successful. Welcome back.`;
-
         try {
             const { password, ...userDetails } = await authService.login(userData.email, userData.password);
 
@@ -53,7 +49,7 @@ export const AuthProvider = ({
 
             localStorage.setItem('accessToken', userDetails.accessToken);
 
-            toasterSuccess(successMsg);
+            toasterSuccess(AUTH_MESSAGES.LOGIN_SUCCESS);
             navigate(PATHS.Home);
         } catch (err) {
             setLoginError(err.message);
@@ -61,11 +57,9 @@ export const AuthProvider = ({
     };
 
     const handleLogout = () => {
-        const successMsg = `Logout successful.`;
-
         setAuth({});
         localStorage.removeItem('accessToken');
-        toasterSuccess(successMsg);
+        toasterSuccess(AUTH_MESSAGES.LOGOUT_SUCCESS);
         navigate(PATHS.Home);
     };
 

@@ -1,17 +1,18 @@
 import { useContext, useEffect, useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
-import { ALBUM_FORM_KEYS, PATHS } from '../../../constants.js';
+import { ALBUM_FORM_KEYS, ALBUM_MESSAGES, PATHS } from '../../../constants.js';
 import styles from './EditAlbum.module.css';
 import { formatDateString } from '../../../utils/dateUtil.js';
 import { albumSchema } from '../../../schemas/albumSchema.js';
 import useForm from '../../../hooks/useForm.js';
 import { useEditAlbum, useGetOneAlbum } from '../../../api/albumsApi.js';
+import { toasterSuccess } from '../../../utils/toaster-messages.js';
+import { useEditFavorite, useGetOneFavorite } from '../../../api/favoritesApi.js';
 
 import AuthContext from '../../../contexts/authContext.jsx';
 import ErrorMessage from '../../error-message/ErrorMessage.jsx';
 import Spinner from '../../spinner/Spinner.jsx';
-import { useEditFavorite, useGetOneFavorite } from '../../../api/favoritesApi.js';
 
 const initialValues = {
     [ALBUM_FORM_KEYS.Title]: '',
@@ -56,17 +57,19 @@ export default function EditAlbum() {
     }
 
     async function handleEdit() {
-        setLoading(true);
+        setLoading(true); 
+
         try {
             await editAlbum(albumId, {
                 ...formValues,
                 released: formatDateString(formValues.released)
             });
-
+            
             if (favoriteId) {
                 await editFavorite(favoriteId, formValues, userId);
             }
-
+            
+            toasterSuccess(ALBUM_MESSAGES.EDIT_SUCCESS);
             navigate(`/albums/${albumId}/details`);
         } catch (err) {
             setError(err.message);

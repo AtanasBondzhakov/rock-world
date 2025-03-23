@@ -2,11 +2,12 @@ import { useContext, useEffect, useState, } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import styles from './UpdateProfile.module.css';
-import { AUTH_FORM_KEYS } from '../../../constants.js';
+import { AUTH_FORM_KEYS, AUTH_MESSAGES } from '../../../constants.js';
 import useForm from '../../../hooks/useForm.js';
 import profileService from '../../../services/profileService.js';
 import AuthContext from '../../../contexts/authContext.jsx';
 import { profileSchema } from '../../../schemas/profileSchema.js';
+import { toasterSuccess } from '../../../utils/toaster-messages.js';
 
 import ErrorMessage from '../../error-message/ErrorMessage.jsx';
 
@@ -26,7 +27,8 @@ export default function UpdateProfile() {
     async function handleEditUser() {
         try {
             await profileService.edit(userId, formValues);
-
+            
+            toasterSuccess(AUTH_MESSAGES.UPDATE_PROFILE_SUCCESS);
             navigate('/auth/profile');
         } catch (err) {
             setError(err.message);
