@@ -22,6 +22,7 @@ import About from "./components/about/About.jsx";
 import Profile from "./components/profile/Profile.jsx";
 import UpdateProfile from "./components/profile/update-profile/UpdateProfile.jsx";
 import Contacts from "./components/contacts/Contacts.jsx";
+import AuthGuard from "./components/guards/AuthGuard.jsx";
 
 function App() {
     return (
@@ -35,14 +36,16 @@ function App() {
                 <Route path={PATHS.Albums} element={<AllAlbums />} />
                 <Route path={PATHS.Register} element={<Register />} />
                 <Route path={PATHS.Login} element={<Login />} />
-                <Route path={PATHS.Logout} element={<Logout />} />
+                <Route element={<AuthGuard />} >
+                    <Route path={PATHS.CreateAlbum} element={<CreateAlbum />} />
+                    <Route path={PATHS.EditAlbum} element={<EditAlbum />} />
+                    <Route path={PATHS.Profile} element={<Profile />} />
+                    <Route path={PATHS.UpdateProfile} element={<UpdateProfile />} />
+                    <Route path={PATHS.Logout} element={<Logout />} />
+                </Route>
                 <Route path={PATHS.DetailsAlbum} element={<AlbumDetails />} />
-                <Route path={PATHS.CreateAlbum} element={<CreateAlbum />} />
-                <Route path={PATHS.EditAlbum} element={<EditAlbum />} />
                 <Route path="/search/:searchQuery" element={<Search />} />
                 <Route path={PATHS.About} element={<About />} />
-                <Route path={PATHS.Profile} element={<Profile />} />
-                <Route path={PATHS.UpdateProfile} element={<UpdateProfile />} />
                 <Route path={PATHS.Contacts} element={<Contacts />} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
@@ -50,7 +53,7 @@ function App() {
             <Footer />
 
             <ToastContainer />
-        </AuthProvider>
+        </AuthProvider >
     )
 }
 
