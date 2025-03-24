@@ -47,7 +47,7 @@ function App() {
                     <Route path={PATHS.Login} element={<Login />} />
                 </Route>
                 <Route path={PATHS.DetailsAlbum} element={<AlbumDetails />} />
-                <Route path="/search/:searchQuery" element={<Search />} />
+                <Route path={PATHS.Search} element={<Search />} />
                 <Route path={PATHS.About} element={<About />} />
                 <Route path={PATHS.Contacts} element={<Contacts />} />
                 <Route path="*" element={<PageNotFound />} />

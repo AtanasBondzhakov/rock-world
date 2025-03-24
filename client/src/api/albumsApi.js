@@ -1,11 +1,20 @@
 import { useEffect, useState } from "react";
 import requester from "../services/requester.js";
-import { formatDateString, parseDateString } from "../utils/dateUtil.js";
+import { formatDateString } from "../utils/dateUtil.js";
 
 const BASE_PATH = '/data/albums';
 
 export const useCreateAlbum = () => {
-    const createAlbum = (albumData) => requester.post(BASE_PATH, albumData);
+    const createAlbum = async (albumData) => {
+        const data = {
+            ...albumData,
+            released: formatDateString(albumData.released)
+        };
+
+        const newAlbum = await requester.post(BASE_PATH, data);
+
+        return newAlbum;
+    }
 
     return {
         createAlbum
@@ -57,10 +66,7 @@ export const useGetOneAlbum = (albumId) => {
             try {
                 const result = await requester.get(`${BASE_PATH}/${albumId}`);
 
-                setAlbum({
-                    ...result,
-                    released: parseDateString(result.released)
-                })
+                setAlbum(result);
             } catch (err) {
                 setError(err.message);
             } finally {

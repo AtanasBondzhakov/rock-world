@@ -10,7 +10,8 @@ export const PATHS = {
     DetailsAlbum: '/albums/:albumId/details',
     EditAlbum: '/albums/:albumId/edit',
     Profile: '/auth/profile',
-    UpdateProfile: '/auth/profile/:userId/update'
+    UpdateProfile: '/auth/profile/:userId/update',
+    Search: '/search/:searchQuery'
 };
 
 export const ALBUM_FORM_KEYS = {

@@ -10,8 +10,6 @@ import AuthContext from '../../contexts/authContext.jsx';
 import SearchForm from '../search/search-form/SearchForm.jsx';
 import HeaderLiItem from './header-li-item/HeaderLiItem.jsx';
 
-
-
 const navLinks = [
     { path: PATHS.Home, name: "Home", requiresAuth: null },
     { path: PATHS.Albums, name: "Albums", requiresAuth: null },
