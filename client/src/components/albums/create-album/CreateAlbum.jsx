@@ -24,12 +24,14 @@ const initialValues = {
 export default function CreateAlbum() {
     const { formValues, formErrors, onChange, onSubmit } = useForm(initialValues, createAlbumHandler, albumSchema);
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const { createAlbum } = useCreateAlbum();
 
     const navigate = useNavigate();
 
     async function createAlbumHandler() {
+        setLoading(true);
         try {
             await createAlbum(formValues);
 
@@ -37,6 +39,8 @@ export default function CreateAlbum() {
             navigate(PATHS.Albums);
         } catch (err) {
             setError(err.message);
+        }finally {
+            setLoading(false);
         }
     };
 
@@ -156,7 +160,7 @@ export default function CreateAlbum() {
 
                     {formErrors[ALBUM_FORM_KEYS.Description] && <div className={styles.validationError}>{formErrors[ALBUM_FORM_KEYS.Description]}</div>}
                 </div>
-                <button type="submit" className={styles.button}>Create Album</button>
+                <button type="submit" disabled={loading ? 'disabled' : ''} className={styles.button}>Create Album</button>
             </form>
         </div>
     );

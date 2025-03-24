@@ -1,5 +1,7 @@
 .wrapper {
     min-height: 100vh;
+    background: linear-gradient(210deg, rgb(73, 73, 73, 1) 0%, rgb(10, 2, 2) 50%, rgba(73, 73, 73, 1) 100%);
+    padding-top: 1em;
 }
 
 .container {
@@ -52,6 +54,11 @@
 .names {
     display: flex;
     justify-content: space-between;
+}
+
+.names p {
+    font-weight: 500;
+    font-size: 1.25em;
 }
 
 .bottom {

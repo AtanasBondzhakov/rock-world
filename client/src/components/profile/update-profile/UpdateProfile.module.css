@@ -108,6 +108,10 @@
     text-decoration: underline;
 }
 
+.form button:disabled {
+  cursor: not-allowed;
+}
+
 @media (max-width: 640px) {
     .authContainer {
     max-width: 20em;

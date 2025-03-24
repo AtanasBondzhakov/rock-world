@@ -20,6 +20,7 @@ const initialValues = {
 export default function UpdateProfile() {
     const { formValues, formErrors, onChange, onSubmit, setFormValues } = useForm(initialValues, handleEditUser, profileSchema);
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const { userId } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -28,6 +29,7 @@ export default function UpdateProfile() {
     const { profile } = useGetProfile(userId);
     
     async function handleEditUser() {
+        setLoading(true);
         try {
             await editProfile(userId, formValues);
 
@@ -35,6 +37,8 @@ export default function UpdateProfile() {
             navigate('/auth/profile');
         } catch (err) {
             setError(err.message);
+        }finally {
+            setLoading(false);
         }
     };
 
@@ -95,7 +99,7 @@ export default function UpdateProfile() {
 
                         {formErrors[AUTH_FORM_KEYS.Bio] && <div className={styles.validationError}>{formErrors[AUTH_FORM_KEYS.Bio]}</div>}
                     </div>
-                    <button type="submit" className={styles.button}>Update</button>
+                    <button type="submit" disabled={loading ? 'disabled' : ''} className={styles.button}>Update</button>
                 </form>
             </div>
         </div>

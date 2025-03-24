@@ -15,6 +15,7 @@ export const AuthProvider = ({
     const [auth, setAuth] = usePersistedState('auth', {});
     const [registerError, setRegisterError] = useState('');
     const [loginError, setLoginError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const { createProfile } = useCreateProfile();
 
@@ -27,6 +28,7 @@ export const AuthProvider = ({
     }, [location.pathname]);
 
     const handleRegister = async (userData) => {
+        setLoading(true);
         try {
             const { password, ...userDetails } = await authService.register(userData.email, userData.password, userData.username);
             const { accessToken, ...profileDetails } = userDetails;
@@ -41,10 +43,13 @@ export const AuthProvider = ({
             navigate(PATHS.Home);
         } catch (err) {
             setRegisterError(err.message);
+        } finally {
+            setLoading(false);
         }
     };
 
     const handleLogin = async (userData) => {
+        setLoading(true);
         try {
             const { password, ...userDetails } = await authService.login(userData.email, userData.password);
 
@@ -56,6 +61,8 @@ export const AuthProvider = ({
             navigate(PATHS.Home);
         } catch (err) {
             setLoginError(err.message);
+        } finally {
+            setLoading(false)
         }
     };
 
@@ -75,7 +82,8 @@ export const AuthProvider = ({
         isAuthenticated: !!auth.email,
         userId: auth._id,
         registerError,
-        loginError
+        loginError,
+        loading
     };
 
     return (

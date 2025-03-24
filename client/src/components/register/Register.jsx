@@ -15,7 +15,7 @@ const initialValues = {
 };
 
 export default function Register() {
-    const { handleRegister, registerError } = useContext(AuthContext);
+    const { handleRegister, registerError, loading } = useContext(AuthContext);
 
     const { formValues, formErrors, onChange, onSubmit } = useForm(initialValues, handleRegister, registerSchema);
 
@@ -80,7 +80,7 @@ export default function Register() {
 
                         {formErrors[AUTH_FORM_KEYS.RePassword] && <div className={styles.validationError}>{formErrors[AUTH_FORM_KEYS.RePassword]}</div>}
                     </div>
-                    <button type="submit" className={styles.button}>Register</button>
+                    <button type="submit" disabled={loading ? 'disabled' : ''} className={styles.button}>Register</button>
                 </form>
                 <p className={styles.loginLink}>
                     Already have an account? <Link to={PATHS.Login}>Sign in</Link>

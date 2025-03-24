@@ -13,12 +13,12 @@ import HeaderLiItem from './header-li-item/HeaderLiItem.jsx';
 const navLinks = [
     { path: PATHS.Home, name: "Home", requiresAuth: null },
     { path: PATHS.Albums, name: "Albums", requiresAuth: null },
-    { path: PATHS.About, name: "About", requiresAuth: null },
-    { path: PATHS.Login, name: "Login", requiresAuth: false },
-    { path: PATHS.Register, name: "Register", requiresAuth: false },
     { path: PATHS.CreateAlbum, name: "Create", requiresAuth: true },
     { path: PATHS.Profile, name: "Profile", requiresAuth: true },
+    { path: PATHS.About, name: "About", requiresAuth: null },
     { path: PATHS.Contacts, name: "Contacts", requiresAuth: null },
+    { path: PATHS.Login, name: "Login", requiresAuth: false },
+    { path: PATHS.Register, name: "Register", requiresAuth: false },
     { path: PATHS.Logout, name: "Logout", requiresAuth: true },
 ];
 

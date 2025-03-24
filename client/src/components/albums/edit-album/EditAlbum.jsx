@@ -3,7 +3,6 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
 import { ALBUM_FORM_KEYS, ALBUM_MESSAGES, PATHS } from '../../../constants.js';
 import styles from './EditAlbum.module.css';
-import { formatDateString } from '../../../utils/dateUtil.js';
 import { formatDateString, parseDateString } from '../../../utils/dateUtil.js';
 import { albumSchema } from '../../../schemas/albumSchema.js';
 import useForm from '../../../hooks/useForm.js';
@@ -48,7 +47,6 @@ export default function EditAlbum() {
     } = useForm(initialValues, handleEdit, albumSchema);
 
     useEffect(() => {
-        setFormValues(album);
         setFormValues({
             ...album,
             released: album.released ? parseDateString(album.released) : ''
@@ -101,7 +99,6 @@ export default function EditAlbum() {
                                 id={ALBUM_FORM_KEYS.Title}
                                 name={[ALBUM_FORM_KEYS.Title]}
                                 placeholder="Back in Black"
-                                value={formValues.title}
                                 value={formValues[ALBUM_FORM_KEYS.Title]}
                                 onChange={onChange}
                             />
@@ -204,7 +201,7 @@ export default function EditAlbum() {
 
                             {formErrors[ALBUM_FORM_KEYS.Description] && <div className={styles.validationError}>{formErrors[ALBUM_FORM_KEYS.Description]}</div>}
                         </div>
-                        <button type="submit" className={styles.button}>Submit Album</button>
+                        <button type="submit" disabled={loading ? 'disabled' : ''} className={styles.button}>Submit Album</button>
                     </form>
                 </>
             )}

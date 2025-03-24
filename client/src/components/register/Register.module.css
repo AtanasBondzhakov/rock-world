@@ -115,6 +115,10 @@
   left: 0;
 }
 
+.form button:disabled {
+  cursor: not-allowed;
+}
+
 @media (max-width: 640px) {
   .container {
     height: auto;

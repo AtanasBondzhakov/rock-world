@@ -12,7 +12,7 @@ const initialValues = {
 };
 
 export default function Login() {
-    const { handleLogin, loginError } = useContext(AuthContext);
+    const { handleLogin, loginError, loading } = useContext(AuthContext);
 
     const { formValues, onChange, onSubmit } = useForm(initialValues, handleLogin);
 
@@ -47,7 +47,7 @@ export default function Login() {
                             onChange={onChange}
                         />
                     </div>
-                    <button type="submit" className={styles.button}>Login</button>
+                    <button type="submit" disabled={loading ? 'disabled' : ''} className={styles.button}>Login</button>
                 </form>
                 <p className={styles.registerLink}>
                     Don't have an account? <Link to={PATHS.Register}>Sign up</Link>
