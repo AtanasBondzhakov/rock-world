@@ -25,15 +25,13 @@ export const useGetProfile = (userId) => {
         (async () => {
             try {
                 const result = await requester.get(`${BASE_URL}?${query}`);
-                console.log(result);
-                
-                setProfile(result)
+
+                setProfile(result[0]);
             } catch (error) {
                 setError(error.message)
             } finally {
                 setLoading(false);
             }
-
         })();
     }, [userId]);
 
@@ -46,13 +44,13 @@ export const useGetProfile = (userId) => {
 
 export const useEditProfile = () => {
     const editProfile = async (userId, profileData) => {
-        const profiles = await requester.get('/data/profiles');
+        const profiles = await requester.get(BASE_URL);
+        const profileResult = profiles.find(profile => profile._ownerId === userId);
 
-        const myProfile = profiles.find(profile => profile._ownerId === userId);
-        return requester.put(`/data/profiles/${myProfile._id}`, profileData);
-    }
+        return requester.put(`${BASE_URL}/${profileResult._id}`, profileData);
+    };
 
     return {
         editProfile
     }
-}
+};

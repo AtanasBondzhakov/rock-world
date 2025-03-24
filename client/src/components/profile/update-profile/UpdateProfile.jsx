@@ -4,13 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import styles from './UpdateProfile.module.css';
 import { AUTH_FORM_KEYS, AUTH_MESSAGES } from '../../../constants.js';
 import useForm from '../../../hooks/useForm.js';
-import profileService from '../../../services/profileService.js';
 import AuthContext from '../../../contexts/authContext.jsx';
 import { profileSchema } from '../../../schemas/profileSchema.js';
 import { toasterSuccess } from '../../../utils/toaster-messages.js';
+import { useEditProfile, useGetProfile } from '../../../api/profilesApi.js';
 
 import ErrorMessage from '../../error-message/ErrorMessage.jsx';
-import { useEditProfile } from '../../../api/profilesApi.js';
 
 const initialValues = {
     [AUTH_FORM_KEYS.FirstName]: '',
@@ -26,7 +25,8 @@ export default function UpdateProfile() {
     const navigate = useNavigate();
 
     const { editProfile } = useEditProfile();
-
+    const { profile } = useGetProfile(userId);
+    
     async function handleEditUser() {
         try {
             await editProfile(userId, formValues);
@@ -39,20 +39,12 @@ export default function UpdateProfile() {
     };
 
     useEffect(() => {
-        (async () => {
-            try {
-                const userProfile = await profileService.get(userId);
-
-                setFormValues({
-                    [AUTH_FORM_KEYS.FirstName]: userProfile.firstName || '',
-                    [AUTH_FORM_KEYS.LastName]: userProfile.lastName || '',
-                    [AUTH_FORM_KEYS.Bio]: userProfile.bio || '',
-                });
-            } catch (err) {
-                setError(err.message);
-            }
-        })();
-    }, [userId]);
+        setFormValues({
+            [AUTH_FORM_KEYS.FirstName]: profile.firstName || '',
+            [AUTH_FORM_KEYS.LastName]: profile.lastName || '',
+            [AUTH_FORM_KEYS.Bio]: profile.bio || '',
+        });
+    }, [profile, userId]);
 
     return (
         <div className={styles.container}>

@@ -1,42 +1,21 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './Profile.module.css';
 import AuthContext from '../../contexts/authContext.jsx';
-import profileService from '../../services/profileService.js';
+import { useMyFavorites } from '../../api/favoritesApi.js';
+import { useGetProfile } from '../../api/profilesApi.js';
 
 import ProfileFavoriteItem from './profile-favorite-item/ProfileFavoriteItem.jsx';
 import ErrorMessage from '../error-message/ErrorMessage.jsx';
 import Spinner from '../spinner/Spinner.jsx';
-import { useMyFavorites } from '../../api/favoritesApi.js';
-import { useGetProfile } from '../../api/profilesApi.js';
 
 export default function Profile() {
-    // const [favoritesInfo, setFavoritesInfo] = useState([]);
-    // const [profile, setProfile] = useState({});
-    // const [loading, setLoading] = useState(true);
-    // const [error, setError] = useState('');
-
     const { username, email, userId } = useContext(AuthContext);
 
     const { myFavorites } = useMyFavorites(userId);
-    const {profile, error, loading } = useGetProfile(userId);
-    
-    // useEffect(() => {
-    //     (async () => {
-    //         try {
-    //             const result = await profileService.get(userId);
+    const { profile, error, loading } = useGetProfile(userId);
 
-    //             setProfile(result);
-    //         } catch (err) {
-    //             setError(err.message);
-    //         } finally {
-    //             setLoading(false);
-    //         }
-    //     })();
-    // }, [userId]);
-
-    //TODO change profile image and Bio
     return (
         <div className={styles.wrapper}>
             {loading && <Spinner />}
@@ -61,18 +40,18 @@ export default function Profile() {
                                     </div>
                                     <div className={styles.email}>
                                         <span>First name:</span>
-                                        <p>{profile[0]?.firstName || 'n/a'}</p>
+                                        <p>{profile?.firstName || 'n/a'}</p>
                                     </div>
                                     <div className={styles.email}>
                                         <span>Last name:</span>
-                                        <p>{profile[0]?.lastName || 'n/a'}</p>
+                                        <p>{profile?.lastName || 'n/a'}</p>
                                     </div>
                                 </div>
                             </div>
                             <div className={styles.bottom}>
                                 <span>Bio:</span>
                                 <hr />
-                                <p>{profile[0]?.bio || 'n/a'}</p>
+                                <p>{profile?.bio || 'n/a'}</p>
                             </div>
                             <Link to={`/auth/profile/${userId}/update`}>Edit Profile</Link>
                         </div>
