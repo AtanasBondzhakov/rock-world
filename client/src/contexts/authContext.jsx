@@ -5,7 +5,7 @@ import usePersistedState from "../hooks/usePersistedState";
 import { AUTH_MESSAGES, PATHS } from "../constants.js";
 import authService from "../services/authService.js";
 import { toasterSuccess } from "../utils/toaster-messages.js";
-import profileService from "../services/profileService.js";
+import { useCreateProfile } from "../api/profilesApi.js";
 
 const AuthContext = createContext();
 
@@ -16,6 +16,8 @@ export const AuthProvider = ({
     const [registerError, setRegisterError] = useState('');
     const [loginError, setLoginError] = useState('');
 
+    const { createProfile } = useCreateProfile();
+
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -25,14 +27,15 @@ export const AuthProvider = ({
     }, [location.pathname]);
 
     const handleRegister = async (userData) => {
-         try {
+        try {
             const { password, ...userDetails } = await authService.register(userData.email, userData.password, userData.username);
+            const { accessToken, ...profileDetails } = userDetails;
 
             setAuth(userDetails);
 
             localStorage.setItem('accessToken', userDetails.accessToken);
-            
-            await profileService.add(userDetails);
+
+            await createProfile(profileDetails);
 
             toasterSuccess(AUTH_MESSAGES.REGISTER_SUCCESS);
             navigate(PATHS.Home);

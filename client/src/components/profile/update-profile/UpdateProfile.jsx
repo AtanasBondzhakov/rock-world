@@ -10,6 +10,7 @@ import { profileSchema } from '../../../schemas/profileSchema.js';
 import { toasterSuccess } from '../../../utils/toaster-messages.js';
 
 import ErrorMessage from '../../error-message/ErrorMessage.jsx';
+import { useEditProfile } from '../../../api/profilesApi.js';
 
 const initialValues = {
     [AUTH_FORM_KEYS.FirstName]: '',
@@ -24,10 +25,12 @@ export default function UpdateProfile() {
     const { userId } = useContext(AuthContext);
     const navigate = useNavigate();
 
+    const { editProfile } = useEditProfile();
+
     async function handleEditUser() {
         try {
-            await profileService.edit(userId, formValues);
-            
+            await editProfile(userId, formValues);
+
             toasterSuccess(AUTH_MESSAGES.UPDATE_PROFILE_SUCCESS);
             navigate('/auth/profile');
         } catch (err) {
