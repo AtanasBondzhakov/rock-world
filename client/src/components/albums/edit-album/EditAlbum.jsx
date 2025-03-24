@@ -4,6 +4,7 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { ALBUM_FORM_KEYS, ALBUM_MESSAGES, PATHS } from '../../../constants.js';
 import styles from './EditAlbum.module.css';
 import { formatDateString } from '../../../utils/dateUtil.js';
+import { formatDateString, parseDateString } from '../../../utils/dateUtil.js';
 import { albumSchema } from '../../../schemas/albumSchema.js';
 import useForm from '../../../hooks/useForm.js';
 import { useEditAlbum, useGetOneAlbum } from '../../../api/albumsApi.js';
@@ -48,6 +49,10 @@ export default function EditAlbum() {
 
     useEffect(() => {
         setFormValues(album);
+        setFormValues({
+            ...album,
+            released: album.released ? parseDateString(album.released) : ''
+        });
     }, [album]);
 
     const isOwner = userId === album._ownerId;
@@ -97,6 +102,7 @@ export default function EditAlbum() {
                                 name={[ALBUM_FORM_KEYS.Title]}
                                 placeholder="Back in Black"
                                 value={formValues.title}
+                                value={formValues[ALBUM_FORM_KEYS.Title]}
                                 onChange={onChange}
                             />
 
