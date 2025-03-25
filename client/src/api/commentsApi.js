@@ -13,7 +13,7 @@ export const useCreateComment = () => {
 
 export const useGetComments = (offset, pageSize, albumId) => {
     const [comments, setComments] = useState([]);
-    const [error, setError] = useState('');
+    const [error, setError] = useState(null);
     const [hasNextPage, setHasNextPage] = useState(true);
 
     const fetchComments = useCallback(async () => {
@@ -31,7 +31,9 @@ export const useGetComments = (offset, pageSize, albumId) => {
             setComments(result.slice(0, pageSize));
             setHasNextPage(result.length > pageSize);
         } catch (err) {
-            setError(err.message);
+            setError({
+                message: err.message
+            });
         }
     }, [albumId, offset]);
 

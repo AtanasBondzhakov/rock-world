@@ -26,7 +26,7 @@ export default function DetailsAlbumItem({
 
     const { deleteAlbum } = useDeleteAlbum();
     const { addFavorite } = useAddFavorite();
-    const { favoriteId, refetch } = useGetOneFavorite(album._id, userId);
+    const { favoriteId, refetch, error: favoriteError } = useGetOneFavorite(album._id, userId);
     const { removeFavorite } = useRemoveFavorite();
 
     const handleDeleteButtonClick = () => {
@@ -39,7 +39,7 @@ export default function DetailsAlbumItem({
 
     const handleDeleteAlbum = async () => {
         try {
-            
+
             if (favoriteId) {
                 //TODO remove favorite from all users
                 await removeFavorite(favoriteId);
@@ -70,6 +70,7 @@ export default function DetailsAlbumItem({
     return (
         <div>
             {error && <ErrorMessage message={error} />}
+            {favoriteError && <ErrorMessage message={favoriteError} />}
 
             {!error && (
                 <>

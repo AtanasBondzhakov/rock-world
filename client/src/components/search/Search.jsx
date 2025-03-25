@@ -30,7 +30,7 @@ export default function Search() {
             )}
 
             {!loading && searchResult.length === 0 && error && (
-                <ErrorMessage message={error} />
+                <ErrorMessage message={error.message} />
             )}
         </div>
     );

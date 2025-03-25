@@ -13,17 +13,18 @@ import Spinner from '../spinner/Spinner.jsx';
 export default function Profile() {
     const { username, email, userId } = useContext(AuthContext);
 
-    const { myFavorites } = useMyFavorites(userId);
-    const { profile, error, loading } = useGetProfile(userId);
+    const { myFavorites, error: favoritesError } = useMyFavorites(userId);
+    const { profile, error: profileError, loading } = useGetProfile(userId);
 
     return (
         <div className={styles.wrapper}>
             {loading && <Spinner />}
 
             <div className={styles.container}>
-                {(!loading && error) && <ErrorMessage message={error} />}
+                {(!loading && profileError) && <ErrorMessage message={profileError} />}
+                {(!loading && favoritesError) && <ErrorMessage message={favoritesError} />}
 
-                {(!loading && !error) && (
+                {(!loading && !profileError) && (
                     <>
                         <div className={styles.info}>
                             <div className={styles.top}>

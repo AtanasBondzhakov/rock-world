@@ -24,7 +24,7 @@ export const useCreateAlbum = () => {
 export const useGetAllAlbums = (offset, pageSize) => {
     const [albums, setAlbums] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
+    const [error, setError] = useState(null);
     const [hasNextPage, setHasNextPage] = useState(true);
 
     const query = new URLSearchParams({
@@ -41,7 +41,9 @@ export const useGetAllAlbums = (offset, pageSize) => {
                 setAlbums(result.slice(0, pageSize));
                 setHasNextPage(result.length > pageSize)
             } catch (err) {
-                setError(err.message);
+                setError({
+                    message: 'Albums are currently unavailable.'
+                });
             } finally {
                 setLoading(false);
             }
@@ -59,7 +61,7 @@ export const useGetAllAlbums = (offset, pageSize) => {
 export const useGetOneAlbum = (albumId) => {
     const [album, setAlbum] = useState({});
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         (async () => {
@@ -68,7 +70,9 @@ export const useGetOneAlbum = (albumId) => {
 
                 setAlbum(result);
             } catch (err) {
-                setError(err.message);
+                setError({
+                    message: err.message
+                });
             } finally {
                 setLoading(false);
             }
@@ -130,7 +134,7 @@ export const useEditAlbum = () => {
 export const useSearch = (searchQuery) => {
     const [searchResult, setSearchResult] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
+    const [error, setError] = useState(null);
 
     const query = new URLSearchParams({
         where: `title LIKE "${searchQuery}" OR band LIKE "${searchQuery}"`
@@ -143,7 +147,9 @@ export const useSearch = (searchQuery) => {
 
                 setSearchResult(result);
             } catch (err) {
-                setError(err.message);
+                setError({
+                    message: 'Albums are currently unavailable.'
+                });
             } finally {
                 setLoading(false);
             }

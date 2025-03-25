@@ -13,6 +13,7 @@ export const useAddFavorite = () => {
 
 export const useGetOneFavorite = (albumId, userId) => {
     const [favoriteId, setFavoriteId] = useState(null);
+    const [error, setError] = useState('');
 
     const fetchFavorite = async () => {
         try {
@@ -25,8 +26,7 @@ export const useGetOneFavorite = (albumId, userId) => {
 
             setFavoriteId(favorite?._id);
         } catch (err) {
-            //TODO fix error message
-            console.error('Failed to fetch favorite:', err);
+            setError('Failed to load favorite.');
         }
     };
 
@@ -36,7 +36,8 @@ export const useGetOneFavorite = (albumId, userId) => {
 
     return {
         favoriteId,
-        refetch: fetchFavorite
+        refetch: fetchFavorite,
+        error
     };
 };
 
@@ -50,6 +51,7 @@ export const useRemoveFavorite = () => {
 
 export const useMyFavorites = (userId) => {
     const [myFavorites, setMyFavorites] = useState([]);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         (async () => {
@@ -62,13 +64,14 @@ export const useMyFavorites = (userId) => {
 
                 setMyFavorites(result)
             } catch (err) {
-                //TODO error handling
+                setError('Failed to load favorites.')
             }
         })();
     }, [userId]);
 
     return {
-        myFavorites
+        myFavorites,
+        error
     }
 };
 

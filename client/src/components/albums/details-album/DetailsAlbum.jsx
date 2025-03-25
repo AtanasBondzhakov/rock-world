@@ -62,9 +62,9 @@ export default function DetailsAlbum() {
             <div className={styles.container}>
                 {loading && <Spinner />}
 
-                {albumError && <ErrorMessage message={albumError} />}
+                {albumError && <ErrorMessage message={albumError.message} />}
                 {commentError && <ErrorMessage message={commentError} />}
-                {commentsError && <ErrorMessage message={commentsError} />}
+                {commentsError && <ErrorMessage message={commentsError.message} />}
 
                 {!loading && !commentError && (
                     <>
