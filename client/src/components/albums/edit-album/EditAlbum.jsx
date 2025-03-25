@@ -47,10 +47,12 @@ export default function EditAlbum() {
     } = useForm(initialValues, handleEdit, albumSchema);
 
     useEffect(() => {
-        setFormValues({
-            ...album,
-            released: album.released ? parseDateString(album.released) : ''
-        });
+        if (album?.released) {
+            setFormValues({
+                ...album,
+                released: album.released ? parseDateString(album.released) : ''
+            });
+        }
     }, [album]);
 
     const isOwner = userId === album._ownerId;
@@ -60,18 +62,18 @@ export default function EditAlbum() {
     }
 
     async function handleEdit() {
-        setLoading(true); 
+        setLoading(true);
 
         try {
             await editAlbum(albumId, {
                 ...formValues,
                 released: formatDateString(formValues.released)
             });
-            
+
             if (favoriteId) {
                 await editFavorite(favoriteId, formValues, userId);
             }
-            
+
             toasterSuccess(ALBUM_MESSAGES.EDIT_SUCCESS);
             navigate(`/albums/${albumId}/details`);
         } catch (err) {
