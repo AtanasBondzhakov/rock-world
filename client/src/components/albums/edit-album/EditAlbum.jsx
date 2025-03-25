@@ -27,7 +27,7 @@ const initialValues = {
 
 export default function EditAlbum() {
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
+    const [error, setError] = useState(null);
 
     const { albumId } = useParams();
     const { userId } = useContext(AuthContext);
@@ -77,7 +77,9 @@ export default function EditAlbum() {
             toasterSuccess(ALBUM_MESSAGES.EDIT_SUCCESS);
             navigate(`/albums/${albumId}/details`);
         } catch (err) {
-            setError(err.message);
+            setError({
+                message: err.message || 'An unknown error occurred '
+            });
         } finally {
             setLoading(false);
         }
@@ -86,7 +88,7 @@ export default function EditAlbum() {
     return (
         <div className={styles.container}>
 
-            {error && <ErrorMessage message={error} />}
+            {error && <ErrorMessage message={error.message} />}
 
             {loading && <Spinner />}
 

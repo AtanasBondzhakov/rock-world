@@ -11,7 +11,7 @@ export default function Logout() {
     const { handleLogout } = useContext(AuthContext);
 
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         (async () => {
@@ -20,7 +20,9 @@ export default function Logout() {
 
                 handleLogout();
             } catch (err) {
-                setError(err.message);
+                setError({
+                    message: err.message
+                });
             } finally {
                 setLoading(false);
             }
@@ -31,7 +33,7 @@ export default function Logout() {
         <div className={styles.container}>
             {loading
                 ? <Spinner />
-                : <ErrorMessage message={error} />
+                : <ErrorMessage message={error.message} />
             }
         </div>
     );

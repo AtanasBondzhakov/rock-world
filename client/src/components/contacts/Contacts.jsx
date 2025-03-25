@@ -23,7 +23,14 @@ export default function Contacts() {
     const formRef = useRef();
     const { username, email } = useContext(AuthContext);
 
-    const { formValues, formErrors, setFormValues, onChange, onSubmit } = useForm(initialValues, handleSendEmail, contactsSchema);
+    const {
+        formValues,
+        formErrors,
+        setFormValues,
+        onChange,
+        onSubmit
+    } = useForm(initialValues, handleSendEmail, contactsSchema);
+    
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
