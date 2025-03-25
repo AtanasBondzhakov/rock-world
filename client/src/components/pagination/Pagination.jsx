@@ -14,7 +14,7 @@ export default function Pagination({
                 Prev
             </button>
 
-            <span>Page {currentPage}</span>
+            <span className={styles.page}>Page {currentPage}</span>
 
             <button
                 onClick={() => handlePageChange(currentPage + 1)}

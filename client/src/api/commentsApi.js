@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import requester from "../services/requester.js";
 
 const BASE_URL = '/data/comments';
@@ -16,31 +16,38 @@ export const useGetComments = (offset, pageSize, albumId) => {
     const [error, setError] = useState('');
     const [hasNextPage, setHasNextPage] = useState(true);
 
-    const query = new URLSearchParams({
-        sortBy: '_createdOn desc',
-        offset,
-        pageSize: pageSize + 1,
-        where: `albumId="${albumId}"`,
-        load: `author=_ownerId:users`
-    });
+    const fetchComments = useCallback(async () => {
+        const query = new URLSearchParams({
+            sortBy: '_createdOn desc',
+            offset,
+            pageSize: pageSize + 1,
+            where: `albumId="${albumId}"`,
+            load: `author=_ownerId:users`
+        });
+
+        try {
+            const result = await requester.get(`${BASE_URL}?${query}`);
+
+            setComments(result.slice(0, pageSize));
+            setHasNextPage(result.length > pageSize);
+        } catch (err) {
+            setError(err.message);
+        }
+    }, [albumId, offset]);
+
+    const addComment = useCallback((newComment) => {
+        setComments(prev => [newComment, ...prev]);
+    }, []);
 
     useEffect(() => {
-        (async () => {
-            try {
-                const result = await requester.get(`${BASE_URL}?${query}`);
-
-                setComments(result.slice(0, pageSize));
-                setHasNextPage(result.length > pageSize);
-            } catch (err) {
-                setError(err.message);
-            }
-        })();
-    }, [albumId, offset]);
+        fetchComments();
+    }, [fetchComments]);
 
     return {
         comments,
-        setComments,
+        addComment,
         error,
-        hasNextPage
+        hasNextPage,
+        refetch: fetchComments
     }
 };

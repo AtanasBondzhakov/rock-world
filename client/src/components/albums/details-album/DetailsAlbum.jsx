@@ -17,31 +17,37 @@ import ScrollToTop from '../../scroll-to-top/ScrollToTop.jsx';
 export default function DetailsAlbum() {
     const [pageSize] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
+    const [commentError, setCommentError] = useState(null);
 
     const { albumId } = useParams();
     const { userId, isAuthenticated, email } = useContext(AuthContext);
 
-    const { album, loading, error } = useGetOneAlbum(albumId);
+    const { album, loading, error: albumError } = useGetOneAlbum(albumId);
     const { createComment } = useCreateComment();
 
     const offset = (currentPage - 1) * pageSize;
 
-    const { comments, setComments, error: commentsError, hasNextPage } = useGetComments(offset, pageSize, albumId);
+    const {
+        comments,
+        addComment,
+        error: commentsError,
+        hasNextPage,
+        refetch
+    } = useGetComments(offset, pageSize, albumId);
 
     const isOwner = userId === album._ownerId;
 
-    //TODO show comments when new is added
-    //TODO stick errors in one state and show conditionally
-
     const handleAddComment = async (values) => {
         try {
+            setCommentError(null);
             const newComment = await createComment(albumId, values.comment);
 
-            setComments(prevState => [{ ...newComment, author: { email } }, ...prevState]);
+            addComment({ ...newComment, author: { email } })
 
-            handleGetComments();
+            setCurrentPage(1);
+            await refetch();
         } catch (err) {
-            // setCommentError(err.message);
+            setCommentError(err.message);
         }
     };
 
@@ -56,9 +62,11 @@ export default function DetailsAlbum() {
             <div className={styles.container}>
                 {loading && <Spinner />}
 
-                {error && <ErrorMessage message={error} />}
+                {albumError && <ErrorMessage message={albumError} />}
+                {commentError && <ErrorMessage message={commentError} />}
+                {commentsError && <ErrorMessage message={commentsError} />}
 
-                {!loading && !error && (
+                {!loading && !commentError && (
                     <>
                         <h2>Album Details</h2>
 
