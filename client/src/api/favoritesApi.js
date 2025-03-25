@@ -71,7 +71,8 @@ export const useMyFavorites = (userId) => {
 
     return {
         myFavorites,
-        error
+        error,
+        setMyFavorites
     }
 };
 

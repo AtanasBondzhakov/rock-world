@@ -60,47 +60,54 @@ export default function DetailsAlbum() {
             <ScrollToTop dependency={[currentPage, comments]} />
 
             <div className={styles.container}>
-                {loading && <Spinner />}
 
-                {albumError && <ErrorMessage message={albumError.message} />}
-                {commentError && <ErrorMessage message={commentError} />}
-                {commentsError && <ErrorMessage message={commentsError.message} />}
+                {!album.title
+                    ? <ErrorMessage message='Owner delete the album' />
+                    : (
+                        <>
+                            {loading && <Spinner />}
 
-                {!loading && !commentError && (
-                    <>
-                        <h2>Album Details</h2>
+                            {albumError && <ErrorMessage message={albumError.message} />}
+                            {commentError && <ErrorMessage message={commentError} />}
+                            {commentsError && <ErrorMessage message={commentsError.message} />}
 
-                        <div className={styles.details}>
-                            <div className={styles.wrapper}>
-                                <div className={styles.albumContainer}>
-                                    <DetailsAlbumItem album={album} isOwner={isOwner} />
-                                </div>
+                            {!loading && !commentError && (
+                                <>
+                                    <h2>Album Details</h2>
 
-                                {isAuthenticated &&
-                                    <div className={styles.commentsContainer}>
-                                        <CommentAlbum handleAddComment={handleAddComment} />
+                                    <div className={styles.details}>
+                                        <div className={styles.wrapper}>
+                                            <div className={styles.albumContainer}>
+                                                <DetailsAlbumItem album={album} isOwner={isOwner} />
+                                            </div>
+
+                                            {isAuthenticated &&
+                                                <div className={styles.commentsContainer}>
+                                                    <CommentAlbum handleAddComment={handleAddComment} />
+                                                </div>
+                                            }
+                                        </div>
+                                        <div className={styles.comments}>
+                                            {comments.length > 0
+                                                ? <>
+                                                    <h2>Comments</h2>
+
+                                                    {comments.map(comment => <CommentAlbumItem key={comment._id} {...comment} />)}
+
+                                                    <Pagination
+                                                        currentPage={currentPage}
+                                                        hasNextPage={hasNextPage}
+                                                        handlePageChange={handlePageChange}
+                                                    />
+                                                </>
+                                                : <h2>No comments yet.</h2>
+                                            }
+                                        </div>
                                     </div>
-                                }
-                            </div>
-                            <div className={styles.comments}>
-                                {comments.length > 0
-                                    ? <>
-                                        <h2>Comments</h2>
-
-                                        {comments.map(comment => <CommentAlbumItem key={comment._id} {...comment} />)}
-
-                                        <Pagination
-                                            currentPage={currentPage}
-                                            hasNextPage={hasNextPage}
-                                            handlePageChange={handlePageChange}
-                                        />
-                                    </>
-                                    : <h2>No comments yet.</h2>
-                                }
-                            </div>
-                        </div>
-                    </>
-                )}
+                                </>
+                            )}
+                        </>
+                    )}
             </div>
         </>
     );
