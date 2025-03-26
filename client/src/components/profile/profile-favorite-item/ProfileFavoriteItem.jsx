@@ -13,14 +13,6 @@ export default function ProfileFavoriteItem({
 }) {
     const { favoriteId } = useGetOneFavorite(_id, userId);
 
-    const removeAlbum = async () => {
-        try {
-            await onRemove(favoriteId)
-        } catch (err) {
-            //TODO
-        }
-    };
-
     return (
         <div className={styles.container}>
             <Link to={`/albums/${_id}/details`} className={styles.albumCard}>
@@ -30,7 +22,7 @@ export default function ProfileFavoriteItem({
                 </div>
             </Link>
 
-            <button onClick={removeAlbum}>Remove</button>
+            <button onClick={() => onRemove(favoriteId)}>Remove</button>
         </div>
     );
 };

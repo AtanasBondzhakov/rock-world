@@ -28,7 +28,7 @@ export const useGetProfile = (userId) => {
 
                 setProfile(result[0]);
             } catch (error) {
-                setError(error.message)
+                setError('Profile is currently unavailable.')
             } finally {
                 setLoading(false);
             }

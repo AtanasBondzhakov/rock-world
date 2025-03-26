@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './Profile.module.css';
@@ -11,9 +11,11 @@ import ErrorMessage from '../error-message/ErrorMessage.jsx';
 import Spinner from '../spinner/Spinner.jsx';
 
 export default function Profile() {
+    const [errorRemove, setErrorRemove] = useState(null);
+
     const { username, email, userId } = useContext(AuthContext);
 
-    const { myFavorites, error: favoritesError, setMyFavorites } = useMyFavorites(userId);
+    const { myFavorites, error: favoritesError, updateFavorites } = useMyFavorites(userId);
     const { profile, error: profileError, loading } = useGetProfile(userId);
     const { removeFavorite } = useRemoveFavorite();
 
@@ -21,9 +23,9 @@ export default function Profile() {
         try {
             await removeFavorite(favoriteId);
 
-            setMyFavorites(state => state.filter(fav => fav._id !== favoriteId));
+            updateFavorites(favoriteId);
         } catch (err) {
-            //TODO
+            setErrorRemove({ message: err.message });
         }
     };
 
@@ -32,8 +34,12 @@ export default function Profile() {
             {loading && <Spinner />}
 
             <div className={styles.container}>
-                {(!loading && profileError) && <ErrorMessage message={profileError} />}
-                {(!loading && favoritesError) && <ErrorMessage message={favoritesError} />}
+                {(!loading && profileError)
+                    ? <ErrorMessage message={profileError} />
+                    : (!loading && favoritesError)
+                        ? <ErrorMessage message={favoritesError} />
+                        : (!loading && errorRemove) && <ErrorMessage message={errorRemove.message} />
+                }
 
                 {(!loading && !profileError) && (
                     <>
