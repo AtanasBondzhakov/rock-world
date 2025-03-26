@@ -62,17 +62,21 @@ export const useMyFavorites = (userId) => {
 
                 const result = await requester.get(`${BASE_URL}?${query}`);
 
-                setMyFavorites(result)
+                setMyFavorites(result);
             } catch (err) {
-                setError('Failed to load favorites.')
+                setError('Failed to load favorites.');
             }
         })();
     }, [userId]);
 
+    const updateFavorites = (favoriteId) => {
+        setMyFavorites(state => state.filter(fav => fav._id !== favoriteId));
+    };
+
     return {
         myFavorites,
         error,
-        setMyFavorites
+        updateFavorites
     }
 };
 
