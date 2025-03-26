@@ -97,3 +97,40 @@
     font-weight: normal;
     text-align: center;
 }
+
+@media (max-width: 480px) {
+    
+    .info h2 {
+        font-size: 1em;
+    }
+
+    .names {
+        flex-direction: column;
+    }
+
+    .names span {
+        font-size: 0.75em;
+    }
+
+    .names p {
+        font-size: 1em;
+        margin: 0;
+    }
+
+    .bottom p {
+        margin: 0;
+    }
+
+    .info a {
+        font-size: 0.8em;
+        margin: auto;
+    }
+
+    .favorites {
+        padding: 0;
+    }
+
+    .favorites h2 {
+        font-size: 1em;
+    }
+}
