@@ -17,10 +17,10 @@ export default function ProfileFavoriteItem({
         <div className={styles.container}>
             <Link to={`/albums/${_id}/details`} className={styles.albumCard}>
                 <img src={imageUrl} alt="album-cover" />
-                <div className={styles.info}>
-                    <h2>{title} by {band}</h2>
-                </div>
             </Link>
+            <div className={styles.info}>
+                <h2>{title} by {band}</h2>
+            </div>
 
             <button onClick={() => onRemove(favoriteId)}>Remove</button>
         </div>
