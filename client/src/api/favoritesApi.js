@@ -4,7 +4,14 @@ import requester from "../services/requester.js";
 const BASE_URL = '/data/favorites';
 
 export const useAddFavorite = () => {
-    const addFavorite = (albumData, userId) => requester.post(BASE_URL, { albumData, userId });
+    const addFavorite = (
+        albumId,
+        title,
+        band,
+        imageUrl
+    ) => {
+        return requester.post(BASE_URL, { albumId, title, band, imageUrl });
+    };
 
     return {
         addFavorite
@@ -18,13 +25,13 @@ export const useGetOneFavorite = (albumId, userId) => {
     const fetchFavorite = async () => {
         try {
             const query = new URLSearchParams({
-                where: `userId="${userId}"`
+                where: `_ownerId="${userId}" AND albumId="${albumId}"`
             });
 
-            const result = await requester.get(`${BASE_URL}?${query}`);
-            const favorite = result.find(fav => fav.albumData._id === albumId);
-
-            setFavoriteId(favorite?._id);
+            const favorite = await requester.get(`${BASE_URL}?${query}`);
+            // const favorite = result.find(fav => fav.albumId === albumId);
+            
+            setFavoriteId(favorite.at(0)?._id);
         } catch (err) {
             setError('Failed to load favorite.');
         }
@@ -57,7 +64,7 @@ export const useMyFavorites = (userId) => {
         (async () => {
             try {
                 const query = new URLSearchParams({
-                    where: `userId="${userId}"`
+                    where: `_ownerId="${userId}"`
                 });
 
                 const result = await requester.get(`${BASE_URL}?${query}`);
@@ -81,7 +88,15 @@ export const useMyFavorites = (userId) => {
 };
 
 export const useEditFavorite = () => {
-    const editFavorite = (favoriteId, albumData, userId) => requester.put(`${BASE_URL}/${favoriteId}`, { albumData, userId });
+    const editFavorite = (
+        favoriteId,
+        albumId,
+        title,
+        band,
+        imageUrl
+    ) => {
+        return requester.put(`${BASE_URL}/${favoriteId}`, { albumId, title, band, imageUrl });
+    }
 
     return {
         editFavorite

@@ -80,7 +80,7 @@ export default function Profile() {
                                 ? myFavorites.map(fav => (
                                     <ProfileFavoriteItem
                                         key={fav._id}
-                                        {...fav.albumData}
+                                        {...fav}
                                         userId={userId}
                                         onRemove={handleRemoveFavorite}
                                     />)

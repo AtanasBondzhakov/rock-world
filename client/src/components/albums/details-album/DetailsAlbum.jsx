@@ -96,7 +96,8 @@ export default function DetailsAlbum() {
                                             {comments.length > 0
                                                 ? <>
                                                     <h2>Comments</h2>
-                                                {commentsLoading && <Spinner />}
+                                                    {commentsLoading && <Spinner />}
+                                                    
                                                     {comments.map(comment => <CommentAlbumItem key={comment._id} {...comment} />)}
 
                                                     <Pagination

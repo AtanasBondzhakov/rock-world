@@ -41,7 +41,6 @@ export default function DetailsAlbumItem({
         try {
 
             if (favoriteId) {
-                //TODO remove favorite from all users
                 await removeFavorite(favoriteId);
             }
             await deleteAlbum(album._id);
@@ -56,7 +55,7 @@ export default function DetailsAlbumItem({
     const handleFavorite = async () => {
         try {
             if (!favoriteId) {
-                await addFavorite(album, userId);
+                await addFavorite(album._id, album.title, album.band, album.imageUrl);
             } else {
                 await removeFavorite(favoriteId);
             }

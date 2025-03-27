@@ -71,7 +71,7 @@ export default function EditAlbum() {
             });
 
             if (favoriteId) {
-                await editFavorite(favoriteId, formValues, userId);
+                await editFavorite(favoriteId, album._id, formValues.title, formValues.band, formValues.imageUrl);
             }
 
             toasterSuccess(ALBUM_MESSAGES.EDIT_SUCCESS);

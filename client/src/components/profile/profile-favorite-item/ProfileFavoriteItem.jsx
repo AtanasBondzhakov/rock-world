@@ -4,18 +4,18 @@ import styles from './ProfileFavoriteItem.module.css';
 import { useGetOneFavorite } from '../../../api/favoritesApi.js';
 
 export default function ProfileFavoriteItem({
-    _id,
-    imageUrl,
+    albumId,
     title,
     band,
+    imageUrl,
     onRemove,
     userId
 }) {
-    const { favoriteId } = useGetOneFavorite(_id, userId);
+    const { favoriteId } = useGetOneFavorite(albumId, userId);
 
     return (
         <div className={styles.container}>
-            <Link to={`/albums/${_id}/details`} className={styles.albumCard}>
+            <Link to={`/albums/${albumId}/details`} className={styles.albumCard}>
                 <img src={imageUrl} alt="album-cover" />
             </Link>
             <div className={styles.info}>

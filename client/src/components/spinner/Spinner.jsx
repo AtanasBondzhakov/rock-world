@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoadingOutlined } from '@ant-design/icons';
+import { Loading3QuartersOutlined } from '@ant-design/icons';
 import { Flex, Spin } from 'antd';
 
 const Spinner = () => (
@@ -13,10 +13,10 @@ const Spinner = () => (
     >
         <Spin
             indicator={
-                <LoadingOutlined
+                <Loading3QuartersOutlined
                     style={{
                         fontSize: 120,
-                        color: '#ec2e2e'
+                        color: 'rgb(165, 165, 165)'
                     }}
                     spin
                 />
