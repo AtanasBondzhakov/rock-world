@@ -12,9 +12,9 @@
 
 .details {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     gap: 10em;
-    margin: 0 10em;
+    margin: 0 2em;
 }
 
 .container > h2 {
@@ -92,7 +92,7 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    width: 700px;
+    width: 500px;
 }
 
 .comments h2 {
@@ -111,6 +111,22 @@
     color: #a1a1a1; 
 }
 
+@media (max-width: 1366px) {
+    .details {
+        margin: 0 5em;
+        gap: 3em;
+    }
+
+    .wrapper {
+        gap: 2em;
+        width: 650px;
+    }
+
+    /* .comments {
+        width: 500px;
+    } */
+}
+
 @media (max-width: 768px) {
     .details {
         display: flex;
@@ -120,7 +136,7 @@
     }
 
     .wrapper {
-        max-width: 90%;
+        width: 600px;
         margin: auto;
         height: auto;
         gap: 2em;

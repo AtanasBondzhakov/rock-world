@@ -87,6 +87,29 @@
     }
 }
 
+@media (max-width: 1366px) {
+    .albumCard {
+        padding: 0 1em;
+    }
+
+    .albumCard,
+    .albumCard img {
+        max-width: 170px;
+    }
+
+    .info h2 {
+        font-size: 1.25em;
+    }
+    
+    .info h3 {
+        font-size: 1em;
+    }
+    
+    .info p {
+        font-size: 0.8em;
+    }
+}
+
 @media (max-width: 768px) {
     .albumCard,
     .albumCard img {

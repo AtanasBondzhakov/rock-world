@@ -47,6 +47,10 @@
     margin-bottom: 3em;
 }
 
+@media (max-width: 1366px) {
+ 
+}
+
 @media (max-width: 768px) {
     .wrapper {
         padding: 0;

@@ -2,6 +2,7 @@
     min-height: 100vh;
     background: linear-gradient(210deg, rgb(73, 73, 73, 1) 0%, rgb(10, 2, 2) 50%, rgba(73, 73, 73, 1) 100%);
     padding-top: 1em;
+    padding-bottom: 1em;
 }
 
 .container {
@@ -96,6 +97,11 @@
     font-size: 1em;
     font-weight: normal;
     text-align: center;
+}
+
+.info a:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 4px 10px rgba(100, 181, 246, 0.6);
 }
 
 @media (max-width: 480px) {
