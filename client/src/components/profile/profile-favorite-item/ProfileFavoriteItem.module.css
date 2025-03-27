@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 1em;
     gap: 1em;
 }
 
@@ -14,7 +15,6 @@
     transition: 0.2s linear;
     font-family: 'Outfit', sans-serif;
     text-align: center;
-    aspect-ratio: 1/1;
     text-decoration: none;
     max-height: 100px;
 }
@@ -38,6 +38,7 @@
 .albumCard img {
     width: 80px;
     border-radius: .3em;
+    aspect-ratio: 1/1;
 }
 
 .info {
