@@ -43,12 +43,12 @@ export default function EditAlbum() {
         formErrors,
         onChange,
         onSubmit,
-        setFormValues
+        updateFormValues
     } = useForm(initialValues, handleEdit, albumSchema);
 
     useEffect(() => {
         if (album?.released) {
-            setFormValues({
+            updateFormValues({
                 ...album,
                 released: album.released ? parseDateString(album.released) : ''
             });

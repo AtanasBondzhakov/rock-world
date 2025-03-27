@@ -24,7 +24,7 @@ export default function UpdateProfile() {
         formErrors,
         onChange,
         onSubmit,
-        setFormValues
+        updateFormValues
     } = useForm(initialValues, handleEditUser, profileSchema);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -52,7 +52,7 @@ export default function UpdateProfile() {
     };
 
     useEffect(() => {
-        setFormValues({
+        updateFormValues({
             [AUTH_FORM_KEYS.FirstName]: profile.firstName || '',
             [AUTH_FORM_KEYS.LastName]: profile.lastName || '',
             [AUTH_FORM_KEYS.Bio]: profile.bio || '',

@@ -6,7 +6,11 @@ export default function useForm(initialValues, submitHandler, validationSchema) 
 
     const onChange = (e) => {
         setFormValues(state => ({ ...state, [e.target.name]: e.target.value }));
-    }
+    };
+
+    const updateFormValues = (newValues) => {
+        setFormValues(prevValues => ({ ...prevValues, ...newValues }));
+    };
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -33,6 +37,6 @@ export default function useForm(initialValues, submitHandler, validationSchema) 
         formErrors,
         onChange,
         onSubmit,
-        setFormValues
+        updateFormValues
     }
 }

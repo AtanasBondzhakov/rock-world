@@ -26,7 +26,7 @@ export default function Contacts() {
     const {
         formValues,
         formErrors,
-        setFormValues,
+        updateFormValues,
         onChange,
         onSubmit
     } = useForm(initialValues, handleSendEmail, contactsSchema);
@@ -52,7 +52,7 @@ export default function Contacts() {
 
     useEffect(() => {
         (async () => {
-            setFormValues({
+            updateFormValues({
                 [AUTH_FORM_KEYS.Username]: username || '',
                 [AUTH_FORM_KEYS.Email]: email || ''
             })
