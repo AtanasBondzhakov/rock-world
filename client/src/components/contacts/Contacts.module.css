@@ -114,6 +114,7 @@ textarea {
     font-size: 1em;
     cursor: pointer;
     width: auto;
+    transition: transform 0.2s ease
 }
 
 .validationError {
@@ -134,6 +135,11 @@ textarea {
 
 .formContainer button:disabled {
     cursor: not-allowed;
+}
+
+.formContainer button:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 4px 10px rgba(100, 181, 246, 0.6);
 }
 
 @media (max-width: 640px) {

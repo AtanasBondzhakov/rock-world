@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import styles from './DetailsAlbum.module.css';
 import AuthContext from '../../../contexts/authContext.jsx';
@@ -21,6 +21,7 @@ export default function DetailsAlbum() {
 
     const { albumId } = useParams();
     const { userId, isAuthenticated, email } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const { album, loading, error: albumError } = useGetOneAlbum(albumId);
     const { createComment } = useCreateComment();
@@ -32,7 +33,8 @@ export default function DetailsAlbum() {
         addComment,
         error: commentsError,
         hasNextPage,
-        refetch
+        refetch,
+        loading: commentsLoading
     } = useGetComments(offset, pageSize, albumId);
 
     const isOwner = userId === album._ownerId;
@@ -61,8 +63,11 @@ export default function DetailsAlbum() {
 
             <div className={styles.container}>
 
-                {!album.title
-                    ? <ErrorMessage message='Owner delete the album' />
+                {!album.title && !loading
+                    ? <>
+                        <ErrorMessage message='It seems the owner has deleted the album.' />
+                        <button onClick={() => navigate('/auth/profile')} className={styles.goBack}>Back to profile</button>
+                    </>
                     : (
                         <>
                             {loading && <Spinner />}
@@ -91,7 +96,7 @@ export default function DetailsAlbum() {
                                             {comments.length > 0
                                                 ? <>
                                                     <h2>Comments</h2>
-
+                                                {commentsLoading && <Spinner />}
                                                     {comments.map(comment => <CommentAlbumItem key={comment._id} {...comment} />)}
 
                                                     <Pagination

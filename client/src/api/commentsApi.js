@@ -13,10 +13,13 @@ export const useCreateComment = () => {
 
 export const useGetComments = (offset, pageSize, albumId) => {
     const [comments, setComments] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [hasNextPage, setHasNextPage] = useState(true);
 
     const fetchComments = useCallback(async () => {
+        setLoading(true);
+        
         const query = new URLSearchParams({
             sortBy: '_createdOn desc',
             offset,
@@ -34,6 +37,8 @@ export const useGetComments = (offset, pageSize, albumId) => {
             setError({
                 message: err.message
             });
+        }finally {
+            setLoading(false);
         }
     }, [albumId, offset]);
 
@@ -50,6 +55,7 @@ export const useGetComments = (offset, pageSize, albumId) => {
         addComment,
         error,
         hasNextPage,
-        refetch: fetchComments
+        refetch: fetchComments,
+        loading
     }
 };
