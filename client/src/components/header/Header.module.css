@@ -75,7 +75,7 @@
 .menu a {
     color: #ec2e2e;
     text-decoration: none;
-    font-size: 1.5em;
+    font-size: 1em;
     font-weight: 600;
     display: inline-block;
     transition: transform 0.3s ease;
