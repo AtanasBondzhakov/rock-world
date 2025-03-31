@@ -2,9 +2,10 @@
   font-family: 'Outfit', sans-serif;
   display: flex;
   flex-direction: column;
-  padding-bottom: 2em;
+  padding-top: 6em;
+  padding-bottom: 8em;
   align-items: center;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.2)), url(/images/create-edit.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.2)), url(/images/create-edit.png);
   background-size: cover;
   background-position: center;
   min-height: 100vh;

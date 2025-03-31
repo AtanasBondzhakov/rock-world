@@ -46,6 +46,7 @@
 }
 
 .container span {
+    font-size: 0.8em;
     color: #fff;
     margin: auto 1em 0.5em;
     white-space: nowrap;
