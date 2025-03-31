@@ -10,6 +10,7 @@ const Spinner = () => (
             height: "100vh",
             justifyContent: "center"
         }}
+        data-testid="spinner"
     >
         <Spin
             indicator={
