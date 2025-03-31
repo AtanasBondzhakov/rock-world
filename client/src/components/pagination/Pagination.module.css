@@ -31,14 +31,14 @@
     padding: 0.5em 1em;
 }
 
-button:disabled {
+.container button:disabled {
     background-color: #353535;
     opacity: 0.8;
     cursor: not-allowed;
     color: #fff;
 }
 
-button:hover {
+.container button:hover {
     transform: scale(1.02);
     box-shadow: 0px 4px 10px rgba(100, 181, 246, 0.6);
 }

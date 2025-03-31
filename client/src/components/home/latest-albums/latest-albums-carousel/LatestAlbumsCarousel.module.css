@@ -13,6 +13,13 @@
     color: #4caf50;
 }
 
+.carousel button:hover::before,
+.carousel button:hover::after {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
 @media (max-width: 1024px) {
     .carousel {
         max-width: 80vw;
