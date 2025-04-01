@@ -9,7 +9,7 @@
 
 .top {
     background-color: #424242;
-    width: 100%;
+    max-width: 100%;
     display: flex;
     flex: 1;
     align-items: center;
@@ -21,7 +21,7 @@
 }
 
 .bottom {
-    width: 100%;
+    max-width: 100%;
     display: flex;
     flex: 1;
     align-items: center;

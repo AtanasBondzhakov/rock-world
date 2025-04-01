@@ -15,15 +15,14 @@ export default function Footer() {
         <div className={styles.container}>
             <ul className={styles.contactInfo}>
                 <li><MdEmail /> rock-world@yahoo.com</li>
-                <li><FaPhone /> 0888-444-333</li>
-                <li><FaLocationDot /> Springfield, XY 12345</li>
+                <li><FaPhone /> (+359) 888-444-333</li>
+                <li><FaLocationDot /> Plovdiv, Bulgaria</li>
             </ul>
             <div className={styles.infoContainer}>
                 <ul className={styles.quickLinks}>
                     <li><Link to={PATHS.About}>About</Link></li>
                     <li><Link to={PATHS.Contacts}>Contacts</Link></li>
                     <li><Link to={PATHS.Albums}>Albums</Link></li>
-                    <li><Link to={PATHS.Register}>Register</Link></li>
                 </ul>
                 <div className={styles.socialMedia}>
                     <Link to="https://github.com/AtanasBondzhakov" target="_blank"><FaGithub /></Link>
