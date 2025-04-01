@@ -30,4 +30,4 @@ it('Should display correct album link', () => {
 
     const link = screen.getByRole("link");
     expect(link).toHaveAttribute("href", `/albums/${mockAlbum._id}/details`);
-})
+});
