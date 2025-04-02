@@ -20,13 +20,13 @@ export default function Logout() {
             try {
                 await logout();
 
-                handleLogout();
             } catch (err) {
                 setError({
                     message: err.message
                 });
             } finally {
                 setLoading(false);
+                handleLogout();
             }
         })();
     }, []);
