@@ -3,9 +3,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import usePersistedState from "../hooks/usePersistedState";
 import { AUTH_MESSAGES, PATHS } from "../constants.js";
-import authService from "../services/authService.js";
 import { toasterSuccess } from "../utils/toaster-messages.js";
 import { useCreateProfile } from "../api/profilesApi.js";
+import { useLogin, useRegister } from "../api/authApi.js";
 
 const AuthContext = createContext();
 
@@ -18,6 +18,8 @@ export const AuthProvider = ({
     const [loading, setLoading] = useState(false);
 
     const { createProfile } = useCreateProfile();
+    const { register } = useRegister();
+    const { login } = useLogin();
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -30,7 +32,7 @@ export const AuthProvider = ({
     const handleRegister = async (userData) => {
         setLoading(true);
         try {
-            const { password, ...userDetails } = await authService.register(userData.email, userData.password, userData.username);
+            const { password, ...userDetails } = await register(userData.email, userData.password, userData.username);
             const { accessToken, ...profileDetails } = userDetails;
 
             setAuth(userDetails);
@@ -51,7 +53,7 @@ export const AuthProvider = ({
     const handleLogin = async (userData) => {
         setLoading(true);
         try {
-            const { password, ...userDetails } = await authService.login(userData.email, userData.password);
+            const { password, ...userDetails } = await login(userData.email, userData.password);
 
             setAuth(userDetails);
 

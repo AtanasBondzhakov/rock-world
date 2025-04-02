@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 
 import styles from './Logout.module.css';
-import authService from "../../services/authService.js";
 import AuthContext from "../../contexts/authContext.jsx";
 
 import Spinner from "../spinner/Spinner.jsx";
 import ErrorMessage from "../error-message/ErrorMessage.jsx";
+import { useLogout } from "../../api/authApi.js";
 
 export default function Logout() {
     const { handleLogout } = useContext(AuthContext);
@@ -13,10 +13,12 @@ export default function Logout() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const { logout } = useLogout();
+
     useEffect(() => {
         (async () => {
             try {
-                await authService.logout();
+                await logout();
 
                 handleLogout();
             } catch (err) {
