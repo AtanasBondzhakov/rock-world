@@ -5,7 +5,7 @@ export default function ChooseUs() {
         <div className={styles.container}>
             <div className={styles.info}>
                 <h2>Unmatched Music Collection</h2>
-                <p>We offer an extensive library of timeless rock albums and tracks, ensuring you'll discover both legendary classics and hidden gems that define the genre.</p>
+                <p>We offer an extensive library of timeless rock albums and tracks, ensuring you will discover both legendary classics and hidden gems that define the genre.</p>
             </div>
             <hr></hr>
             <div className={styles.info}>

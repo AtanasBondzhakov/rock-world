@@ -19,7 +19,7 @@ export default function About() {
 
                 <p>With Rock World, users can dive into the history of rock music, discovering influential albums that shaped the genre while adding their own ratings and comments. The platform provides an immersive experience with high-quality album covers, band backgrounds, and an easy-to-navigate interface that ensures seamless browsing for all rock and metal fans.</p>
 
-                <p>Beyond just an album database, Rock World fosters an interactive rock-loving community where users can discuss, share opinions, and recommend hidden gems. Whether you're a lifelong headbanger or new to the genre, the site offers a thrilling way to discover, collect, and celebrate the loudest, hardest, and most electrifying music of all time.</p>
+                <p>Beyond just an album database, Rock World fosters an interactive rock-loving community where users can discuss, share opinions, and recommend hidden gems. Whether you are a lifelong headbanger or new to the genre, the site offers a thrilling way to discover, collect, and celebrate the loudest, hardest, and most electrifying music of all time.</p>
             </div>
         </div>
     );

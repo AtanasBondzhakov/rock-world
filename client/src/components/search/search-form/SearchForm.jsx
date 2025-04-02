@@ -20,7 +20,7 @@ export default function SearchForm() {
         if (formErrors[ALBUM_FORM_KEYS.Search]) {
             formErrors[ALBUM_FORM_KEYS.Search] = '';
         }
-    }, [location.pathname]);
+    }, [formErrors]);
 
     return (
         <div className={styles.container}>

@@ -57,7 +57,7 @@ export default function Contacts() {
                 [AUTH_FORM_KEYS.Email]: email || ''
             })
         })();
-    }, [username, email]);
+    }, [username, email, updateFormValues]);
 
     return (
         <div className={styles.container}>

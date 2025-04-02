@@ -1,4 +1,3 @@
-import React from 'react';
 import { ExclamationCircleFilled } from '@ant-design/icons';
 import { Modal, Space } from 'antd';
 

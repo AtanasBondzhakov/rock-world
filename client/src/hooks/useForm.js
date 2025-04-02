@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 export default function useForm(initialValues, submitHandler, validationSchema) {
     const [formValues, setFormValues] = useState(initialValues);
@@ -8,9 +8,9 @@ export default function useForm(initialValues, submitHandler, validationSchema) 
         setFormValues(state => ({ ...state, [e.target.name]: e.target.value }));
     };
 
-    const updateFormValues = (newValues) => {
+    const updateFormValues = useCallback( (newValues) => {
         setFormValues(prevValues => ({ ...prevValues, ...newValues }));
-    };
+    }, []);
 
     const onSubmit = async (e) => {
         e.preventDefault();

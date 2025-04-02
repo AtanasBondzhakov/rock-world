@@ -57,7 +57,7 @@ export default function UpdateProfile() {
             [AUTH_FORM_KEYS.LastName]: profile.lastName || '',
             [AUTH_FORM_KEYS.Bio]: profile.bio || '',
         });
-    }, [profile, userId]);
+    }, [profile, userId, updateFormValues]);
 
     return (
         <div className={styles.container}>

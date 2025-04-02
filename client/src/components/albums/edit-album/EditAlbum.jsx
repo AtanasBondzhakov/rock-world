@@ -53,7 +53,7 @@ export default function EditAlbum() {
                 released: album.released ? parseDateString(album.released) : ''
             });
         }
-    }, [album]);
+    }, [album, updateFormValues]);
 
     const isOwner = userId === album._ownerId;
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Loading3QuartersOutlined } from '@ant-design/icons';
 import { Flex, Spin } from 'antd';
 

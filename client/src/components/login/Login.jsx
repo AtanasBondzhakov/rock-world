@@ -50,7 +50,7 @@ export default function Login() {
                     <button type="submit" disabled={loading ? 'disabled' : ''} className={styles.button}>Login</button>
                 </form>
                 <p className={styles.registerLink}>
-                    Don't have an account? <Link to={PATHS.Register}>Sign up</Link>
+                    Don&apos;t have an account? <Link to={PATHS.Register}>Sign up</Link>
                 </p>
             </div>
         </div>
