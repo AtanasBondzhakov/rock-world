@@ -1,9 +1,9 @@
 # Rock World
 ### A React-based application that allows users to explore various rock albums. Users can register, log in, browse featured content, create, add comments and more.
-#### Recommended resolution: 1920x1080
-#### This project uses the SoftUni Practice Server to handle backend operations and data management.
+### Recommended resolution: 1920x1080
+### This project uses the SoftUni Practice Server to handle backend operations and data management.
 
-## You can access deployed app at [Rock-World](https://rock-world-32534.firebaseapp.com/) or follow the instructions to run it locally
+### You can access deployed app at [Rock-World](https://rock-world-32534.firebaseapp.com/) or follow the instructions to run it locally.
 
 ## Getting Started
 
@@ -28,8 +28,6 @@
 
 4. Set up environment variables:
 
-    Obtain your IDs after after registering at https://www.emailjs.com/
-
     Create a `.env.development` file in the root of your project and add your credentials (replace the placeholders with the actual values):
 
     VITE_API_URL=http://localhost:3030
@@ -42,6 +40,8 @@
 
     VITE_USER_ID=Your Public Key
     - You can access it on Account tab
+
+    Obtain your IDs after registering at https://www.emailjs.com/ (This part is required for sending emails)
 
 5. Open the app:
 
@@ -96,12 +96,12 @@
 ![Image](https://github.com/user-attachments/assets/548dc7a9-956f-478a-bb23-519abbca9c51)
 
 ### Create Page
-- The Create page allows users to add new albums to the collection. It features a form where users can input album details such as the album title, band name, genre, album cover image... Once all required fields are filled, users can submit the form to create a new album. An error message is shown when the requirements are not met.
+- The Create page allows logged in users to add new albums to the collection. It features a form where users can input album details such as the album title, band name, genre, album cover image... Once all required fields are filled, users can submit the form to create a new album. An error message is shown when the requirements are not met.
 
 ![Image](https://github.com/user-attachments/assets/a45618f7-b4d3-4580-be8f-58778f70d83f)
 
 ### Album Details Page
-- The Details Page provides users with comprehensive information about a specific album. Below the album information users can view and leave comments about the album. Additionally users have the option to add the album to their favorites. If the user is the owner of the album they have the ability to edit or delete the album.
+- The Details Page provides users with comprehensive information about a specific album. Below the album information logged in users can leave comments about the album. Additionally users have the option to add the album to their favorites. If the user is the owner of the album they have the ability to edit or delete the album.
 
 **Details Album**
 ![Image](https://github.com/user-attachments/assets/475b2963-ba66-493c-aa0c-caeb4739c715)
@@ -171,7 +171,7 @@
 - **react-toastify**: Using toaster messages.
 - **Vitest: Unit testing.**
 
-##  User for testing
+##  Users for testing
 - **Users**:
   - **Email:** admin@abv.bg; **password:** admin
   - **Email:** peter@abv.bg; **password:** 123456

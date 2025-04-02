@@ -65,7 +65,7 @@ export default function Contacts() {
                 <div className={styles.infoContainer}>
                     <ul className={styles.contactInfo}>
                         <li><MdEmail /> rock-world@yahoo.com</li>
-                        <li><FaPhone /> (+359)888444333</li>
+                        <li><FaPhone /> (+359) 888-444-333</li>
                         <li><FaLocationDot /> Plovdiv, Bulgaria</li>
                     </ul>
                 </div>
