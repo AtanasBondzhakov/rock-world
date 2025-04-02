@@ -27,13 +27,13 @@ export const useGetAllAlbums = (offset, pageSize) => {
     const [error, setError] = useState(null);
     const [hasNextPage, setHasNextPage] = useState(true);
 
-    const query = new URLSearchParams({
-        sortBy: '_createdOn desc',
-        offset,
-        pageSize: pageSize + 1
-    });
-
     useEffect(() => {
+        const query = new URLSearchParams({
+            sortBy: '_createdOn desc',
+            offset,
+            pageSize: pageSize + 1
+        });
+
         (async () => {
             try {
                 const result = await requester.get(`${BASE_PATH}?${query}`);
@@ -48,7 +48,7 @@ export const useGetAllAlbums = (offset, pageSize) => {
                 setLoading(false);
             }
         })();
-    }, [offset]);
+    }, [offset, pageSize]);
 
     return {
         albums,
@@ -90,21 +90,22 @@ export const useGetLatestAlbums = () => {
     const [latestAlbums, setLatestAlbums] = useState([]);
     const [error, setError] = useState('');
 
-    const query = new URLSearchParams({
-        sortBy: '_createdOn desc',
-        offset: 0,
-        pageSize: 5
-    });
-
     useEffect(() => {
+        const query = new URLSearchParams({
+            sortBy: '_createdOn desc',
+            offset: 0,
+            pageSize: 5
+        });
+
         (async () => {
             try {
                 const result = await requester.get(`/data/albums?${query}`)
 
                 setLatestAlbums(result);
             } catch (err) {
-                const errorMessage = 'Albums are currently unavailable.';
-                setError(errorMessage);
+                setError({
+                    message: 'Albums are currently unavailable.'
+                });
             }
         })();
     }, []);
@@ -136,11 +137,12 @@ export const useSearch = (searchQuery) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const query = new URLSearchParams({
-        where: `title LIKE "${searchQuery}" OR band LIKE "${searchQuery}"`
-    })
 
     useEffect(() => {
+        const query = new URLSearchParams({
+            where: `title LIKE "${searchQuery}" OR band LIKE "${searchQuery}"`
+        });
+
         (async () => {
             try {
                 const result = await requester.get(`${BASE_PATH}?${query}`);

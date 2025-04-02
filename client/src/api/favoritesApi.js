@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import requester from "../services/requester.js";
 
 const BASE_URL = '/data/favorites';
@@ -22,24 +22,23 @@ export const useGetOneFavorite = (albumId, userId) => {
     const [favoriteId, setFavoriteId] = useState(null);
     const [error, setError] = useState('');
 
-    const fetchFavorite = async () => {
+    const fetchFavorite = useCallback(async () => {
         try {
             const query = new URLSearchParams({
                 where: `_ownerId="${userId}" AND albumId="${albumId}"`
             });
 
             const favorite = await requester.get(`${BASE_URL}?${query}`);
-            // const favorite = result.find(fav => fav.albumId === albumId);
-            
+
             setFavoriteId(favorite.at(0)?._id);
         } catch (err) {
             setError('Failed to load favorite.');
         }
-    };
+    }, [albumId, userId]);
 
     useEffect(() => {
         fetchFavorite();
-    }, [albumId, userId]);
+    }, [fetchFavorite]);
 
     return {
         favoriteId,

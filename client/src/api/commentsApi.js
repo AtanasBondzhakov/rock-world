@@ -40,7 +40,7 @@ export const useGetComments = (offset, pageSize, albumId) => {
         }finally {
             setLoading(false);
         }
-    }, [albumId, offset]);
+    }, [albumId, offset, pageSize]);
 
     const addComment = useCallback((newComment) => {
         setComments(prev => [newComment, ...prev]);

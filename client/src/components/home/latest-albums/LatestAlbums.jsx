@@ -16,7 +16,7 @@ export default function LatestAlbums() {
             </div>
             <div>
                 {error
-                    ? <div className={styles.content}><ErrorMessage message={error} /></div>
+                    ? <div className={styles.content}><ErrorMessage message={error.message} /></div>
                     : (
                         <LatestAlbumsCarousel>
                             {latestAlbums.map(album => {
